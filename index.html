@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="//libtl.com/sdk.js"
+          data-zone="11701410"
+          data-sdk="show_11701410"></script>
+</head>
+
+<body>
+  <h2>DailyFree01</h2>
+
+  <button onclick="watchAd()">🎁 বিজ্ঞাপন দেখুন</button>
+
+  <script>
+    function watchAd() {
+      show_11701410().then(() => {
+        alert("আপনি বিজ্ঞাপনটি দেখেছেন!");
+      });
+    }
+  </script>
+</body>
+</html>
