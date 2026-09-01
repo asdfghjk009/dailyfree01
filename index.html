@@ -1,25 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="//libtl.com/sdk.js"
-          data-zone="11701410"
-          data-sdk="show_11701410"></script>
+<script src="//libtl.com/sdk.js"
+        data-zone="11701410"
+        data-sdk="show_11701410"></script>
+
+<title>DailyFree01</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f5f9;
+  color:#222;
+}
+
+.container{
+  max-width:450px;
+  margin:auto;
+  padding:20px;
+}
+
+.header{
+  text-align:center;
+  font-size:28px;
+  font-weight:bold;
+  margin:10px 0 20px;
+}
+
+.wallet{
+  background:linear-gradient(135deg,#111827,#2563eb);
+  color:white;
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 8px 25px #0002;
+}
+
+.balance{
+  font-size:38px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  margin-top:18px;
+  border-radius:18px;
+  box-shadow:0 4px 15px #0001;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:0;
+  border-radius:12px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.adbtn{
+  background:#16a34a;
+  color:white;
+}
+
+.withdraw{
+  background:#2563eb;
+  color:white;
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  margin-top:8px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+}
+
+.small{
+  color:#666;
+  font-size:14px;
+  text-align:center;
+  margin-top:12px;
+}
+</style>
 </head>
 
 <body>
-  <h2>DailyFree01</h2>
 
-  <button onclick="watchAd()">🎁 বিজ্ঞাপন দেখুন</button>
+<div class="container">
 
-  <script>
-    function watchAd() {
-      show_11701410().then(() => {
-        alert("আপনি বিজ্ঞাপনটি দেখেছেন!");
-      });
-    }
-  </script>
+<div class="header">🎁 DailyFree01</div>
+
+<div class="wallet">
+  <div>💰 আপনার Wallet</div>
+
+  <div class="balance">
+    <span id="balance">0</span> Coins
+  </div>
+
+  <div>100 Coins = ৳1</div>
+</div>
+
+<div class="card">
+
+<h2>🎬 বিজ্ঞাপন দেখে আয়</h2>
+
+<p>
+বিজ্ঞাপন দেখুন এবং Coins সংগ্রহ করুন।
+</p>
+
+<button class="adbtn" onclick="watchAd()">
+🎁 বিজ্ঞাপন দেখুন
+</button>
+
+<p id="status" class="small"></p>
+
+</div>
+
+<div class="card">
+
+<h2>💳 Withdraw</h2>
+
+<select id="method">
+<option value="bKash">bKash</option>
+<option value="Nagad">Nagad</option>
+</select>
+
+<input
+id="number"
+type="tel"
+placeholder="bKash/Nagad নম্বর">
+
+<input
+id="amount"
+type="number"
+placeholder="Coins কত তুলবেন?">
+
+<button class="withdraw" onclick="withdraw()">
+💸 Withdraw Request
+</button>
+
+<p id="withdrawStatus" class="small"></p>
+
+</div>
+
+</div>
+
+<script>
+
+let balance =
+Number(localStorage.getItem("balance") || 0);
+
+function updateBalance(){
+
+document.getElementById("balance")
+.innerText = balance;
+
+}
+
+function watchAd(){
+
+document.getElementById("status")
+.innerText = "⏳ বিজ্ঞাপন লোড হচ্ছে...";
+
+if(typeof show_11701410 === "function"){
+
+show_11701410().then(function(){
+
+balance += 10;
+
+localStorage.setItem(
+"balance",
+balance
+);
+
+updateBalance();
+
+document.getElementById("status")
+.innerText =
+"✅ বিজ্ঞাপন সম্পন্ন! 10 Coins যোগ হয়েছে।";
+
+}).catch(function(){
+
+document.getElementById("status")
+.innerText =
+"❌ বিজ্ঞাপন সম্পন্ন হয়নি। আবার চেষ্টা করুন।";
+
+});
+
+}else{
+
+document.getElementById("status")
+.innerText =
+"❌ বিজ্ঞাপন এখন পাওয়া যাচ্ছে না।";
+
+}
+
+}
+
+function withdraw(){
+
+let method =
+document.getElementById("method").value;
+
+let number =
+document.getElementById("number").value.trim();
+
+let amount =
+Number(document.getElementById("amount").value);
+
+if(!number){
+
+document.getElementById("withdrawStatus")
+.innerText =
+"⚠️ bKash/Nagad নম্বর দিন।";
+
+return;
+
+}
+
+if(amount <= 0){
+
+document.getElementById("withdrawStatus")
+.innerText =
+"⚠️ সঠিক Coins লিখুন।";
+
+return;
+
+}
+
+if(amount > balance){
+
+document.getElementById("withdrawStatus")
+.innerText =
+"❌ আপনার পর্যাপ্ত Coins নেই।";
+
+return;
+
+}
+
+document.getElementById("withdrawStatus")
+.innerText =
+"✅ Withdraw Request তৈরি হয়েছে। " +
+method + " | " +
+number + " | " +
+amount + " Coins";
+
+}
+
+updateBalance();
+
+</script>
+
 </body>
 </html>
