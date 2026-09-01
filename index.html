@@ -61,6 +61,11 @@ body{
   margin:10px 0;
 }
 
+.rate{
+  font-size:17px;
+  line-height:1.8;
+}
+
 .card{
   background:white;
   padding:20px;
@@ -145,22 +150,32 @@ input,select{
 
   <!-- WALLET -->
   <div class="wallet">
+
     <div>💰 আপনার Wallet</div>
 
     <div class="balance">
       <span id="balance">0</span> Coins
     </div>
 
-    <div>100 Coins = ৳1</div>
+    <div class="rate">
+      10,000 Coins = $1<br>
+      20,000 Coins = $2
+    </div>
+
   </div>
 
-  <!-- AD -->
+
+  <!-- AD SECTION -->
   <div class="card">
 
     <h2>🎬 বিজ্ঞাপন দেখে আয়</h2>
 
     <p>
-      বিজ্ঞাপন দেখুন এবং Demo Coins সংগ্রহ করুন।
+      বিজ্ঞাপন দেখুন এবং Coins সংগ্রহ করুন।
+    </p>
+
+    <p>
+      🎁 প্রতি সফল বিজ্ঞাপনে <b>100 Coins</b>
     </p>
 
     <button
@@ -173,6 +188,7 @@ input,select{
     <p id="status" class="small"></p>
 
   </div>
+
 
   <!-- WITHDRAW -->
   <div class="card">
@@ -187,11 +203,13 @@ input,select{
     <input
       id="number"
       type="tel"
+      inputmode="numeric"
       placeholder="bKash/Nagad নম্বর">
 
     <input
       id="amount"
       type="number"
+      inputmode="numeric"
       placeholder="Coins কত তুলবেন?">
 
     <button
@@ -204,6 +222,7 @@ input,select{
 
   </div>
 
+
   <!-- HISTORY -->
   <div class="card">
 
@@ -215,10 +234,11 @@ input,select{
 
   </div>
 
+
   <div class="info">
-    ⚠️ এটি Demo Withdraw System।
-    এখানে Request তৈরি হবে, কিন্তু এই HTML নিজে থেকে
-    bKash/Nagad-এ আসল টাকা পাঠায় না।
+    ⚠️ এই HTML-এর Withdraw অংশটি Demo Request System।
+    এটি নিজে থেকে bKash/Nagad-এ আসল টাকা পাঠায় না।
+    আসল পেমেন্ট দিতে হলে আলাদা secure server/payment system লাগবে।
   </div>
 
 </div>
@@ -316,22 +336,22 @@ function watchAd(){
 
     try{
 
-      show_11701410()
+      Promise.resolve(
+        show_11701410()
+      )
       .then(function(){
 
         /*
-          DEMO REWARD
-
-          বাস্তবে reward দেওয়ার আগে
-          server-side verification ব্যবহার করা উচিত।
+          প্রতি সফল বিজ্ঞাপনে
+          100 Coins
         */
 
-        balance += 10;
+        balance += 100;
 
         updateBalance();
 
         status.innerText =
-          "✅ বিজ্ঞাপন সম্পন্ন! 10 Coins যোগ হয়েছে।";
+          "✅ বিজ্ঞাপন সম্পন্ন! 100 Coins যোগ হয়েছে।";
 
         adRunning = false;
         button.disabled = false;
@@ -416,6 +436,26 @@ function withdraw(){
   }
 
 
+  /* 100 Coins = 10 পয়সা */
+
+  if(amount < 100){
+
+    status.innerText =
+      "⚠️ কমপক্ষে 100 Coins প্রয়োজন।";
+
+    return;
+  }
+
+
+  if(amount % 100 !== 0){
+
+    status.innerText =
+      "⚠️ Coins অবশ্যই 100-এর গুণিতক হতে হবে।";
+
+    return;
+  }
+
+
   if(amount > balance){
 
     status.innerText =
@@ -427,8 +467,6 @@ function withdraw(){
 
   /*
     DEMO REQUEST
-
-    আসল payment নয়।
   */
 
   const request = {
@@ -450,7 +488,10 @@ function withdraw(){
       amount,
 
     taka:
-      amount / 100,
+      amount / 1000,
+
+    dollar:
+      amount / 10000,
 
     status:
       "Pending",
@@ -478,6 +519,7 @@ function withdraw(){
   balance -= amount;
 
   updateBalance();
+
 
   document.getElementById("number")
     .value = "";
@@ -540,8 +582,13 @@ function showHistory(){
       "<br>" +
 
       "💰 " + item.coins +
-      " Coins = ৳" +
-      item.taka +
+      " Coins" +
+      "<br>" +
+
+      "💵 ৳" + item.taka +
+      "<br>" +
+
+      "💲 $" + item.dollar +
       "<br>" +
 
       "📌 Status: " +
