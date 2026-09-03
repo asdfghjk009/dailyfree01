@@ -2,441 +2,716 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-<meta name="theme-color" content="#f4c62e">
+<meta name="theme-color" content="#080817">
 
 <title>DailyFree01</title>
 
 <!-- Telegram Mini App -->
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<!-- =====================================================
-     MONETAG REWARDED INTERSTITIAL
-     Zone: 11701410
-===================================================== -->
+<!-- Monetag -->
 <script
-    src="https://libtl.com/sdk.js"
-    data-zone="11701410"
-    data-sdk="show_11701410">
+src="https://libtl.com/sdk.js"
+data-zone="11701410"
+data-sdk="show_11701410">
 </script>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4c62e;
-    color:#171717;
-    min-height:100vh;
-    padding-bottom:90px;
+ font-family:Arial,Helvetica,sans-serif;
+ color:#fff;
+ min-height:100vh;
+ padding-bottom:94px;
+
+ background:
+ radial-gradient(circle at 8% 8%,#6d28d9 0%,transparent 28%),
+ radial-gradient(circle at 92% 12%,#0891b2 0%,transparent 30%),
+ radial-gradient(circle at 50% 100%,#be185d 0%,transparent 27%),
+ #070817;
 }
 
 .app{
-    width:100%;
-    max-width:700px;
-    margin:auto;
+ width:100%;
+ max-width:720px;
+ margin:auto;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
-    padding:18px;
+ padding:17px;
 }
 
 .profile-card{
-    background:#252525;
-    border:2px solid #a67c00;
-    border-radius:28px;
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    color:white;
+ background:rgba(18,21,43,.92);
+ border:1px solid rgba(103,232,249,.25);
+ border-radius:28px;
+ padding:17px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ box-shadow:
+ 0 15px 45px rgba(0,0,0,.40),
+ 0 0 30px rgba(124,58,237,.08);
+ backdrop-filter:blur(15px);
 }
 
 .user-box{
-    display:flex;
-    align-items:center;
-    gap:13px;
+ display:flex;
+ align-items:center;
+ gap:12px;
 }
 
 .avatar{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:#f4c62e;
-    color:#111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    font-weight:900;
+ width:64px;
+ height:64px;
+ border-radius:21px;
+
+ background:
+ linear-gradient(
+ 135deg,
+ #7c3aed,
+ #06b6d4,
+ #ec4899
+ );
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
+
+ font-size:29px;
+ font-weight:950;
+
+ box-shadow:
+ 0 0 25px rgba(34,211,238,.30);
 }
 
 .username{
-    font-size:23px;
-    font-weight:900;
+ font-size:20px;
+ font-weight:950;
 }
 
 .status{
-    display:inline-block;
-    margin-top:6px;
-    padding:6px 13px;
-    background:#f4c62e;
-    color:#111;
-    border-radius:15px;
-    font-size:12px;
-    font-weight:900;
+ display:inline-block;
+ margin-top:6px;
+ padding:5px 11px;
+
+ background:rgba(34,211,238,.10);
+ border:1px solid rgba(34,211,238,.30);
+
+ color:#67e8f9;
+ border-radius:20px;
+
+ font-size:10px;
+ font-weight:900;
 }
 
 .balance-box{
-    text-align:right;
+ text-align:right;
 }
 
 .balance-box span{
-    display:block;
-    color:#bbb;
-    font-size:13px;
+ display:block;
+ color:#858da5;
+ font-size:11px;
 }
 
 .balance-box strong{
-    display:block;
-    color:#ffd83f;
-    font-size:28px;
-    margin-top:5px;
+ display:block;
+ margin-top:5px;
+
+ font-size:24px;
+ font-weight:950;
+
+ background:
+ linear-gradient(90deg,#67e8f9,#c084fc);
+
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
 }
 
-/* ================= SCREEN ================= */
+/* SCREEN */
 
 .screen{
-    display:none;
+ display:none;
 }
 
 .screen.active{
-    display:block;
+ display:block;
 }
 
 .container{
-    padding:10px 22px 25px;
+ padding:8px 17px 25px;
 }
 
 .title{
-    font-size:36px;
-    font-weight:950;
-    margin:12px 0 7px;
+ font-size:31px;
+ font-weight:950;
+ letter-spacing:-1px;
+ margin:12px 0 6px;
 }
 
 .subtitle{
-    color:#6f6f6f;
-    font-weight:700;
-    margin-bottom:22px;
+ color:#929ab1;
+ font-weight:700;
+ margin-bottom:20px;
 }
 
-/* ================= CARD ================= */
+/* CARD */
 
 .card{
-    background:#292929;
-    color:white;
-    border:2px solid #a67c00;
-    border-radius:28px;
-    padding:22px;
-    margin-bottom:18px;
+ background:
+ linear-gradient(
+ 145deg,
+ rgba(30,24,60,.96),
+ rgba(8,18,38,.96)
+ );
+
+ border:1px solid rgba(103,232,249,.20);
+ border-radius:28px;
+
+ padding:20px;
+ margin-bottom:17px;
+
+ box-shadow:
+ 0 18px 45px rgba(0,0,0,.30),
+ 0 0 25px rgba(139,92,246,.06);
 }
 
 .card-title{
-    color:#ffd83f;
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:18px;
+ font-size:21px;
+ font-weight:950;
+ margin-bottom:17px;
+
+ background:
+ linear-gradient(
+ 90deg,
+ #c084fc,
+ #67e8f9,
+ #f0abfc
+ );
+
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
 }
 
+/* TOP */
+
 .top-line{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    font-weight:900;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ font-weight:900;
 }
 
 .reward{
-    color:#ffd83f;
+ color:#67e8f9;
 }
 
-/* ================= RULES ================= */
+/* RULES */
 
 .rules{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin:20px 0;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+ margin:20px 0;
 }
 
 .rule{
-    background:#1f201e;
-    border-radius:20px;
-    padding:17px 5px;
-    text-align:center;
+ background:#101426;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:19px;
+ padding:15px 4px;
+ text-align:center;
 }
 
 .rule span{
-    display:block;
-    color:#aaa;
-    font-size:12px;
-    font-weight:900;
+ display:block;
+ color:#8189a0;
+ font-size:10px;
+ font-weight:900;
 }
 
 .rule strong{
-    display:block;
-    color:#ffd83f;
-    font-size:19px;
-    margin-top:8px;
+ display:block;
+ color:#67e8f9;
+ font-size:17px;
+ margin-top:7px;
 }
 
-/* ================= PROGRESS ================= */
+/* PROGRESS */
 
 .progress-info{
-    display:flex;
-    justify-content:space-between;
-    color:#bbb;
-    font-size:14px;
-    font-weight:800;
+ display:flex;
+ justify-content:space-between;
+ color:#929ab1;
+ font-size:13px;
+ font-weight:800;
 }
 
 .progress{
-    height:13px;
-    background:#4a4a47;
-    border-radius:20px;
-    overflow:hidden;
-    margin:10px 0 22px;
+ height:13px;
+ background:#252a40;
+ border-radius:20px;
+ overflow:hidden;
+ margin:10px 0 21px;
 }
 
 .progress-bar{
-    height:100%;
-    width:0%;
-    background:#ffd83f;
-    border-radius:20px;
-    transition:.3s;
+ height:100%;
+ width:0%;
+
+ background:
+ linear-gradient(
+ 90deg,
+ #8b5cf6,
+ #22d3ee,
+ #f472b6
+ );
+
+ border-radius:20px;
+
+ transition:.4s;
+
+ box-shadow:
+ 0 0 18px rgba(34,211,238,.45);
 }
 
-/* ================= BUTTON ================= */
+/* BUTTON */
 
 .watch-btn{
-    width:100%;
-    border:none;
-    border-radius:22px;
-    padding:19px;
-    background:linear-gradient(90deg,#ffd83f,#dca900);
-    color:#111;
-    font-size:20px;
-    font-weight:950;
-    cursor:pointer;
+ width:100%;
+ border:none;
+ border-radius:20px;
+ padding:18px;
+
+ background:
+ linear-gradient(
+ 90deg,
+ #7c3aed,
+ #06b6d4,
+ #ec4899
+ );
+
+ color:#fff;
+
+ font-size:18px;
+ font-weight:950;
+
+ cursor:pointer;
+
+ box-shadow:
+ 0 10px 30px rgba(124,58,237,.28);
+
+ transition:.2s;
+}
+
+.watch-btn:active{
+ transform:scale(.98);
 }
 
 .watch-btn:disabled{
-    opacity:.55;
-    cursor:not-allowed;
+ opacity:.5;
+ cursor:not-allowed;
 }
+
+/* SMALL BUTTON */
 
 .small-btn{
-    border:none;
-    border-radius:15px;
-    padding:12px 18px;
-    background:#ffd83f;
-    color:#111;
-    font-weight:900;
+ border:none;
+ border-radius:15px;
+ padding:12px 18px;
+
+ background:
+ linear-gradient(
+ 90deg,
+ #7c3aed,
+ #06b6d4
+ );
+
+ color:#fff;
+ font-weight:900;
 }
 
-/* ================= NOTICE ================= */
+/* NOTICE */
 
 .notice{
-    margin-top:17px;
-    padding:15px;
-    background:#343432;
-    border:1px solid #987300;
-    border-radius:17px;
-    color:#ddd;
-    line-height:1.5;
-    font-size:14px;
+ margin-top:16px;
+ padding:15px;
+
+ background:#111629;
+ border:1px solid rgba(34,211,238,.16);
+
+ border-radius:17px;
+
+ color:#c4cada;
+ line-height:1.55;
+ font-size:13px;
 }
 
-/* ================= STATS ================= */
+.notice b{
+ color:#67e8f9;
+}
+
+/* STATS */
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:9px;
-    margin-top:14px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+ margin-top:13px;
 }
 
 .stat{
-    background:#343432;
-    border-radius:17px;
-    padding:14px 4px;
-    text-align:center;
+ background:#111629;
+ border-radius:17px;
+ padding:13px 4px;
+ text-align:center;
 }
 
 .stat strong{
-    display:block;
-    color:#ffd83f;
-    font-size:18px;
+ display:block;
+ color:#c084fc;
+ font-size:17px;
 }
 
 .stat span{
-    color:#aaa;
-    font-size:11px;
+ color:#7e879d;
+ font-size:10px;
 }
 
-/* ================= ROW ================= */
+/* ROW */
 
 .row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    padding:14px 0;
-    border-bottom:1px solid #484844;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+
+ padding:14px 0;
+
+ border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .row:last-child{
-    border-bottom:none;
+ border-bottom:none;
 }
 
 .row strong{
-    color:#ffd83f;
+ color:#67e8f9;
 }
 
-/* ================= INPUT ================= */
+/* INPUT */
 
 label{
-    display:block;
-    color:#ddd;
-    font-weight:800;
-    margin:14px 0 7px;
+ display:block;
+ color:#c8ccda;
+ font-weight:800;
+ margin:14px 0 7px;
 }
 
 input{
-    width:100%;
-    padding:16px;
-    border-radius:17px;
-    border:2px solid #4b4b47;
-    background:#1f201e;
-    color:white;
-    font-size:16px;
-    outline:none;
+ width:100%;
+ padding:15px;
+
+ border-radius:16px;
+ border:1px solid #30364e;
+
+ background:#0d1120;
+ color:white;
+
+ font-size:16px;
+ outline:none;
 }
 
+input:focus{
+ border-color:#22d3ee;
+
+ box-shadow:
+ 0 0 0 3px rgba(34,211,238,.08);
+}
+
+/* PAYMENT */
+
+.payment-title{
+ color:#aeb5c8;
+ font-weight:900;
+ margin:17px 0 10px;
+}
+
+.payment-methods{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-bottom:15px;
+}
+
+.payment-btn{
+ border:1px solid #343a55;
+ background:#101426;
+
+ color:#aeb5c8;
+
+ padding:15px 8px;
+
+ border-radius:17px;
+
+ font-weight:950;
+ font-size:16px;
+
+ cursor:pointer;
+ transition:.2s;
+}
+
+.payment-btn.active{
+ border-color:#22d3ee;
+
+ color:white;
+
+ background:
+ linear-gradient(
+ 135deg,
+ rgba(139,92,246,.25),
+ rgba(34,211,238,.16)
+ );
+
+ box-shadow:
+ 0 0 20px rgba(34,211,238,.08);
+}
+
+.bkash{
+ color:#ff72b6;
+}
+
+.nagad{
+ color:#ff9d4d;
+}
+
+/* WARNING */
+
 .min-warning{
-    background:#343432;
-    border:2px solid #a67c00;
-    border-radius:18px;
-    padding:15px;
-    color:white;
-    margin-bottom:18px;
-    line-height:1.5;
+ background:#111629;
+ border:1px solid rgba(139,92,246,.30);
+
+ border-radius:18px;
+
+ padding:15px;
+
+ color:#d9dce6;
+
+ margin-bottom:18px;
+
+ line-height:1.5;
 }
 
 .min-warning b{
-    color:#ffd83f;
+ color:#67e8f9;
 }
 
-/* ================= BOTTOM NAV ================= */
+/* OFFICIAL */
+
+.official-btn{
+ display:block;
+ width:100%;
+
+ text-align:center;
+ text-decoration:none;
+
+ padding:17px;
+
+ border-radius:20px;
+
+ color:white;
+
+ font-size:17px;
+ font-weight:950;
+
+ background:
+ linear-gradient(
+ 90deg,
+ #7c3aed,
+ #06b6d4,
+ #ec4899
+ );
+
+ box-shadow:
+ 0 8px 25px rgba(6,182,212,.25);
+
+ transition:.25s;
+}
+
+.official-btn:active{
+ transform:scale(.97);
+}
+
+.admin-box{
+ margin-top:14px;
+
+ padding:16px;
+
+ border-radius:18px;
+
+ text-align:center;
+
+ color:#aeb8cf;
+
+ background:
+ linear-gradient(
+ 135deg,
+ rgba(124,58,237,.15),
+ rgba(6,182,212,.12)
+ );
+
+ border:1px solid rgba(167,139,250,.25);
+}
+
+.admin-box strong{
+ display:block;
+ margin-top:7px;
+
+ font-size:18px;
+
+ background:
+ linear-gradient(
+ 90deg,
+ #c084fc,
+ #67e8f9
+ );
+
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
+}
+
+/* NAV */
 
 .bottom-nav{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index:99;
-    background:#1d1e1c;
-    border-top:2px solid #7f6208;
+ position:fixed;
+
+ left:0;
+ right:0;
+ bottom:0;
+
+ z-index:99;
+
+ background:rgba(8,11,24,.96);
+
+ border-top:1px solid #292f48;
+
+ backdrop-filter:blur(15px);
 }
 
 .nav{
-    max-width:700px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
+ max-width:720px;
+ margin:auto;
+
+ display:grid;
+ grid-template-columns:repeat(7,1fr);
 }
 
 .nav button{
-    border:none;
-    background:transparent;
-    color:#92928d;
-    padding:9px 2px;
-    font-size:9px;
-    font-weight:800;
+ border:none;
+ background:transparent;
+
+ color:#687087;
+
+ padding:8px 2px;
+
+ font-size:8px;
+ font-weight:900;
 }
 
 .nav button.active{
-    color:#ffd83f;
+ color:#67e8f9;
+
+ text-shadow:
+ 0 0 12px rgba(103,232,249,.60);
 }
 
 .nav-icon{
-    display:block;
-    font-size:21px;
-    margin-bottom:4px;
+ display:block;
+ font-size:20px;
+ margin-bottom:3px;
 }
 
-/* ================= TOAST ================= */
+/* TOAST */
 
 .toast{
-    display:none;
-    position:fixed;
-    z-index:200;
-    left:50%;
-    bottom:105px;
-    transform:translateX(-50%);
-    width:max-content;
-    max-width:90%;
-    padding:14px 18px;
-    border-radius:17px;
-    background:#292929;
-    color:white;
-    border:2px solid #d0a80e;
-    text-align:center;
-    font-weight:800;
+ display:none;
+
+ position:fixed;
+
+ z-index:200;
+
+ left:50%;
+ bottom:108px;
+
+ transform:translateX(-50%);
+
+ width:max-content;
+ max-width:90%;
+
+ padding:13px 17px;
+
+ border-radius:16px;
+
+ background:#151a2d;
+ color:white;
+
+ border:1px solid #22d3ee;
+
+ text-align:center;
+ font-weight:800;
+
+ box-shadow:
+ 0 12px 30px rgba(0,0,0,.4);
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:480px){
 
-    .title{
-        font-size:31px;
-    }
+ .title{
+  font-size:28px;
+ }
 
-    .username{
-        font-size:19px;
-    }
+ .username{
+  font-size:18px;
+ }
 
-    .balance-box strong{
-        font-size:24px;
-    }
+ .balance-box strong{
+  font-size:21px;
+ }
 
-    .avatar{
-        width:62px;
-        height:62px;
-        font-size:29px;
-    }
+ .avatar{
+  width:59px;
+  height:59px;
+  font-size:26px;
+ }
 
-    .container{
-        padding-left:17px;
-        padding-right:17px;
-    }
+ .container{
+  padding-left:14px;
+  padding-right:14px;
+ }
 
-    .rules{
-        gap:7px;
-    }
+ .card{
+  padding:18px;
+ }
 
-    .rule strong{
-        font-size:17px;
-    }
+ .rule strong{
+  font-size:16px;
+ }
 }
 </style>
 </head>
@@ -445,9 +720,7 @@ input{
 
 <div class="app">
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- HEADER -->
 
 <header class="header">
 
@@ -466,7 +739,7 @@ User ✓
 </div>
 
 <div class="status">
-ACTIVE
+● ACTIVE
 </div>
 
 </div>
@@ -475,7 +748,9 @@ ACTIVE
 
 <div class="balance-box">
 
-<span>Available Balance</span>
+<span>
+Available Balance
+</span>
 
 <strong id="topBalance">
 ৳0.00
@@ -488,9 +763,7 @@ ACTIVE
 </header>
 
 
-<!-- =====================================================
-     HOME
-===================================================== -->
+<!-- HOME -->
 
 <section id="home" class="screen">
 
@@ -501,7 +774,7 @@ DailyFree01
 </h1>
 
 <p class="subtitle">
-Earn by watching daily advertisements
+Your daily earning dashboard
 </p>
 
 <div class="card">
@@ -527,14 +800,41 @@ Earn by watching daily advertisements
 
 </div>
 
+<!-- OFFICIAL INFO -->
+
+<div class="card">
+
+<div class="card-title">
+✨ OFFICIAL CENTER
+</div>
+
+<a
+class="official-btn"
+href="https://t.me/Abdullahvai1"
+target="_blank">
+
+📢 OFFICIAL CHANNEL
+
+</a>
+
+<div class="admin-box">
+
+👨‍💻 ADMIN
+
+<strong>
+@httsdd1
+</strong>
+
+</div>
+
+</div>
+
 </div>
 
 </section>
 
 
-<!-- =====================================================
-     EARN
-===================================================== -->
+<!-- EARN -->
 
 <section id="earn" class="screen active">
 
@@ -545,7 +845,7 @@ ADS REWARD CENTER
 </h1>
 
 <p class="subtitle">
-Watch complete ads and earn rewards
+Watch ads and earn rewards
 </p>
 
 <div class="card">
@@ -562,49 +862,24 @@ Watch complete ads and earn rewards
 
 </div>
 
-
 <div class="rules">
 
 <div class="rule">
-
-<span>
-WAIT TIME
-</span>
-
-<strong>
-14 Sec
-</strong>
-
+<span>WAIT TIME</span>
+<strong>14 Sec</strong>
 </div>
-
 
 <div class="rule">
-
-<span>
-DAILY LIMIT
-</span>
-
-<strong>
-120 Ads
-</strong>
-
+<span>DAILY LIMIT</span>
+<strong>120 Ads</strong>
 </div>
-
 
 <div class="rule">
-
-<span>
-REWARD
-</span>
-
-<strong>
-৳0.05
-</strong>
-
+<span>REWARD</span>
+<strong>৳0.05</strong>
 </div>
 
 </div>
-
 
 <div class="progress-info">
 
@@ -618,7 +893,6 @@ Today's Progress
 
 </div>
 
-
 <div class="progress">
 
 <div
@@ -627,7 +901,6 @@ id="progressBar">
 </div>
 
 </div>
-
 
 <button
 class="watch-btn"
@@ -638,57 +911,38 @@ onclick="watchAd()">
 
 </button>
 
-
 <div class="notice">
 
 💰 <b>Earnings Rules</b><br>
 
-একটি Rewarded Ad সম্পূর্ণ দেখার পর
+Rewarded Ad সফলভাবে সম্পন্ন হলে
 ৳0.05 Balance-এ যোগ হবে।<br>
 
 প্রতিদিন সর্বোচ্চ 120টি Ad দেখা যাবে।
 
 </div>
 
-
 <div class="stats">
 
 <div class="stat">
-
 <strong id="todayEarn">
 ৳0.00
 </strong>
-
-<span>
-Today
-</span>
-
+<span>Today</span>
 </div>
 
-
 <div class="stat">
-
 <strong id="adsWatched">
 0
 </strong>
-
-<span>
-Ads Watched
-</span>
-
+<span>Ads Watched</span>
 </div>
 
-
 <div class="stat">
-
 <strong id="totalBalance">
 ৳0.00
 </strong>
-
-<span>
-Balance
-</span>
-
+<span>Balance</span>
 </div>
 
 </div>
@@ -700,9 +954,7 @@ Balance
 </section>
 
 
-<!-- =====================================================
-     WEB
-===================================================== -->
+<!-- WEB -->
 
 <section id="web" class="screen">
 
@@ -718,6 +970,17 @@ Balance
 Welcome to DailyFree01.
 </p>
 
+<br>
+
+<a
+class="official-btn"
+href="https://t.me/Abdullahvai1"
+target="_blank">
+
+📢 OFFICIAL CHANNEL
+
+</a>
+
 </div>
 
 </div>
@@ -725,9 +988,7 @@ Welcome to DailyFree01.
 </section>
 
 
-<!-- =====================================================
-     TASKS
-===================================================== -->
+<!-- TASKS -->
 
 <section id="tasks" class="screen">
 
@@ -740,7 +1001,7 @@ Welcome to DailyFree01.
 </div>
 
 <div class="row">
-<span>📢 Join Telegram Channel</span>
+<span>📢 Join Official Channel</span>
 <strong>START</strong>
 </div>
 
@@ -756,14 +1017,29 @@ Welcome to DailyFree01.
 
 </div>
 
+<div class="card">
+
+<div class="card-title">
+📢 OFFICIAL CHANNEL
+</div>
+
+<a
+class="official-btn"
+href="https://t.me/Abdullahvai1"
+target="_blank">
+
+JOIN CHANNEL
+
+</a>
+
+</div>
+
 </div>
 
 </section>
 
 
-<!-- =====================================================
-     REFER
-===================================================== -->
+<!-- REFER -->
 
 <section id="refer" class="screen">
 
@@ -776,27 +1052,13 @@ Welcome to DailyFree01.
 </div>
 
 <div class="row">
-
-<span>
-Total Referrals
-</span>
-
-<strong>
-0
-</strong>
-
+<span>Total Referrals</span>
+<strong>0</strong>
 </div>
 
 <div class="row">
-
-<span>
-Referral Earn
-</span>
-
-<strong>
-৳0.00
-</strong>
-
+<span>Referral Earn</span>
+<strong>৳0.00</strong>
 </div>
 
 <label>
@@ -825,9 +1087,7 @@ onclick="copyReferral()">
 </section>
 
 
-<!-- =====================================================
-     WALLET
-===================================================== -->
+<!-- WALLET -->
 
 <section id="wallet" class="screen">
 
@@ -838,7 +1098,6 @@ onclick="copyReferral()">
 <div class="card-title">
 💳 WITHDRAW
 </div>
-
 
 <div class="min-warning">
 
@@ -851,11 +1110,49 @@ Minimum withdrawal: ৳100
 <br><br>
 
 আপনার Balance কমপক্ষে
-<b>৳100</b> হলে withdrawal request
+৳100 হলে withdrawal request
 দেওয়া যাবে।
 
 </div>
 
+<div class="payment-title">
+Select Payment Method
+</div>
+
+<div class="payment-methods">
+
+<button
+class="payment-btn active"
+id="bkashBtn"
+onclick="selectPayment('bkash')">
+
+<span class="bkash">
+●
+</span>
+
+bKash
+
+</button>
+
+<button
+class="payment-btn"
+id="nagadBtn"
+onclick="selectPayment('nagad')">
+
+<span class="nagad">
+●
+</span>
+
+Nagad
+
+</button>
+
+</div>
+
+<input
+type="hidden"
+id="paymentMethod"
+value="bKash">
 
 <label>
 Withdrawal Amount
@@ -868,17 +1165,22 @@ min="100"
 step="0.01"
 placeholder="Enter amount">
 
-
 <label>
-Wallet Number
+
+<span id="walletLabel">
+bKash
+</span>
+
+Number
+
 </label>
 
 <input
 id="walletNumber"
 type="text"
 inputmode="numeric"
+maxlength="11"
 placeholder="01XXXXXXXXX">
-
 
 <br>
 
@@ -886,7 +1188,7 @@ placeholder="01XXXXXXXXX">
 class="watch-btn"
 onclick="withdraw()">
 
-CONFIRM WITHDRAWAL
+💸 CONFIRM WITHDRAWAL
 
 </button>
 
@@ -897,9 +1199,7 @@ CONFIRM WITHDRAWAL
 </section>
 
 
-<!-- =====================================================
-     PROFILE
-===================================================== -->
+<!-- PROFILE -->
 
 <section id="profile" class="screen">
 
@@ -912,91 +1212,64 @@ CONFIRM WITHDRAWAL
 </div>
 
 <div class="row">
+<span>User</span>
+<strong id="profileName">User</strong>
+</div>
 
-<span>
-User
-</span>
+<div class="row">
+<span>Telegram ID</span>
+<strong id="telegramId">-</strong>
+</div>
 
-<strong id="profileName">
-User
-</strong>
+<div class="row">
+<span>Balance</span>
+<strong id="profileBalance">৳0.00</strong>
+</div>
+
+<div class="row">
+<span>Ads Watched</span>
+<strong id="profileAds">0</strong>
+</div>
+
+<div class="row">
+<span>Referrals</span>
+<strong>0</strong>
+</div>
+
+<div class="row">
+<span>Referral Bonus</span>
+<strong>৳0.00</strong>
+</div>
+
+<div class="row">
+<span>Account Status</span>
+<strong>ACTIVE</strong>
+</div>
 
 </div>
 
 
-<div class="row">
+<div class="card">
 
-<span>
-Telegram ID
-</span>
-
-<strong id="telegramId">
--
-</strong>
-
+<div class="card-title">
+✨ OFFICIAL CENTER
 </div>
 
+<a
+class="official-btn"
+href="https://t.me/Abdullahvai1"
+target="_blank">
 
-<div class="row">
+📢 OFFICIAL CHANNEL
 
-<span>
-Balance
-</span>
+</a>
 
-<strong id="profileBalance">
-৳0.00
-</strong>
+<div class="admin-box">
 
-</div>
-
-
-<div class="row">
-
-<span>
-Ads Watched
-</span>
-
-<strong id="profileAds">
-0
-</strong>
-
-</div>
-
-
-<div class="row">
-
-<span>
-Referrals
-</span>
+👨‍💻 ADMIN
 
 <strong>
-0
-</strong>
-
-</div>
-
-
-<div class="row">
-
-<span>
-Referral Bonus
-</span>
-
-<strong>
-৳0.00
-</strong>
-
-</div>
-
-
-<div class="row">
-
-<span>
-Account Status
-</span>
-
-<strong>
-ACTIVE
+@httsdd1
 </strong>
 
 </div>
@@ -1010,76 +1283,47 @@ ACTIVE
 </div>
 
 
-<!-- =====================================================
-     BOTTOM NAVIGATION
-===================================================== -->
+<!-- BOTTOM NAV -->
 
 <div class="bottom-nav">
 
 <div class="nav">
 
 <button onclick="showTab('home',this)">
-
 <span class="nav-icon">⌂</span>
-
 HOME
-
 </button>
-
 
 <button onclick="showTab('web',this)">
-
 <span class="nav-icon">🌐</span>
-
 WEB
-
 </button>
-
 
 <button
 class="active"
 onclick="showTab('earn',this)">
-
 <span class="nav-icon">▶</span>
-
 EARN
-
 </button>
-
 
 <button onclick="showTab('tasks',this)">
-
 <span class="nav-icon">☑</span>
-
 TASKS
-
 </button>
-
 
 <button onclick="showTab('refer',this)">
-
 <span class="nav-icon">👥</span>
-
 REFER
-
 </button>
-
 
 <button onclick="showTab('wallet',this)">
-
 <span class="nav-icon">💳</span>
-
 WALLET
-
 </button>
 
-
 <button onclick="showTab('profile',this)">
-
 <span class="nav-icon">👤</span>
-
 PROFILE
-
 </button>
 
 </div>
@@ -1095,23 +1339,17 @@ class="toast">
 
 <script>
 
-/* =====================================================
-   SETTINGS
-===================================================== */
+/* SETTINGS */
 
 const REWARD = 0.05;
-
 const DAILY_LIMIT = 120;
-
 const WAIT_TIME = 14;
 
 const STORAGE_KEY =
-"dailyfree01_user_data_v1";
+"dailyfree01_user_data_v3";
 
 
-/* =====================================================
-   USER DATA
-===================================================== */
+/* USER DATA */
 
 let data =
 JSON.parse(
@@ -1119,19 +1357,14 @@ localStorage.getItem(STORAGE_KEY)
 ) || {
 
 balance:0,
-
 todayAds:0,
-
 totalAds:0,
-
 date:getToday()
 
 };
 
 
-/* =====================================================
-   DATE
-===================================================== */
+/* DATE */
 
 function getToday(){
 
@@ -1141,7 +1374,6 @@ return new Date()
 
 }
 
-
 function checkNewDay(){
 
 const today =
@@ -1150,7 +1382,6 @@ getToday();
 if(data.date !== today){
 
 data.todayAds = 0;
-
 data.date = today;
 
 saveData();
@@ -1160,9 +1391,7 @@ saveData();
 }
 
 
-/* =====================================================
-   SAVE
-===================================================== */
+/* SAVE */
 
 function saveData(){
 
@@ -1174,9 +1403,7 @@ JSON.stringify(data)
 }
 
 
-/* =====================================================
-   MONEY
-===================================================== */
+/* MONEY */
 
 function money(value){
 
@@ -1187,62 +1414,51 @@ Number(value || 0)
 }
 
 
-/* =====================================================
-   UPDATE UI
-===================================================== */
+/* UI */
 
 function updateUI(){
 
 checkNewDay();
-
 
 document.getElementById(
 "topBalance"
 ).textContent =
 money(data.balance);
 
-
 document.getElementById(
 "totalBalance"
 ).textContent =
 money(data.balance);
-
 
 document.getElementById(
 "homeBalance"
 ).textContent =
 money(data.balance);
 
-
 document.getElementById(
 "todayEarn"
 ).textContent =
 money(data.todayAds * REWARD);
-
 
 document.getElementById(
 "homeIncome"
 ).textContent =
 money(data.todayAds * REWARD);
 
-
 document.getElementById(
 "adsWatched"
 ).textContent =
 data.todayAds;
-
 
 document.getElementById(
 "profileAds"
 ).textContent =
 data.totalAds;
 
-
 document.getElementById(
 "profileBalance"
 ).textContent =
 money(data.balance);
-
 
 document.getElementById(
 "homeAds"
@@ -1251,7 +1467,6 @@ data.todayAds +
 "/" +
 DAILY_LIMIT;
 
-
 document.getElementById(
 "progressText"
 ).textContent =
@@ -1259,12 +1474,10 @@ data.todayAds +
 " / " +
 DAILY_LIMIT;
 
-
 let percent =
 (data.todayAds /
 DAILY_LIMIT) *
 100;
-
 
 document.getElementById(
 "progressBar"
@@ -1272,12 +1485,10 @@ document.getElementById(
 Math.min(100,percent) +
 "%";
 
-
 const button =
 document.getElementById(
 "watchBtn"
 );
-
 
 if(data.todayAds >= DAILY_LIMIT){
 
@@ -1298,16 +1509,12 @@ button.textContent =
 }
 
 
-/* =====================================================
-   TOAST
-===================================================== */
+/* TOAST */
 
 function showToast(message){
 
 const toast =
-document.getElementById(
-"toast"
-);
+document.getElementById("toast");
 
 toast.textContent =
 message;
@@ -1333,14 +1540,62 @@ toast.style.display =
 }
 
 
-/* =====================================================
-   MONETAG REWARDED AD
-===================================================== */
+/* PAYMENT */
+
+function selectPayment(method){
+
+const bkashBtn =
+document.getElementById(
+"bkashBtn"
+);
+
+const nagadBtn =
+document.getElementById(
+"nagadBtn"
+);
+
+const methodInput =
+document.getElementById(
+"paymentMethod"
+);
+
+const label =
+document.getElementById(
+"walletLabel"
+);
+
+if(method === "bkash"){
+
+bkashBtn.classList.add("active");
+nagadBtn.classList.remove("active");
+
+methodInput.value =
+"bKash";
+
+label.textContent =
+"bKash";
+
+}else{
+
+nagadBtn.classList.add("active");
+bkashBtn.classList.remove("active");
+
+methodInput.value =
+"Nagad";
+
+label.textContent =
+"Nagad";
+
+}
+
+}
+
+
+/* MONETAG */
 
 async function watchAd(){
 
 checkNewDay();
-
 
 if(data.todayAds >= DAILY_LIMIT){
 
@@ -1352,24 +1607,17 @@ return;
 
 }
 
-
 const button =
 document.getElementById(
 "watchBtn"
 );
-
 
 button.disabled = true;
 
 button.textContent =
 "⏳ OPENING AD...";
 
-
 try{
-
-/*
-  Check Monetag SDK
-*/
 
 if(
 typeof window.show_11701410 !==
@@ -1382,22 +1630,7 @@ throw new Error(
 
 }
 
-
-/*
-  Show Rewarded Interstitial
-
-  Reward is given ONLY after
-  this Promise resolves.
-*/
-
 await window.show_11701410();
-
-
-/*
-  SUCCESS
-
-  Add reward
-*/
 
 data.todayAds += 1;
 
@@ -1411,16 +1644,13 @@ REWARD
 ).toFixed(2)
 );
 
-
 saveData();
 
 updateUI();
 
-
 showToast(
 "✅ Ad completed! ৳0.05 যোগ হয়েছে।"
 );
-
 
 }catch(error){
 
@@ -1429,11 +1659,9 @@ console.error(
 error
 );
 
-
 showToast(
 "❌ এখন Ad চালু হয়নি। কিছুক্ষণ পরে আবার চেষ্টা করুন।"
 );
-
 
 }finally{
 
@@ -1444,9 +1672,7 @@ updateUI();
 }
 
 
-/* =====================================================
-   WITHDRAW
-===================================================== */
+/* WITHDRAW */
 
 function withdraw(){
 
@@ -1457,12 +1683,15 @@ document.getElementById(
 ).value
 );
 
-
 const wallet =
 document.getElementById(
 "walletNumber"
 ).value.trim();
 
+const method =
+document.getElementById(
+"paymentMethod"
+).value;
 
 if(
 !Number.isFinite(amount) ||
@@ -1477,7 +1706,6 @@ return;
 
 }
 
-
 if(
 amount > data.balance
 ){
@@ -1490,35 +1718,28 @@ return;
 
 }
 
-
-if(!wallet){
+if(
+!/^01[0-9]{9}$/.test(wallet)
+){
 
 showToast(
-"⚠️ Wallet number দিন।"
+"⚠️ সঠিক 11-digit নম্বর দিন।"
 );
 
 return;
 
 }
 
-
-/*
-  Front-end demo validation only.
-
-  Real payment requires
-  production backend.
-*/
-
 showToast(
-"⚠️ Withdrawal processing-এর জন্য backend/payment system প্রয়োজন।"
+"📨 " +
+method +
+" withdrawal request-এর জন্য backend প্রয়োজন।"
 );
 
 }
 
 
-/* =====================================================
-   COPY REFERRAL
-===================================================== */
+/* COPY */
 
 function copyReferral(){
 
@@ -1526,7 +1747,6 @@ const input =
 document.getElementById(
 "referralLink"
 );
-
 
 if(!input.value){
 
@@ -1537,7 +1757,6 @@ showToast(
 return;
 
 }
-
 
 navigator.clipboard
 .writeText(input.value)
@@ -1569,19 +1788,12 @@ showToast(
 }
 
 
-/* =====================================================
-   TAB NAVIGATION
-===================================================== */
+/* TAB */
 
-function showTab(
-id,
-button
-){
+function showTab(id,button){
 
 document
-.querySelectorAll(
-".screen"
-)
+.querySelectorAll(".screen")
 .forEach(
 function(screen){
 
@@ -1592,18 +1804,14 @@ screen.classList.remove(
 }
 );
 
-
 document
 .getElementById(id)
 .classList.add(
 "active"
 );
 
-
 document
-.querySelectorAll(
-".nav button"
-)
+.querySelectorAll(".nav button")
 .forEach(
 function(btn){
 
@@ -1614,25 +1822,19 @@ btn.classList.remove(
 }
 );
 
-
 button.classList.add(
 "active"
 );
 
-
-window.scrollTo(
-{
+window.scrollTo({
 top:0,
 behavior:"smooth"
-}
-);
+});
 
 }
 
 
-/* =====================================================
-   TELEGRAM USER
-===================================================== */
+/* TELEGRAM */
 
 function telegramInit(){
 
@@ -1642,30 +1844,16 @@ const tg =
 window.Telegram &&
 window.Telegram.WebApp;
 
-
-if(!tg){
-
-return;
-
-}
-
+if(!tg) return;
 
 tg.ready();
-
 tg.expand();
-
 
 const user =
 tg.initDataUnsafe &&
 tg.initDataUnsafe.user;
 
-
-if(!user){
-
-return;
-
-}
-
+if(!user) return;
 
 const name =
 (user.first_name || "User") +
@@ -1677,48 +1865,36 @@ user.last_name
 ""
 );
 
-
 document.getElementById(
 "username"
 ).textContent =
 name + " ✓";
-
 
 document.getElementById(
 "profileName"
 ).textContent =
 name;
 
-
 document.getElementById(
 "telegramId"
 ).textContent =
 user.id || "-";
 
-
 document.getElementById(
 "avatar"
 ).textContent =
-(user.first_name ||
-"U")
+(user.first_name || "U")
 .charAt(0)
 .toUpperCase();
-
-
-/*
-  Referral link
-*/
 
 const referral =
 "https://t.me/DailyFree01_bot?start=ref_" +
 user.id;
 
-
 document.getElementById(
 "referralLink"
 ).value =
 referral;
-
 
 }catch(error){
 
@@ -1732,17 +1908,13 @@ error
 }
 
 
-/* =====================================================
-   START
-===================================================== */
+/* START */
 
 checkNewDay();
-
 updateUI();
-
 telegramInit();
 
 </script>
 
 </body>
- </html>
+      </html>
