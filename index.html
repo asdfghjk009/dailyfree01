@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#080817">
+
 <title>DailyFree01</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -19,48 +20,42 @@ data-sdk="show_11701410">
   box-sizing:border-box;
   margin:0;
   padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
   font-family:Arial,sans-serif;
-  background:#080817;
+  background:
+    radial-gradient(circle at top,#32105f 0,#110b29 38%,#080817 75%);
   color:#fff;
   min-height:100vh;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-.app{
-  max-width:520px;
-  margin:auto;
-  min-height:100vh;
-  padding-bottom:80px;
+  padding-bottom:90px;
 }
 
 .header{
+  margin:12px;
   padding:18px;
-  text-align:center;
-  background:#11112b;
-  border-bottom:1px solid #29294a;
+  border-radius:22px;
+  background:linear-gradient(135deg,#702cff,#a42cff,#ff2d8d);
+  box-shadow:0 10px 35px rgba(163,44,255,.35);
 }
 
 .header h1{
   font-size:25px;
-  color:#fff;
+  margin-bottom:5px;
 }
 
 .header p{
-  margin-top:5px;
-  color:#aaa;
+  opacity:.9;
   font-size:13px;
+}
+
+.container{
+  padding:0 12px;
 }
 
 .screen{
   display:none;
-  padding:16px;
 }
 
 .screen.active{
@@ -68,153 +63,143 @@ button{
 }
 
 .card{
-  background:#11112b;
-  border:1px solid #29294a;
-  border-radius:18px;
+  background:linear-gradient(145deg,rgba(28,22,58,.96),rgba(15,15,37,.96));
+  border:1px solid rgba(185,90,255,.25);
+  border-radius:20px;
   padding:18px;
-  margin-bottom:15px;
+  margin-bottom:14px;
+  box-shadow:0 8px 28px rgba(0,0,0,.25);
 }
 
-.balance-card{
-  text-align:center;
-  background:linear-gradient(135deg,#171742,#10102a);
-}
-
-.balance-card .title{
-  color:#aaa;
-  font-size:14px;
-}
-
-.balance{
-  font-size:36px;
-  font-weight:bold;
-  margin:8px 0;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.stat{
-  background:#191936;
-  border-radius:14px;
-  padding:15px;
-  text-align:center;
-}
-
-.stat b{
-  display:block;
-  font-size:22px;
-  margin-top:5px;
-}
-
-.stat span{
-  color:#aaa;
-  font-size:12px;
-}
-
-.section-title{
+.card h2{
   font-size:19px;
   margin-bottom:12px;
 }
 
-.earn-card{
-  text-align:center;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
-.reward{
-  font-size:32px;
-  font-weight:bold;
-  margin:10px 0;
+.stat{
+  background:linear-gradient(145deg,#21134b,#15152e);
+  border-radius:17px;
+  padding:16px;
+  border:1px solid rgba(183,78,255,.22);
 }
 
-.info{
+.stat small{
   color:#aaa;
-  font-size:13px;
-  line-height:1.7;
+  display:block;
+  margin-bottom:7px;
 }
 
-.main-btn{
+.stat strong{
+  font-size:22px;
+}
+
+.money{
+  color:#62ffb0;
+}
+
+.pink{
+  color:#ff62c5;
+}
+
+.blue{
+  color:#5edbff;
+}
+
+.purple{
+  color:#c77cff;
+}
+
+.btn{
   width:100%;
+  border:0;
+  border-radius:15px;
   padding:15px;
-  border-radius:14px;
-  background:#5b5bf7;
-  color:white;
-  font-size:17px;
+  color:#fff;
+  font-size:16px;
   font-weight:bold;
-  margin-top:15px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#6c2cff,#a92cff,#ff2d8d);
+  box-shadow:0 7px 22px rgba(151,44,255,.3);
+  margin-top:10px;
 }
 
-.main-btn:disabled{
-  opacity:.5;
+.btn:active{
+  transform:scale(.97);
 }
 
-.progress-box{
-  margin-top:15px;
+.btn.secondary{
+  background:linear-gradient(90deg,#087cff,#00c8ff);
 }
 
-.progress-bg{
-  width:100%;
-  height:10px;
-  background:#29294a;
-  border-radius:20px;
-  overflow:hidden;
+.btn.green{
+  background:linear-gradient(90deg,#00b86b,#00e89a);
+}
+
+.btn.red{
+  background:linear-gradient(90deg,#ff315c,#ff006f);
 }
 
 .progress{
+  width:100%;
+  height:12px;
+  background:#292642;
+  border-radius:20px;
+  overflow:hidden;
+  margin:12px 0;
+}
+
+.progress-bar{
   height:100%;
   width:0%;
-  background:#6c63ff;
+  border-radius:20px;
+  background:linear-gradient(90deg,#6c2cff,#00d4ff,#ff2d8d);
   transition:.3s;
 }
 
-.progress-text{
-  display:flex;
-  justify-content:space-between;
-  color:#aaa;
-  font-size:12px;
-  margin-top:6px;
+.info{
+  padding:13px;
+  border-radius:14px;
+  background:rgba(106,44,255,.12);
+  border:1px solid rgba(130,70,255,.2);
+  margin-top:10px;
+  line-height:1.6;
 }
 
 input,select{
   width:100%;
   padding:14px;
-  border-radius:12px;
-  border:1px solid #33335a;
-  background:#0d0d20;
+  border:1px solid #44386e;
+  border-radius:13px;
+  background:#100e24;
   color:#fff;
   outline:none;
   margin-top:8px;
-  margin-bottom:12px;
 }
 
-label{
-  font-size:13px;
-  color:#bbb;
+input:focus{
+  border-color:#a94dff;
+  box-shadow:0 0 12px rgba(169,77,255,.25);
 }
 
-.warning{
-  background:#302719;
-  border:1px solid #624d24;
-  padding:15px;
-  border-radius:14px;
-  color:#ffd978;
-  font-size:13px;
-  line-height:1.6;
-  margin-bottom:15px;
-}
-
-.ref-link{
-  word-break:break-all;
-  background:#0b0b1d;
-  border:1px dashed #45456d;
-  padding:12px;
-  border-radius:12px;
-  font-size:12px;
-  color:#aaa;
+.payment{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
   margin-top:10px;
+}
+
+.payment div{
+  padding:14px;
+  text-align:center;
+  border-radius:13px;
+  background:linear-gradient(145deg,#241452,#15152d);
+  border:1px solid #47316f;
 }
 
 .profile{
@@ -226,8 +211,9 @@ label{
   height:75px;
   border-radius:50%;
   object-fit:cover;
+  border:3px solid #c14dff;
   margin-bottom:10px;
-  background:#29294a;
+  box-shadow:0 0 20px rgba(193,77,255,.4);
 }
 
 .profile-name{
@@ -236,325 +222,271 @@ label{
 }
 
 .profile-id{
-  color:#888;
-  font-size:12px;
+  color:#999;
   margin-top:5px;
 }
 
-.list{
-  margin-top:15px;
-}
-
-.list-row{
+.row{
   display:flex;
   justify-content:space-between;
-  padding:13px 0;
-  border-bottom:1px solid #29294a;
-  font-size:14px;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-.list-row:last-child{
+.row:last-child{
   border-bottom:0;
 }
 
-.list-row span{
-  color:#aaa;
+.warning{
+  background:linear-gradient(135deg,rgba(255,45,141,.13),rgba(116,44,255,.12));
+  border:1px solid rgba(255,77,170,.25);
+  padding:15px;
+  border-radius:15px;
+  line-height:1.6;
 }
 
 .nav{
   position:fixed;
   bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:520px;
-  background:#11112b;
-  border-top:1px solid #29294a;
+  left:0;
+  right:0;
+  z-index:999;
   display:grid;
   grid-template-columns:repeat(7,1fr);
-  padding:8px 3px;
-  z-index:99;
+  padding:9px 5px calc(9px + env(safe-area-inset-bottom));
+  background:rgba(10,8,28,.96);
+  backdrop-filter:blur(15px);
+  border-top:1px solid rgba(180,90,255,.2);
 }
 
-.nav button{
-  background:transparent;
-  color:#777;
+.nav-item{
+  text-align:center;
+  color:#77748c;
   font-size:10px;
-  padding:5px 2px;
+  cursor:pointer;
 }
 
-.nav button.active{
-  color:#7c74ff;
-}
-
-.nav-icon{
+.nav-item span{
   display:block;
-  font-size:19px;
+  font-size:20px;
   margin-bottom:3px;
+}
+
+.nav-item.active{
+  color:#d75cff;
+  text-shadow:0 0 12px rgba(215,92,255,.6);
 }
 
 .toast{
   position:fixed;
   left:50%;
-  bottom:90px;
-  transform:translateX(-50%);
-  background:#22223d;
-  color:#fff;
+  bottom:100px;
+  transform:translateX(-50%) translateY(20px);
+  background:#211b3b;
+  border:1px solid #6e48a8;
   padding:12px 18px;
-  border-radius:12px;
-  font-size:13px;
-  display:none;
-  z-index:200;
+  border-radius:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:2000;
   max-width:90%;
   text-align:center;
 }
 
-.channel-btn{
-  display:block;
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.ad-icon{
+  font-size:50px;
+  margin-bottom:10px;
+}
+
+.center{
   text-align:center;
-  text-decoration:none;
-  background:#229ed9;
-  color:white;
-  padding:14px;
-  border-radius:13px;
-  margin-top:12px;
-  font-weight:bold;
 }
 
 .small{
+  font-size:13px;
+  color:#aaa;
+}
+
+.ref-box{
+  word-break:break-all;
+  background:#0c0a1c;
+  border:1px dashed #7447aa;
+  padding:12px;
+  border-radius:12px;
+  margin-top:10px;
   font-size:12px;
-  color:#888;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="header">
+  <h1>💎 DailyFree01</h1>
+  <p>Earn rewards by watching ads</p>
+</div>
 
-  <div class="header">
-    <h1>DailyFree01</h1>
-    <p>Earn money by watching ads</p>
+<div class="container">
+
+<!-- HOME -->
+<section id="home" class="screen active">
+
+  <div class="card">
+    <h2>👋 Welcome</h2>
+    <p class="small">DailyFree01-এ আপনাকে স্বাগতম।</p>
   </div>
 
-  <!-- HOME -->
-  <section id="home" class="screen active">
-
-    <div class="card balance-card">
-      <div class="title">আপনার বর্তমান ব্যালেন্স</div>
-      <div class="balance" id="homeBalance">৳0.00</div>
-      <div class="small">প্রতি Ad ৳0.02</div>
+  <div class="stats">
+    <div class="stat">
+      <small>আজকের Ads</small>
+      <strong id="homeAds">0</strong>
     </div>
 
-    <div class="stats">
-      <div class="stat">
-        <span>আজকের Ads</span>
-        <b id="homeAds">0</b>
-      </div>
-
-      <div class="stat">
-        <span>আজকের আয়</span>
-        <b id="homeIncome">৳0.00</b>
-      </div>
+    <div class="stat">
+      <small>আজকের আয়</small>
+      <strong class="money" id="homeIncome">৳0.00</strong>
     </div>
 
-    <div class="card">
-      <h3 class="section-title">Daily Limit</h3>
-
-      <div class="progress-box">
-        <div class="progress-bg">
-          <div class="progress" id="homeProgress"></div>
-        </div>
-
-        <div class="progress-text">
-          <span id="homeProgressText">0 / 1000</span>
-          <span>1000 Ads</span>
-        </div>
-      </div>
+    <div class="stat">
+      <small>Balance</small>
+      <strong class="purple" id="homeBalance">৳0.00</strong>
     </div>
 
-    <div class="card">
-      <h3 class="section-title">Official Channel</h3>
-      <p class="info">
-        গুরুত্বপূর্ণ আপডেট পেতে আমাদের অফিসিয়াল Telegram Channel-এ যুক্ত থাকুন।
-      </p>
+    <div class="stat">
+      <small>Referral</small>
+      <strong class="pink" id="homeReferrals">0</strong>
+    </div>
+  </div>
 
-      <a class="channel-btn"
-         href="https://t.me/Abdullahvai1"
-         target="_blank">
-        📢 Join Official Channel
-      </a>
+  <div class="card" style="margin-top:14px">
+    <h2>📊 Daily Progress</h2>
+    <p class="small">
+      <span id="progressText">0 / 1000 Ads</span>
+    </p>
+    <div class="progress">
+      <div class="progress-bar" id="homeProgress"></div>
+    </div>
+    <p class="small">DAILY LIMIT 1000 Ads</p>
+  </div>
+
+</section>
+
+
+<!-- EARN -->
+<section id="earn" class="screen">
+
+  <div class="card center">
+    <div class="ad-icon">📺</div>
+    <h2>Watch Ads & Earn</h2>
+
+    <p class="small">
+      প্রতি Ads দেখলে পাবেন
+    </p>
+
+    <h1 class="money" style="margin:8px 0">৳0.05</h1>
+
+    <p class="small">
+      Wait Time: 14 Seconds
+    </p>
+
+    <div class="info">
+      আজ দেখেছেন:
+      <b id="earnAds">0</b> / 1000
     </div>
 
-  </section>
+    <button class="btn" id="watchBtn" onclick="watchAd()">
+      ▶️ Watch Ad
+    </button>
+  </div>
+
+</section>
 
 
-  <!-- EARN -->
-  <section id="earn" class="screen">
+<!-- WEB -->
+<section id="web" class="screen">
 
-    <div class="card earn-card">
+  <div class="card center">
+    <h2>🌐 Official Channel</h2>
 
-      <h2>📺 Watch Ads</h2>
+    <p class="small">
+      DailyFree01-এর অফিসিয়াল Telegram Channel
+    </p>
 
-      <div class="reward">৳0.02 / Ad</div>
+    <button class="btn secondary"
+      onclick="openLink('https://t.me/Abdullahvai1')">
+      📢 Join Channel
+    </button>
+  </div>
 
-      <p class="info">
-        একটি বিজ্ঞাপন সম্পূর্ণ দেখলে আপনার ব্যালেন্সে ৳0.02 যোগ হবে।
-        প্রতিদিন সর্বোচ্চ 1000টি Ads দেখা যাবে।
-      </p>
+</section>
 
-      <button
-        class="main-btn"
-        id="watchBtn"
-        onclick="watchAd()">
-        ▶️ Watch Ad
-      </button>
 
-      <div class="progress-box">
+<!-- TASKS -->
+<section id="tasks" class="screen">
 
-        <div class="progress-bg">
-          <div class="progress" id="earnProgress"></div>
-        </div>
+  <div class="card">
+    <h2>🎯 Tasks</h2>
 
-        <div class="progress-text">
-          <span id="earnProgressText">0 / 1000</span>
-          <span>Daily Limit</span>
-        </div>
-
-      </div>
-
+    <div class="info">
+      <b>📺 Watch Ads</b><br>
+      Ads দেখুন এবং প্রতিটি Ads-এর জন্য ৳0.05 আয় করুন।
     </div>
 
-    <div class="card">
+    <button class="btn" onclick="showScreen('earn')">
+      ▶️ Start Watching
+    </button>
 
-      <h3 class="section-title">💰 Earnings</h3>
-
-      <div class="list">
-
-        <div class="list-row">
-          <span>Per Ad</span>
-          <b>৳0.02</b>
-        </div>
-
-        <div class="list-row">
-          <span>Today Ads</span>
-          <b id="earnTodayAds">0</b>
-        </div>
-
-        <div class="list-row">
-          <span>Today Income</span>
-          <b id="earnTodayIncome">৳0.00</b>
-        </div>
-
-      </div>
-
+    <div class="info">
+      <b>📢 Join Official Channel</b><br>
+      আমাদের অফিসিয়াল Channel-এ Join করুন।
     </div>
 
-  </section>
+    <button class="btn secondary"
+      onclick="openLink('https://t.me/Abdullahvai1')">
+      Join Now
+    </button>
+  </div>
+
+</section>
 
 
-  <!-- WEB -->
-  <section id="web" class="screen">
+<!-- REFER -->
+<section id="refer" class="screen">
 
-    <div class="card">
+  <div class="card center">
+    <h2>👥 Referral</h2>
 
-      <h2 class="section-title">🌐 Web</h2>
+    <p class="small">আপনার Referral</p>
 
-      <p class="info">
-        DailyFree01-এর ওয়েব সেকশন।
-      </p>
+    <h1 class="pink">
+      <span id="referralCount">0/3</span>
+    </h1>
+  </div>
 
-      <button class="main-btn"
-              onclick="showToast('Web section coming soon')">
-        Open
-      </button>
+  <div class="card">
 
+    <h2>🔗 Your Referral Link</h2>
+
+    <div class="ref-box" id="referralLink">
+      Referral link loading...
     </div>
 
-  </section>
+    <button class="btn secondary" onclick="copyReferral()">
+      📋 Copy Referral Link
+    </button>
 
+    <button class="btn" onclick="shareReferral()">
+      📤 Share Referral
+    </button>
 
-  <!-- TASKS -->
-  <section id="tasks" class="screen">
-
-    <div class="card">
-
-      <h2 class="section-title">📋 Tasks</h2>
-
-      <p class="info">
-        নতুন Task এখানে যোগ করা যাবে।
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- REFER -->
-  <section id="refer" class="screen">
-
-    <div class="card">
-
-      <h2 class="section-title">👥 Referral</h2>
-
-      <p class="info">
-        বন্ধুদের Invite করে Referral Bonus অর্জন করুন।
-      </p>
-
-      <div class="stat" style="margin-top:15px;">
-        <span>Total Referral</span>
-        <b id="referralCount">0/3</b>
-      </div>
-
-      <div class="ref-link" id="referralLink">
-        Referral link তৈরি হচ্ছে...
-      </div>
-
-      <button class="main-btn"
-              onclick="copyReferral()">
-        📋 Copy Referral Link
-      </button>
-
-      <button class="main-btn"
-              onclick="shareReferral()">
-        📤 Share Referral
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <h3 class="section-title">🎁 Referral Bonus</h3>
-
-      <div class="reward"
-           id="referralEarn">
-        ৳0.00
-      </div>
-
-      <p class="info">
-        আপনার Referral Bonus এখানে দেখা যাবে।
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- WALLET -->
-  <section id="wallet" class="screen">
-
-    <div class="card balance-card">
-
-      <div class="title">Available Balance</div>
-
-      <div class="balance"
-           id="walletBalance">
-        ৳0.00
-      </div>
-
-    </div>
-
-    <div class="warning">
+    <div class="warning" style="margin-top:15px">
       👥 <b>Referral Requirement: 3 জন</b>
       <br><br>
       Withdraw করার আগে কমপক্ষে
@@ -565,168 +497,176 @@ label{
       <strong id="withdrawReferralCount">0 / 3</strong>
     </div>
 
-    <div class="card">
+  </div>
 
-      <h3 class="section-title">💸 Withdraw</h3>
+</section>
 
-      <label>Payment Method</label>
 
-      <select id="paymentMethod">
-        <option value="bKash">bKash</option>
-        <option value="Nagad">Nagad</option>
-      </select>
+<!-- WALLET -->
+<section id="wallet" class="screen">
 
-      <label>Withdraw Amount</label>
+  <div class="card">
 
-      <input
-        type="number"
-        id="withdrawAmount"
-        placeholder="Minimum ৳100"
-        min="100">
+    <h2>💰 Wallet</h2>
 
-      <label>bKash / Nagad Number</label>
-
-      <input
-        type="tel"
-        id="walletNumber"
-        placeholder="01XXXXXXXXX"
-        maxlength="11">
-
-      <button class="main-btn"
-              onclick="withdraw()">
-        💸 Confirm Withdraw
-      </button>
-
+    <div class="stat">
+      <small>Available Balance</small>
+      <strong class="money" id="walletBalance">৳0.00</strong>
     </div>
 
-    <div class="card">
-
-      <h3 class="section-title">⚠️ Withdraw Rules</h3>
-
-      <p class="info">
-        • Minimum Withdraw: ৳100<br>
-        • Minimum Referral: 3 জন<br>
-        • bKash/Nagad Number সঠিক হতে হবে<br>
-        • ভুল তথ্য দিলে Withdraw ব্যর্থ হতে পারে
-      </p>
-
+    <div class="warning" style="margin-top:14px">
+      💸 Minimum Withdrawal:
+      <strong>৳100</strong>
+      <br><br>
+      👥 Withdrawal করতে কমপক্ষে
+      <strong>৩ জন Referral</strong>
+      লাগবে।
     </div>
 
-  </section>
+    <label style="display:block;margin-top:15px">
+      Payment Method
+    </label>
 
-
-  <!-- PROFILE -->
-  <section id="profile" class="screen">
-
-    <div class="card profile">
-
-      <img
-        id="profileAvatar"
-        class="avatar"
-        src=""
-        alt="Avatar">
-
-      <div class="profile-name"
-           id="profileName">
-        Telegram User
-      </div>
-
-      <div class="profile-id">
-        Telegram ID:
-        <span id="profileId">-</span>
-      </div>
-
+    <div class="payment">
+      <div>💗 bKash</div>
+      <div>🟠 Nagad</div>
     </div>
 
-    <div class="card">
+    <label style="display:block;margin-top:15px">
+      Withdrawal Amount
+    </label>
 
-      <h3 class="section-title">👤 Profile Information</h3>
+    <input
+      type="number"
+      id="withdrawAmount"
+      placeholder="Minimum ৳100"
+      min="100"
+    >
 
-      <div class="list">
+    <label style="display:block;margin-top:12px">
+      bKash / Nagad Number
+    </label>
 
-        <div class="list-row">
-          <span>Balance</span>
-          <b id="profileBalance">৳0.00</b>
-        </div>
+    <input
+      type="tel"
+      id="withdrawNumber"
+      placeholder="01XXXXXXXXX"
+      maxlength="11"
+    >
 
-        <div class="list-row">
-          <span>Ads Watched</span>
-          <b id="profileAds">0</b>
-        </div>
+    <button class="btn green" onclick="withdraw()">
+      💸 Confirm Withdrawal
+    </button>
 
-        <div class="list-row">
-          <span>Referrals</span>
-          <b id="profileReferrals">0</b>
-        </div>
+  </div>
 
-        <div class="list-row">
-          <span>Referral Bonus</span>
-          <b id="profileReferralBonus">৳0.00</b>
-        </div>
+</section>
 
-        <div class="list-row">
-          <span>Status</span>
-          <b>Active</b>
-        </div>
 
-      </div>
+<!-- PROFILE -->
+<section id="profile" class="screen">
 
+  <div class="card profile">
+
+    <img
+      id="profileAvatar"
+      class="avatar"
+      src="https://via.placeholder.com/100"
+    >
+
+    <div class="profile-name" id="profileName">
+      Telegram User
     </div>
 
-    <div class="card">
-
-      <h3 class="section-title">📞 Admin</h3>
-
-      <p class="info">
-        Support/Admin:
-        <b>@httsdd1</b>
-      </p>
-
+    <div class="profile-id" id="profileId">
+      Telegram ID: -
     </div>
 
-  </section>
+  </div>
+
+  <div class="card">
+
+    <h2>👤 Account Details</h2>
+
+    <div class="row">
+      <span>💰 Balance</span>
+      <strong class="money" id="profileBalance">৳0.00</strong>
+    </div>
+
+    <div class="row">
+      <span>📺 Ads Watched</span>
+      <strong id="profileAds">0</strong>
+    </div>
+
+    <div class="row">
+      <span>👥 Referrals</span>
+      <strong id="profileReferrals">0</strong>
+    </div>
+
+    <div class="row">
+      <span>🎁 Referral Bonus</span>
+      <strong class="pink" id="profileReferralBonus">৳0.00</strong>
+    </div>
+
+    <div class="row">
+      <span>✅ Status</span>
+      <strong class="money">Active</strong>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h2>📞 Admin</h2>
+    <p class="small">যেকোনো সমস্যায় Admin-এর সাথে যোগাযোগ করুন।</p>
+
+    <button class="btn secondary"
+      onclick="openLink('https://t.me/httsdd1')">
+      💬 Contact Admin
+    </button>
+  </div>
+
+</section>
 
 </div>
 
 
-<!-- BOTTOM NAV -->
+<!-- NAVIGATION -->
 <div class="nav">
 
-  <button class="active"
-          onclick="openScreen('home',this)">
-    <span class="nav-icon">🏠</span>
+  <div class="nav-item active" onclick="showScreen('home',this)">
+    <span>🏠</span>
     Home
-  </button>
+  </div>
 
-  <button onclick="openScreen('earn',this)">
-    <span class="nav-icon">💰</span>
+  <div class="nav-item" onclick="showScreen('earn',this)">
+    <span>💰</span>
     Earn
-  </button>
+  </div>
 
-  <button onclick="openScreen('web',this)">
-    <span class="nav-icon">🌐</span>
+  <div class="nav-item" onclick="showScreen('web',this)">
+    <span>🌐</span>
     Web
-  </button>
+  </div>
 
-  <button onclick="openScreen('tasks',this)">
-    <span class="nav-icon">📋</span>
+  <div class="nav-item" onclick="showScreen('tasks',this)">
+    <span>🎯</span>
     Tasks
-  </button>
+  </div>
 
-  <button onclick="openScreen('refer',this)">
-    <span class="nav-icon">👥</span>
+  <div class="nav-item" onclick="showScreen('refer',this)">
+    <span>👥</span>
     Refer
-  </button>
+  </div>
 
-  <button onclick="openScreen('wallet',this)">
-    <span class="nav-icon">💳</span>
+  <div class="nav-item" onclick="showScreen('wallet',this)">
+    <span>💳</span>
     Wallet
-  </button>
+  </div>
 
-  <button onclick="openScreen('profile',this)">
-    <span class="nav-icon">👤</span>
+  <div class="nav-item" onclick="showScreen('profile',this)">
+    <span>👤</span>
     Profile
-  </button>
+  </div>
 
 </div>
 
@@ -736,79 +676,45 @@ label{
 
 <script>
 
-const STORAGE_KEY = "dailyfree01_user_data_v5";
+const STORAGE_KEY = "dailyfree01_user_data_v4";
 
-const REWARD = 0.02;
-
+const REWARD = 0.05;
 const DAILY_LIMIT = 1000;
-
-const MIN_WITHDRAW = 100;
-
-const REQUIRED_REFERRALS = 3;
-
 const WAIT_TIME = 14;
 
-
 function getToday(){
-
   const d = new Date();
-
-  return d.getFullYear() + "-" +
-         String(d.getMonth()+1).padStart(2,"0") + "-" +
-         String(d.getDate()).padStart(2,"0");
-
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 }
 
-
-let data = JSON.parse(
-  localStorage.getItem(STORAGE_KEY)
-) || {
-
+let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
   balance:0,
-
   todayAds:0,
-
   totalAds:0,
-
   referrals:0,
-
   referralBonus:0,
-
   date:getToday()
-
 };
 
 
 function saveData(){
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
-
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
 }
 
 
 function money(value){
-
-  return "৳" +
-    Number(value || 0).toFixed(2);
-
+  return "৳"+Number(value || 0).toFixed(2);
 }
 
 
 function checkNewDay(){
 
-  const today = getToday();
-
-  if(data.date !== today){
+  if(data.date !== getToday()){
 
     data.todayAds = 0;
-
-    data.date = today;
+    data.date = getToday();
 
     saveData();
-
   }
 
 }
@@ -816,22 +722,14 @@ function checkNewDay(){
 
 function showToast(message){
 
-  const toast =
-    document.getElementById("toast");
+  const toast = document.getElementById("toast");
 
   toast.textContent = message;
+  toast.classList.add("show");
 
-  toast.style.display = "block";
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer =
-    setTimeout(function(){
-
-      toast.style.display = "none";
-
-    },3000);
-
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },2500);
 }
 
 
@@ -839,106 +737,69 @@ function updateUI(){
 
   checkNewDay();
 
-  document.getElementById("homeBalance")
-    .textContent = money(data.balance);
-
-  document.getElementById("walletBalance")
-    .textContent = money(data.balance);
-
-  document.getElementById("profileBalance")
-    .textContent = money(data.balance);
-
-  document.getElementById("homeAds")
-    .textContent = data.todayAds;
-
-  document.getElementById("earnTodayAds")
-    .textContent = data.todayAds;
-
-  document.getElementById("profileAds")
-    .textContent = data.totalAds;
-
   const todayIncome =
-    Number(data.todayAds) * REWARD;
+    Number(data.todayAds || 0) * REWARD;
 
-  document.getElementById("homeIncome")
-    .textContent = money(todayIncome);
+  document.getElementById("homeAds").textContent =
+    data.todayAds;
 
-  document.getElementById("earnTodayIncome")
-    .textContent = money(todayIncome);
+  document.getElementById("earnAds").textContent =
+    data.todayAds;
 
-  document.getElementById("referralCount")
-    .textContent =
-    Number(data.referrals || 0) +
-    "/3";
+  document.getElementById("homeIncome").textContent =
+    money(todayIncome);
 
-  document.getElementById("withdrawReferralCount")
-    .textContent =
-    Number(data.referrals || 0) +
-    " / 3";
+  document.getElementById("homeBalance").textContent =
+    money(data.balance);
 
-  document.getElementById("profileReferrals")
-    .textContent =
-    Number(data.referrals || 0);
+  document.getElementById("walletBalance").textContent =
+    money(data.balance);
 
-  document.getElementById("referralEarn")
-    .textContent =
+  document.getElementById("profileBalance").textContent =
+    money(data.balance);
+
+  document.getElementById("profileAds").textContent =
+    data.totalAds;
+
+  document.getElementById("referralCount").textContent =
+    data.referrals + "/3";
+
+  document.getElementById("withdrawReferralCount").textContent =
+    data.referrals + " / 3";
+
+  document.getElementById("profileReferrals").textContent =
+    data.referrals;
+
+  document.getElementById("referralEarn").textContent =
     money(data.referralBonus);
 
-  document.getElementById("profileReferralBonus")
-    .textContent =
+  document.getElementById("profileReferralBonus").textContent =
     money(data.referralBonus);
 
+  document.getElementById("homeReferrals").textContent =
+    data.referrals;
 
   const percent =
-    Math.min(
-      100,
-      (data.todayAds / DAILY_LIMIT) * 100
-    );
+    Math.min((data.todayAds / DAILY_LIMIT) * 100,100);
 
-  document.getElementById("homeProgress")
-    .style.width = percent + "%";
+  document.getElementById("homeProgress").style.width =
+    percent+"%";
 
-  document.getElementById("earnProgress")
-    .style.width = percent + "%";
+  document.getElementById("progressText").textContent =
+    data.todayAds+" / "+DAILY_LIMIT+" Ads";
 
-  document.getElementById("homeProgressText")
-    .textContent =
-    data.todayAds + " / " + DAILY_LIMIT;
+  if(data.todayAds >= DAILY_LIMIT){
 
-  document.getElementById("earnProgressText")
-    .textContent =
-    data.todayAds + " / " + DAILY_LIMIT;
+    document.getElementById("watchBtn").disabled = true;
+    document.getElementById("watchBtn").textContent =
+      "🚫 Daily Limit Complete";
 
-}
+  }else{
 
-
-function openScreen(screenId,button){
-
-  document.querySelectorAll(".screen")
-    .forEach(function(screen){
-
-      screen.classList.remove("active");
-
-    });
-
-  document.getElementById(screenId)
-    .classList.add("active");
-
-
-  document.querySelectorAll(".nav button")
-    .forEach(function(btn){
-
-      btn.classList.remove("active");
-
-    });
-
-  if(button){
-
-    button.classList.add("active");
-
+    document.getElementById("watchBtn").disabled = false;
+    document.getElementById("watchBtn").textContent =
+      "▶️ Watch Ad";
   }
-
-  window.scrollTo(0,0);
 
 }
 
@@ -949,316 +810,283 @@ async function watchAd(){
 
   if(data.todayAds >= DAILY_LIMIT){
 
-    showToast(
-      "⚠️ আজকের 1000 Ads Limit শেষ।"
-    );
-
+    showToast("আজকের 1000 Ads Limit শেষ।");
     return;
-
   }
-
 
   const button =
     document.getElementById("watchBtn");
 
   button.disabled = true;
-
-  button.textContent =
-    "⏳ বিজ্ঞাপন লোড হচ্ছে...";
-
+  button.textContent = "⏳ Loading Ad...";
 
   try{
 
-    if(
-      typeof window.show_11701410 !==
-      "function"
-    ){
+    if(typeof window.show_11701410 !== "function"){
 
-      throw new Error(
-        "Ad SDK not ready"
-      );
+      showToast("Ad system এখনো Load হয়নি। একটু পরে চেষ্টা করুন।");
 
+      button.disabled = false;
+      button.textContent = "▶️ Watch Ad";
+
+      return;
     }
-
 
     await window.show_11701410();
 
+    showToast(
+      "Ad দেখুন এবং "+WAIT_TIME+" সেকেন্ড অপেক্ষা করুন..."
+    );
+
+    await new Promise(resolve =>
+      setTimeout(resolve,WAIT_TIME*1000)
+    );
 
     data.todayAds += 1;
-
     data.totalAds += 1;
 
     data.balance =
       Number(
-        (
-          Number(data.balance) +
-          REWARD
-        ).toFixed(2)
+        (Number(data.balance)+REWARD)
+        .toFixed(2)
       );
 
-
     saveData();
-
     updateUI();
 
     showToast(
-      "✅ Ad দেখা হয়েছে! ৳0.02 যোগ হয়েছে।"
+      "🎉 Ad Complete! ৳0.05 যোগ হয়েছে।"
     );
-
 
   }catch(error){
 
     console.log(error);
 
     showToast(
-      "❌ বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। আবার চেষ্টা করুন।"
+      "❌ Ad দেখানো যায়নি। আবার চেষ্টা করুন।"
     );
 
   }
-
 
   button.disabled = false;
 
-  button.textContent =
-    "▶️ Watch Ad";
-
-}
-
-
-async function copyReferral(){
-
-  const link =
-    document.getElementById(
-      "referralLink"
-    ).textContent;
-
-  try{
-
-    await navigator.clipboard.writeText(link);
-
-    showToast(
-      "✅ Referral Link Copy হয়েছে।"
-    );
-
-  }catch(e){
-
-    showToast(
-      "❌ Copy করা যায়নি।"
-    );
-
+  if(data.todayAds < DAILY_LIMIT){
+    button.textContent = "▶️ Watch Ad";
   }
 
 }
 
 
-function shareReferral(){
+function showScreen(id,element){
 
-  const link =
-    document.getElementById(
-      "referralLink"
-    ).textContent;
+  document.querySelectorAll(".screen")
+    .forEach(screen=>{
+      screen.classList.remove("active");
+    });
 
-  const text =
-    "DailyFree01 এ Join করুন এবং Ads দেখে আয় করুন!";
+  const target =
+    document.getElementById(id);
 
-  const shareUrl =
-    "https://t.me/share/url?url=" +
-    encodeURIComponent(link) +
-    "&text=" +
-    encodeURIComponent(text);
-
-  window.open(
-    shareUrl,
-    "_blank"
-  );
-
-}
-
-
-function withdraw(){
-
-  const referrals =
-    Number(data.referrals || 0);
-
-
-  if(referrals < REQUIRED_REFERRALS){
-
-    showToast(
-      "⚠️ Withdraw করতে কমপক্ষে ৩ জন Referral লাগবে। বর্তমানে " +
-      referrals +
-      "/3 জন Referral আছে।"
-    );
-
-    return;
-
+  if(target){
+    target.classList.add("active");
   }
 
+  document.querySelectorAll(".nav-item")
+    .forEach(item=>{
+      item.classList.remove("active");
+    });
 
-  const amount =
-    Number(
-      document.getElementById(
-        "withdrawAmount"
-      ).value
-    );
-
-
-  if(!amount || amount < MIN_WITHDRAW){
-
-    showToast(
-      "⚠️ Minimum Withdraw ৳100।"
-    );
-
-    return;
-
+  if(element){
+    element.classList.add("active");
   }
 
-
-  if(amount > Number(data.balance)){
-
-    showToast(
-      "❌ আপনার ব্যালেন্স পর্যাপ্ত নয়।"
-    );
-
-    return;
-
-  }
-
-
-  const number =
-    document.getElementById(
-      "walletNumber"
-    ).value.trim();
-
-
-  if(!/^01[0-9]{9}$/.test(number)){
-
-    showToast(
-      "❌ সঠিক 11 ডিজিটের bKash/Nagad Number দিন।"
-    );
-
-    return;
-
-  }
-
-
-  const method =
-    document.getElementById(
-      "paymentMethod"
-    ).value;
-
-
-  showToast(
-    "✅ Withdraw Request গ্রহণ করা হয়েছে।"
-  );
-
-
-  /*
-    এখানে আপনার Backend / Admin API
-    যুক্ত করলে আসল Withdraw Request
-    Server-এ পাঠানো যাবে।
-  */
-
-
-  console.log({
-
-    method:method,
-
-    amount:amount,
-
-    number:number,
-
-    telegramId:
-      window.Telegram &&
-      Telegram.WebApp &&
-      Telegram.WebApp.initDataUnsafe &&
-      Telegram.WebApp.initDataUnsafe.user
-        ? Telegram.WebApp.initDataUnsafe.user.id
-        : null
-
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
   });
+
+}
+
+
+function openLink(url){
+
+  if(window.Telegram &&
+     Telegram.WebApp){
+
+    Telegram.WebApp.openTelegramLink(url);
+
+  }else{
+
+    window.open(url,"_blank");
+
+  }
 
 }
 
 
 function telegramInit(){
 
-  if(
-    window.Telegram &&
-    Telegram.WebApp
-  ){
+  if(!window.Telegram ||
+     !Telegram.WebApp){
 
-    const tg =
-      Telegram.WebApp;
+    return;
+  }
 
-    tg.ready();
+  const tg =
+    Telegram.WebApp;
 
-    tg.expand();
+  tg.ready();
+  tg.expand();
 
+  const user =
+    tg.initDataUnsafe &&
+    tg.initDataUnsafe.user;
 
-    const user =
-      tg.initDataUnsafe &&
-      tg.initDataUnsafe.user;
+  if(!user) return;
 
+  const name =
+    [user.first_name,user.last_name]
+    .filter(Boolean)
+    .join(" ") ||
+    "Telegram User";
 
-    if(user){
+  document.getElementById("profileName")
+    .textContent = name;
 
-      const name =
-        (
-          user.first_name || ""
-        ) +
-        (
-          user.last_name
-            ? " " + user.last_name
-            : ""
-        );
+  document.getElementById("profileId")
+    .textContent =
+      "Telegram ID: "+user.id;
 
+  if(user.photo_url){
 
-      document.getElementById(
-        "profileName"
-      ).textContent =
-        name || "Telegram User";
-
-
-      document.getElementById(
-        "profileId"
-      ).textContent =
-        user.id || "-";
-
-
-      if(user.photo_url){
-
-        document.getElementById(
-          "profileAvatar"
-        ).src =
-          user.photo_url;
-
-      }
-
-
-      const referral =
-        "https://t.me/DailyFree01_bot?start=ref_" +
-        user.id;
-
-
-      document.getElementById(
-        "referralLink"
-      ).textContent =
-        referral;
-
-    }
+    document.getElementById("profileAvatar")
+      .src = user.photo_url;
 
   }
+
+  const referralLink =
+    "https://t.me/DailyFree01_bot?start=ref_"
+    +user.id;
+
+  document.getElementById("referralLink")
+    .textContent = referralLink;
 
 }
 
 
-checkNewDay();
+function copyReferral(){
 
-telegramInit();
+  const text =
+    document.getElementById("referralLink")
+      .textContent;
 
-updateUI();
+  navigator.clipboard.writeText(text)
+    .then(()=>{
+      showToast("✅ Referral Link Copy হয়েছে!");
+    })
+    .catch(()=>{
+      showToast("❌ Copy করা যায়নি।");
+    });
+
+}
+
+
+function shareReferral(){
+
+  const text =
+    "DailyFree01-এ Join করুন এবং Ads দেখে আয় করুন!";
+
+  const link =
+    document.getElementById("referralLink")
+      .textContent;
+
+  const shareUrl =
+    "https://t.me/share/url?url="
+    +encodeURIComponent(link)
+    +"&text="
+    +encodeURIComponent(text);
+
+  openLink(shareUrl);
+
+}
+
+
+function withdraw(){
+
+  const amount =
+    Number(
+      document.getElementById("withdrawAmount")
+        .value
+    );
+
+  const number =
+    document.getElementById("withdrawNumber")
+      .value.trim();
+
+  const referrals =
+    Number(data.referrals || 0);
+
+
+  if(referrals < 3){
+
+    showToast(
+      "⚠️ Withdraw করতে কমপক্ষে ৩ জন Referral লাগবে। বর্তমানে "
+      +referrals+
+      "/3 জন Referral আছে।"
+    );
+
+    return;
+  }
+
+
+  if(amount < 100){
+
+    showToast(
+      "⚠️ Minimum Withdrawal ৳100"
+    );
+
+    return;
+  }
+
+
+  if(amount > Number(data.balance)){
+
+    showToast(
+      "❌ আপনার Balance যথেষ্ট নয়।"
+    );
+
+    return;
+  }
+
+
+  if(!/^01[0-9]{9}$/.test(number)){
+
+    showToast(
+      "❌ সঠিক 11 digit bKash/Nagad Number দিন।"
+    );
+
+    return;
+  }
+
+
+  showToast(
+    "✅ Withdrawal Request গ্রহণ করা হয়েছে।"
+  );
+
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    telegramInit();
+    updateUI();
+
+  }
+);
 
 </script>
 
 </body>
-     </html>
+                         </html>
