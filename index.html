@@ -429,6 +429,7 @@ label{
 
 /* MOBILE */
 @media(max-width:420px){
+
   .screen{
     padding:16px 12px 20px;
   }
@@ -487,6 +488,7 @@ label{
   </div>
 
   <div class="stats">
+
     <div class="stat">
       <div class="stat-icon">📺</div>
       <div class="stat-value" id="homeAds">0</div>
@@ -510,10 +512,12 @@ label{
       <div class="stat-value" id="homeTotalAds">0</div>
       <div class="stat-label">Total Ads</div>
     </div>
+
   </div>
 
   <div class="card">
     <div class="card-title">📢 Official Channel</div>
+
     <button class="primary-btn" onclick="openChannel()">
       📢 Join Channel
     </button>
@@ -543,7 +547,7 @@ label{
     </div>
 
     <div class="reward">
-      ৳0.02
+      ৳0.05
     </div>
 
     <div class="wait">
@@ -552,7 +556,7 @@ label{
 
     <div class="count-box">
       আজ দেখেছেন:
-      <strong id="adsCount">0 / 1000</strong>
+      <strong id="adsCount">0 / 300</strong>
     </div>
 
     <button
@@ -572,12 +576,12 @@ label{
 
     <div class="info-row">
       <span>প্রতি Ad Reward</span>
-      <strong>৳0.02</strong>
+      <strong>৳0.05</strong>
     </div>
 
     <div class="info-row">
       <span>Daily Limit</span>
-      <strong>1000 Ads</strong>
+      <strong>300 Ads</strong>
     </div>
 
     <div class="info-row">
@@ -600,6 +604,7 @@ label{
 
   <div class="card">
     <div class="card-title">🌐 Website</div>
+
     <div class="notice">
       DailyFree01-এর Web Section।
     </div>
@@ -619,19 +624,43 @@ label{
   <div class="card">
 
     <div class="task">
+
       <div>
-        <div class="task-name">📢 Official Channel</div>
-        <small>Join our official channel</small>
+        <div class="task-name">
+          📢 Official Channel
+        </div>
+
+        <small>
+          Join our official channel
+        </small>
       </div>
-      <button class="small-btn" onclick="openChannel()">Join</button>
+
+      <button
+        class="small-btn"
+        onclick="openChannel()">
+        Join
+      </button>
+
     </div>
 
     <div class="task">
+
       <div>
-        <div class="task-name">👥 Refer Friends</div>
-        <small>Invite your friends</small>
+        <div class="task-name">
+          👥 Refer Friends
+        </div>
+
+        <small>
+          Invite your friends
+        </small>
       </div>
-      <button class="small-btn" onclick="showScreen('refer')">Refer</button>
+
+      <button
+        class="small-btn"
+        onclick="showScreen('refer')">
+        Refer
+      </button>
+
     </div>
 
   </div>
@@ -644,20 +673,24 @@ label{
 
   <div class="app-header">
     <div class="title">👥 Refer</div>
-    <div class="sub">Invite friends and grow your referrals</div>
+    <div class="sub">
+      Invite friends and grow your referrals
+    </div>
   </div>
 
   <div class="card">
 
-    <div class="card-title">👥 Your Referrals</div>
+    <div class="card-title">
+      👥 Your Referrals
+    </div>
 
     <div class="ref-count">
-      <span id="referralCount">0/3</span>
+      <span id="referralCount">0/5</span>
     </div>
 
     <div class="notice">
       Withdraw করার জন্য কমপক্ষে
-      <strong>৩ জন Referral</strong>
+      <strong>৫ জন Referral</strong>
       প্রয়োজন।
     </div>
 
@@ -665,19 +698,25 @@ label{
 
   <div class="card">
 
-    <div class="card-title">🔗 Your Referral Link</div>
+    <div class="card-title">
+      🔗 Your Referral Link
+    </div>
 
     <div id="referralLink" class="ref-link">
       Referral link loading...
     </div>
 
-    <button class="primary-btn" onclick="copyReferral()">
+    <button
+      class="primary-btn"
+      onclick="copyReferral()">
       📋 Copy Referral Link
     </button>
 
     <br><br>
 
-    <button class="primary-btn" onclick="shareReferral()">
+    <button
+      class="primary-btn"
+      onclick="shareReferral()">
       📤 Share Referral
     </button>
 
@@ -691,19 +730,31 @@ label{
 
   <div class="app-header">
     <div class="title">💳 Wallet</div>
-    <div class="sub">Withdraw your balance</div>
+    <div class="sub">
+      Withdraw your balance
+    </div>
   </div>
 
   <div class="card balance-card">
-    <div class="balance-label">Available Balance</div>
-    <div class="balance" id="walletBalance">৳0.00</div>
+
+    <div class="balance-label">
+      Available Balance
+    </div>
+
+    <div class="balance" id="walletBalance">
+      ৳0.00
+    </div>
+
   </div>
 
   <div class="card">
 
-    <div class="card-title">💳 Payment Method</div>
+    <div class="card-title">
+      💳 Payment Method
+    </div>
 
     <div class="method">
+
       <button
         id="bkashBtn"
         class="selected"
@@ -716,17 +767,24 @@ label{
         onclick="selectMethod('Nagad')">
         Nagad
       </button>
+
     </div>
 
-    <label>💰 Withdrawal Amount</label>
+    <label>
+      💰 Withdrawal Amount
+    </label>
+
     <input
       id="withdrawAmount"
       class="input"
       type="number"
-      min="100"
-      placeholder="Minimum ৳100">
+      min="300"
+      placeholder="Minimum ৳300">
 
-    <label>📱 bKash / Nagad Number</label>
+    <label>
+      📱 bKash / Nagad Number
+    </label>
+
     <input
       id="withdrawNumber"
       class="input"
@@ -735,22 +793,36 @@ label{
       placeholder="01XXXXXXXXX">
 
     <div class="notice">
-      👥 <strong>Referral Requirement: 3 জন</strong>
+
+      👥 <strong>
+        Referral Requirement: 5 জন
+      </strong>
+
       <br><br>
+
       Withdraw করার আগে কমপক্ষে
-      <strong>৩ জন Referral</strong>
+      <strong>৫ জন Referral</strong>
       পূর্ণ করতে হবে।
+
       <br><br>
+
       বর্তমান Referral:
-      <strong id="withdrawReferralCount">0 / 3</strong>
+      <strong id="withdrawReferralCount">
+        0 / 5
+      </strong>
+
       <br><br>
+
       Minimum Withdrawal:
-      <strong>৳100</strong>
+      <strong>৳300</strong>
+
     </div>
 
     <br>
 
-    <button class="primary-btn" onclick="withdraw()">
+    <button
+      class="primary-btn"
+      onclick="withdraw()">
       💸 Confirm Withdraw
     </button>
 
@@ -764,7 +836,9 @@ label{
 
   <div class="app-header">
     <div class="title">👤 Profile</div>
-    <div class="sub">Your DailyFree01 account</div>
+    <div class="sub">
+      Your DailyFree01 account
+    </div>
   </div>
 
   <div class="card profile-top">
@@ -787,22 +861,30 @@ label{
 
     <div class="info-row">
       <span>💰 Balance</span>
-      <strong id="profileBalance">৳0.00</strong>
+      <strong id="profileBalance">
+        ৳0.00
+      </strong>
     </div>
 
     <div class="info-row">
       <span>📺 Ads Watched</span>
-      <strong id="profileAds">0</strong>
+      <strong id="profileAds">
+        0
+      </strong>
     </div>
 
     <div class="info-row">
       <span>👥 Referrals</span>
-      <strong id="profileReferrals">0</strong>
+      <strong id="profileReferrals">
+        0
+      </strong>
     </div>
 
     <div class="info-row">
       <span>🎁 Referral Bonus</span>
-      <strong id="profileReferralBonus">৳0.00</strong>
+      <strong id="profileReferralBonus">
+        ৳0.00
+      </strong>
     </div>
 
     <div class="info-row">
@@ -820,39 +902,80 @@ label{
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
-  <button class="nav-btn" data-screen="home" onclick="showScreen('home')">
+  <button
+    class="nav-btn"
+    data-screen="home"
+    onclick="showScreen('home')">
+
     <span class="nav-icon">🏠</span>
     Home
+
   </button>
 
-  <button class="nav-btn active" data-screen="earn" onclick="showScreen('earn')">
+
+  <button
+    class="nav-btn active"
+    data-screen="earn"
+    onclick="showScreen('earn')">
+
     <span class="nav-icon">💰</span>
     Earn
+
   </button>
 
-  <button class="nav-btn" data-screen="web" onclick="showScreen('web')">
+
+  <button
+    class="nav-btn"
+    data-screen="web"
+    onclick="showScreen('web')">
+
     <span class="nav-icon">🌐</span>
     Web
+
   </button>
 
-  <button class="nav-btn" data-screen="tasks" onclick="showScreen('tasks')">
+
+  <button
+    class="nav-btn"
+    data-screen="tasks"
+    onclick="showScreen('tasks')">
+
     <span class="nav-icon">🎯</span>
     Tasks
+
   </button>
 
-  <button class="nav-btn" data-screen="refer" onclick="showScreen('refer')">
+
+  <button
+    class="nav-btn"
+    data-screen="refer"
+    onclick="showScreen('refer')">
+
     <span class="nav-icon">👥</span>
     Refer
+
   </button>
 
-  <button class="nav-btn" data-screen="wallet" onclick="showScreen('wallet')">
+
+  <button
+    class="nav-btn"
+    data-screen="wallet"
+    onclick="showScreen('wallet')">
+
     <span class="nav-icon">💳</span>
     Wallet
+
   </button>
 
-  <button class="nav-btn" data-screen="profile" onclick="showScreen('profile')">
+
+  <button
+    class="nav-btn"
+    data-screen="profile"
+    onclick="showScreen('profile')">
+
     <span class="nav-icon">👤</span>
     Profile
+
   </button>
 
 </nav>
@@ -862,31 +985,51 @@ label{
 
 
 <script>
+
 /* ==========================================
    DAILYFREE01 SETTINGS
 ========================================== */
 
-const REWARD = 0.02;
-const DAILY_LIMIT = 1000;
-const MIN_WITHDRAW = 100;
-const MIN_REFERRALS = 3;
+const REWARD = 0.05;
+
+const DAILY_LIMIT = 300;
+
+const MIN_WITHDRAW = 300;
+
+const MIN_REFERRALS = 5;
+
 const WAIT_TIME = 0;
 
-const STORAGE_KEY = "dailyfree01_user_data_v5";
+const STORAGE_KEY =
+  "dailyfree01_user_data_v6";
 
 let selectedMethod = "bKash";
 
-let data = JSON.parse(
-  localStorage.getItem(STORAGE_KEY)
-) || {
-  balance:0,
-  todayAds:0,
-  totalAds:0,
-  referrals:0,
-  referralBonus:0,
-  todayIncome:0,
-  date:getToday()
-};
+
+/* ==========================================
+   USER DATA
+========================================== */
+
+let data =
+  JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+  ) || {
+
+    balance:0,
+
+    todayAds:0,
+
+    totalAds:0,
+
+    referrals:0,
+
+    referralBonus:0,
+
+    todayIncome:0,
+
+    date:getToday()
+
+  };
 
 
 /* ==========================================
@@ -899,11 +1042,17 @@ const tg =
   ? window.Telegram.WebApp
   : null;
 
+
 if(tg){
+
   try{
+
     tg.ready();
+
     tg.expand();
+
   }catch(e){}
+
 }
 
 
@@ -912,28 +1061,51 @@ if(tg){
 ========================================== */
 
 function getToday(){
-  const d = new Date();
 
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,"0");
-  const day = String(d.getDate()).padStart(2,"0");
+  const d =
+    new Date();
 
-  return y + "-" + m + "-" + day;
+  const y =
+    d.getFullYear();
+
+  const m =
+    String(
+      d.getMonth()+1
+    ).padStart(2,"0");
+
+  const day =
+    String(
+      d.getDate()
+    ).padStart(2,"0");
+
+  return (
+    y +
+    "-" +
+    m +
+    "-" +
+    day
+  );
+
 }
 
 
 function checkNewDay(){
 
-  const today = getToday();
+  const today =
+    getToday();
 
   if(data.date !== today){
 
     data.todayAds = 0;
+
     data.todayIncome = 0;
+
     data.date = today;
 
     saveData();
+
   }
+
 }
 
 
@@ -957,7 +1129,12 @@ function saveData(){
 
 function money(amount){
 
-  return "৳" + Number(amount || 0).toFixed(2);
+  return (
+    "৳" +
+    Number(
+      amount || 0
+    ).toFixed(2)
+  );
 
 }
 
@@ -968,20 +1145,34 @@ function money(amount){
 
 let toastTimer;
 
+
 function showToast(message){
 
   const toast =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
-  toast.textContent = message;
-  toast.classList.add("show");
+  toast.textContent =
+    message;
 
-  clearTimeout(toastTimer);
+  toast.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    toastTimer
+  );
 
   toastTimer =
     setTimeout(()=>{
-      toast.classList.remove("show");
+
+      toast.classList.remove(
+        "show"
+      );
+
     },3000);
+
 }
 
 
@@ -994,28 +1185,51 @@ function showScreen(screenId){
   document
     .querySelectorAll(".screen")
     .forEach(screen=>{
-      screen.classList.remove("active");
+
+      screen.classList.remove(
+        "active"
+      );
+
     });
 
+
   const target =
-    document.getElementById(screenId);
+    document.getElementById(
+      screenId
+    );
+
 
   if(target){
-    target.classList.add("active");
+
+    target.classList.add(
+      "active"
+    );
+
   }
+
 
   document
     .querySelectorAll(".nav-btn")
     .forEach(btn=>{
+
       btn.classList.toggle(
+
         "active",
-        btn.dataset.screen === screenId
+
+        btn.dataset.screen ===
+        screenId
+
       );
+
     });
 
+
   window.scrollTo({
+
     top:0,
+
     behavior:"smooth"
+
   });
 
 }
@@ -1028,93 +1242,159 @@ function showScreen(screenId){
 function telegramUser(){
 
   if(
+
     tg &&
+
     tg.initDataUnsafe &&
+
     tg.initDataUnsafe.user
+
   ){
-    return tg.initDataUnsafe.user;
+
+    return (
+      tg.initDataUnsafe.user
+    );
+
   }
 
   return null;
+
 }
 
 
 function telegramInit(){
 
-  const user = telegramUser();
+  const user =
+    telegramUser();
+
 
   if(!user){
 
-    document.getElementById("profileName")
-      .textContent = "Guest";
+    document.getElementById(
+      "profileName"
+    ).textContent =
+      "Guest";
 
-    document.getElementById("profileId")
-      .textContent = "Telegram ID: —";
 
-    document.getElementById("avatar")
-      .textContent = "G";
+    document.getElementById(
+      "profileId"
+    ).textContent =
+      "Telegram ID: —";
 
-    createReferralLink(null);
+
+    document.getElementById(
+      "avatar"
+    ).textContent =
+      "G";
+
+
+    createReferralLink(
+      null
+    );
 
     return;
+
   }
+
 
   const first =
     user.first_name || "";
 
+
   const last =
     user.last_name || "";
 
+
   const fullName =
-    (first + " " + last).trim() ||
+
+    (
+      first +
+      " " +
+      last
+    ).trim() ||
+
     user.username ||
+
     "Telegram User";
 
-  document.getElementById("profileName")
-    .textContent = fullName;
 
-  document.getElementById("profileId")
-    .textContent =
-      "Telegram ID: " + user.id;
+  document.getElementById(
+    "profileName"
+  ).textContent =
+    fullName;
 
-  let initials = first.charAt(0);
+
+  document.getElementById(
+    "profileId"
+  ).textContent =
+    "Telegram ID: " +
+    user.id;
+
+
+  let initials =
+    first.charAt(0);
+
 
   if(last){
-    initials += last.charAt(0);
+
+    initials +=
+      last.charAt(0);
+
   }
 
-  document.getElementById("avatar")
-    .textContent =
-      initials.toUpperCase();
+
+  document.getElementById(
+    "avatar"
+  ).textContent =
+    initials.toUpperCase();
+
 
   if(user.photo_url){
 
     const avatar =
-      document.getElementById("avatar");
+      document.getElementById(
+        "avatar"
+      );
 
-    avatar.textContent = "";
+
+    avatar.textContent =
+      "";
+
 
     avatar.style.backgroundImage =
-      "url('" + user.photo_url + "')";
+      "url('" +
+      user.photo_url +
+      "')";
 
-    avatar.style.backgroundSize = "cover";
-    avatar.style.backgroundPosition = "center";
+
+    avatar.style.backgroundSize =
+      "cover";
+
+
+    avatar.style.backgroundPosition =
+      "center";
 
   }
 
-  createReferralLink(user.id);
+
+  createReferralLink(
+    user.id
+  );
 
 }
 
 
 /* ==========================================
-   REFERRAL LINK
+   REFERRAL
 ========================================== */
 
 function createReferralLink(id){
 
   const box =
-    document.getElementById("referralLink");
+    document.getElementById(
+      "referralLink"
+    );
+
 
   if(!id){
 
@@ -1122,24 +1402,33 @@ function createReferralLink(id){
       "Telegram user information পাওয়া যায়নি";
 
     return;
+
   }
+
 
   const link =
     "https://t.me/DailyFree01_bot?start=ref_" +
     id;
 
-  box.textContent = link;
+
+  box.textContent =
+    link;
 
 }
 
 
 function getReferralLink(){
 
-  const user = telegramUser();
+  const user =
+    telegramUser();
+
 
   if(!user){
+
     return "";
+
   }
+
 
   return (
     "https://t.me/DailyFree01_bot?start=ref_" +
@@ -1154,6 +1443,7 @@ function copyReferral(){
   const link =
     getReferralLink();
 
+
   if(!link){
 
     showToast(
@@ -1161,22 +1451,34 @@ function copyReferral(){
     );
 
     return;
+
   }
 
+
   if(
+
     navigator.clipboard &&
+
     navigator.clipboard.writeText
+
   ){
 
     navigator.clipboard
+
       .writeText(link)
+
       .then(()=>{
+
         showToast(
           "✅ Referral Link copied!"
         );
+
       })
+
       .catch(()=>{
+
         showToast(link);
+
       });
 
   }else{
@@ -1193,6 +1495,7 @@ function shareReferral(){
   const link =
     getReferralLink();
 
+
   if(!link){
 
     showToast(
@@ -1200,18 +1503,28 @@ function shareReferral(){
     );
 
     return;
+
   }
+
 
   const text =
     "DailyFree01 এ Join করুন এবং Ads দেখে Reward Earn করুন!";
 
+
   const shareUrl =
+
     "https://t.me/share/url?url=" +
+
     encodeURIComponent(link) +
+
     "&text=" +
+
     encodeURIComponent(text);
 
-  openUrl(shareUrl);
+
+  openUrl(
+    shareUrl
+  );
 
 }
 
@@ -1227,21 +1540,31 @@ async function watchAd(){
 
   checkNewDay();
 
+
   if(watching){
+
     return;
+
   }
 
-  if(data.todayAds >= DAILY_LIMIT){
+
+  if(
+    data.todayAds >=
+    DAILY_LIMIT
+  ){
 
     showToast(
-      "⚠️ আজকের 1000 Ads Limit পূর্ণ হয়েছে।"
+      "⚠️ আজকের 300 Ads Limit পূর্ণ হয়েছে।"
     );
 
     return;
+
   }
 
+
   if(
-    typeof window.show_11701410 !== "function"
+    typeof window.show_11701410 !==
+    "function"
   ){
 
     showToast(
@@ -1249,57 +1572,93 @@ async function watchAd(){
     );
 
     return;
+
   }
+
 
   watching = true;
 
-  const button =
-    document.getElementById("watchButton");
 
-  button.disabled = true;
-  button.textContent = "⏳ Loading Ad...";
+  const button =
+    document.getElementById(
+      "watchButton"
+    );
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    "⏳ Loading Ad...";
+
 
   try{
 
-    /*
-      Monetag ad open
-    */
     await window.show_11701410();
 
+
     /*
-      Successful ad
-      Reward = ৳0.02
+      Ad complete হলে
+      ৳0.05 যোগ হবে
     */
 
-    data.todayAds += 1;
-    data.totalAds += 1;
+    data.todayAds +=
+      1;
+
+
+    data.totalAds +=
+      1;
+
 
     data.balance =
       Number(
+
         (
-          Number(data.balance) +
+
+          Number(
+            data.balance
+          ) +
+
           REWARD
+
         ).toFixed(2)
+
       );
+
 
     data.todayIncome =
       Number(
+
         (
-          Number(data.todayIncome) +
+
+          Number(
+            data.todayIncome
+          ) +
+
           REWARD
+
         ).toFixed(2)
+
       );
 
+
     saveData();
+
     updateUI();
 
+
     showToast(
-      "✅ Ad complete! ৳0.02 যোগ হয়েছে।"
+      "✅ Ad complete! ৳0.05 যোগ হয়েছে।"
     );
+
 
   }catch(error){
 
-    console.log(error);
+    console.log(
+      error
+    );
+
 
     showToast(
       "⚠️ Ad সম্পূর্ণ হয়নি, তাই Reward যোগ হয়নি।"
@@ -1307,10 +1666,18 @@ async function watchAd(){
 
   }
 
-  watching = false;
 
-  button.disabled = false;
-  button.textContent = "▶️ Watch Ad";
+  watching =
+    false;
+
+
+  button.disabled =
+    false;
+
+
+  button.textContent =
+    "▶️ Watch Ad";
+
 
   updateUI();
 
@@ -1323,20 +1690,33 @@ async function watchAd(){
 
 function selectMethod(method){
 
-  selectedMethod = method;
+  selectedMethod =
+    method;
+
 
   document
-    .getElementById("bkashBtn")
+    .getElementById(
+      "bkashBtn"
+    )
     .classList.toggle(
+
       "selected",
+
       method === "bKash"
+
     );
 
+
   document
-    .getElementById("nagadBtn")
+    .getElementById(
+      "nagadBtn"
+    )
     .classList.toggle(
+
       "selected",
+
       method === "Nagad"
+
     );
 
 }
@@ -1350,82 +1730,129 @@ function withdraw(){
 
   checkNewDay();
 
-  const referrals =
-    Number(data.referrals || 0);
 
-  if(referrals < MIN_REFERRALS){
+  const referrals =
+    Number(
+      data.referrals || 0
+    );
+
+
+  if(
+    referrals <
+    MIN_REFERRALS
+  ){
 
     showToast(
-      "⚠️ Withdraw করতে কমপক্ষে ৩ জন Referral লাগবে। বর্তমানে " +
+
+      "⚠️ Withdraw করতে কমপক্ষে ৫ জন Referral লাগবে। বর্তমানে " +
+
       referrals +
-      "/3 জন Referral আছে।"
+
+      "/5 জন Referral আছে।"
+
     );
 
     return;
+
   }
+
 
   const amount =
     Number(
+
       document.getElementById(
         "withdrawAmount"
       ).value
+
     );
+
 
   const number =
     document.getElementById(
       "withdrawNumber"
     ).value.trim();
 
-  if(!amount || amount < MIN_WITHDRAW){
+
+  if(
+    !amount ||
+    amount < MIN_WITHDRAW
+  ){
 
     showToast(
-      "⚠️ Minimum Withdrawal ৳100"
+      "⚠️ Minimum Withdrawal ৳300"
     );
 
     return;
+
   }
 
-  if(amount > Number(data.balance)){
+
+  if(
+    amount >
+    Number(data.balance)
+  ){
 
     showToast(
       "⚠️ আপনার Balance পর্যাপ্ত নয়।"
     );
 
     return;
+
   }
 
-  if(!/^01[0-9]{9}$/.test(number)){
+
+  if(
+    !/^01[0-9]{9}$/.test(
+      number
+    )
+  ){
 
     showToast(
       "⚠️ সঠিক 11 digit bKash/Nagad নম্বর দিন।"
     );
 
     return;
+
   }
 
+
   /*
-    এখানে আপনার backend/admin withdrawal
-    system-এর সাথে request পাঠাতে পারবেন।
+    এখানে আপনার backend/admin
+    withdrawal system-এর সাথে
+    request পাঠাতে পারবেন।
   */
+
 
   data.balance =
     Number(
+
       (
-        Number(data.balance) -
+
+        Number(
+          data.balance
+        ) -
+
         amount
+
       ).toFixed(2)
+
     );
 
+
   saveData();
+
   updateUI();
+
 
   document.getElementById(
     "withdrawAmount"
   ).value = "";
 
+
   document.getElementById(
     "withdrawNumber"
   ).value = "";
+
 
   showToast(
     "✅ Withdrawal Request গ্রহণ করা হয়েছে।"
@@ -1442,54 +1869,79 @@ function updateUI(){
 
   checkNewDay();
 
+
   const balance =
-    Number(data.balance || 0);
+    Number(
+      data.balance || 0
+    );
+
 
   const todayAds =
-    Number(data.todayAds || 0);
+    Number(
+      data.todayAds || 0
+    );
+
 
   const totalAds =
-    Number(data.totalAds || 0);
+    Number(
+      data.totalAds || 0
+    );
+
 
   const referrals =
-    Number(data.referrals || 0);
+    Number(
+      data.referrals || 0
+    );
+
 
   const referralBonus =
-    Number(data.referralBonus || 0);
+    Number(
+      data.referralBonus || 0
+    );
+
 
   const todayIncome =
-    Number(data.todayIncome || 0);
+    Number(
+      data.todayIncome || 0
+    );
 
 
-  /* Earn */
+  /* EARN */
 
   document.getElementById(
     "adsCount"
   ).textContent =
-    todayAds + " / " + DAILY_LIMIT;
+
+    todayAds +
+    " / " +
+    DAILY_LIMIT;
 
 
-  /* Home */
+  /* HOME */
 
   document.getElementById(
     "homeBalance"
   ).textContent =
     money(balance);
 
+
   document.getElementById(
     "homeAds"
   ).textContent =
     todayAds;
+
 
   document.getElementById(
     "homeIncome"
   ).textContent =
     money(todayIncome);
 
+
   document.getElementById(
     "homeReferrals"
   ).textContent =
     referrals;
+
 
   document.getElementById(
     "homeTotalAds"
@@ -1497,7 +1949,7 @@ function updateUI(){
     totalAds;
 
 
-  /* Wallet */
+  /* WALLET */
 
   document.getElementById(
     "walletBalance"
@@ -1505,35 +1957,43 @@ function updateUI(){
     money(balance);
 
 
-  /* Refer */
+  /* REFER */
 
   document.getElementById(
     "referralCount"
   ).textContent =
-    referrals + "/3";
+
+    referrals +
+    "/5";
+
 
   document.getElementById(
     "withdrawReferralCount"
   ).textContent =
-    referrals + " / 3";
+
+    referrals +
+    " / 5";
 
 
-  /* Profile */
+  /* PROFILE */
 
   document.getElementById(
     "profileBalance"
   ).textContent =
     money(balance);
 
+
   document.getElementById(
     "profileAds"
   ).textContent =
     totalAds;
 
+
   document.getElementById(
     "profileReferrals"
   ).textContent =
     referrals;
+
 
   document.getElementById(
     "profileReferralBonus"
@@ -1541,22 +2001,33 @@ function updateUI(){
     money(referralBonus);
 
 
-  /* Watch button */
+  /* WATCH BUTTON */
 
   const button =
     document.getElementById(
       "watchButton"
     );
 
-  if(todayAds >= DAILY_LIMIT){
 
-    button.disabled = true;
+  if(
+    todayAds >=
+    DAILY_LIMIT
+  ){
+
+    button.disabled =
+      true;
+
+
     button.textContent =
       "🚫 Daily Limit Complete";
 
+
   }else if(!watching){
 
-    button.disabled = false;
+    button.disabled =
+      false;
+
+
     button.textContent =
       "▶️ Watch Ad";
 
@@ -1573,9 +2044,14 @@ function openUrl(url){
 
   try{
 
-    if(tg && tg.openTelegramLink){
+    if(
+      tg &&
+      tg.openTelegramLink
+    ){
 
-      tg.openTelegramLink(url);
+      tg.openTelegramLink(
+        url
+      );
 
     }else{
 
@@ -1623,10 +2099,9 @@ function initApp(){
 
   updateUI();
 
-  /*
-    App খুললেই Earn Page
-  */
-  showScreen("earn");
+  showScreen(
+    "earn"
+  );
 
 }
 
