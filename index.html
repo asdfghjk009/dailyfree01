@@ -1,342 +1,457 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DailyFree01</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyFree01</title>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Monetag -->
-  <script
-    src="//libtl.com/sdk.js"
-    data-zone="11701410"
-    data-sdk="show_11701410">
-  </script>
+<!-- Monetag -->
+<script
+src="//libtl.com/sdk.js"
+data-zone="11701410"
+data-sdk="show_11701410">
+</script>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      margin: 0;
-      background: #f2f5f9;
-      color: #111;
-    }
+body{
+  margin:0;
+  background:#05070d;
+  color:#fff;
+}
 
-    .header {
-      background: #168cff;
-      color: white;
-      padding: 22px;
-      text-align: center;
-      border-radius: 0 0 25px 25px;
-    }
+.header{
+  padding:25px 15px;
+  text-align:center;
+  background:linear-gradient(135deg,#071b25,#10102b);
+  border-bottom:1px solid #00f7ff;
+  box-shadow:0 0 20px #00f7ff55;
+}
 
-    .header h1 {
-      margin: 0;
-      font-size: 26px;
-    }
+.logo{
+  font-size:30px;
+  font-weight:bold;
+  color:#00f7ff;
+  text-shadow:0 0 15px #00f7ff;
+}
 
-    .balance {
-      background: white;
-      margin: 15px;
-      padding: 20px;
-      border-radius: 18px;
-      text-align: center;
-      box-shadow: 0 3px 12px #0001;
-    }
+.sub{
+  color:#aaa;
+  margin-top:8px;
+}
 
-    .balance h2 {
-      margin: 5px;
-      color: #168cff;
-      font-size: 32px;
-    }
+.balance{
+  margin:18px;
+  padding:25px;
+  text-align:center;
+  border:1px solid #00f7ff;
+  border-radius:20px;
+  background:#090d16;
+  box-shadow:0 0 20px #00f7ff44;
+}
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 0 15px;
-    }
+.balance p{
+  color:#aaa;
+  margin:5px;
+}
 
-    .stat {
-      background: white;
-      padding: 14px 5px;
-      text-align: center;
-      border-radius: 14px;
-      box-shadow: 0 2px 8px #0001;
-    }
+.balance h1{
+  margin:8px;
+  font-size:38px;
+  color:#00ff88;
+  text-shadow:0 0 15px #00ff88;
+}
 
-    .stat b {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:0 15px;
+}
 
-    .menu {
-      padding: 15px;
-      display: grid;
-      gap: 12px;
-    }
+.stat{
+  padding:15px 5px;
+  text-align:center;
+  background:#090d16;
+  border:1px solid #333;
+  border-radius:15px;
+}
 
-    button {
-      width: 100%;
-      border: 0;
-      padding: 16px;
-      border-radius: 15px;
-      background: white;
-      font-size: 17px;
-      font-weight: bold;
-      box-shadow: 0 2px 8px #0001;
-    }
+.stat b{
+  display:block;
+  font-size:18px;
+  color:#00f7ff;
+  margin-bottom:5px;
+}
 
-    button:active {
-      transform: scale(.98);
-    }
+.menu{
+  padding:18px 15px;
+}
 
-    .ad {
-      background: #168cff;
-      color: white;
-    }
+button{
+  width:100%;
+  padding:17px;
+  margin-bottom:12px;
+  border:1px solid #00f7ff;
+  border-radius:15px;
+  background:#090d16;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  box-shadow:0 0 12px #00f7ff33;
+}
 
-    .withdraw {
-      background: #20b86b;
-      color: white;
-    }
+button:active{
+  transform:scale(.97);
+}
 
-    .referral {
-      background: #ff9f1c;
-      color: white;
-    }
+.ad{
+  background:#071c1b;
+  border-color:#00ff88;
+  color:#00ff88;
+  box-shadow:0 0 18px #00ff8844;
+}
 
-    .info {
-      margin: 15px;
-      padding: 15px;
-      background: white;
-      border-radius: 15px;
-      text-align: center;
-      line-height: 1.7;
-    }
+.withdraw{
+  background:#19100a;
+  border-color:#ff9d00;
+  color:#ffb300;
+  box-shadow:0 0 18px #ff9d0044;
+}
 
-    .footer {
-      text-align: center;
-      padding: 20px;
-      color: #777;
-      font-size: 13px;
-    }
-  </style>
+.ref{
+  border-color:#c000ff;
+  color:#e000ff;
+}
+
+.info{
+  margin:0 15px 20px;
+  padding:18px;
+  text-align:center;
+  background:#090d16;
+  border-radius:16px;
+  border:1px solid #222;
+  line-height:1.8;
+  color:#bbb;
+}
+
+.info strong{
+  color:#00f7ff;
+}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#555;
+  font-size:13px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="header">
-    <h1>💰 DailyFree01</h1>
-    <p>Ads দেখুন এবং Reward পান</p>
+<div class="header">
+  <div class="logo">⚡ DailyFree01</div>
+  <div class="sub">Watch Ads • Earn Rewards</div>
+</div>
+
+<div class="balance">
+  <p>💰 আপনার ব্যালেন্স</p>
+  <h1 id="balance">৳0.00</h1>
+  <p>Minimum Withdraw: ৳1,000</p>
+</div>
+
+<div class="stats">
+
+  <div class="stat">
+    <b id="today">৳0.00</b>
+    আজকের আয়
   </div>
 
-  <div class="balance">
-    <p>আপনার ব্যালেন্স</p>
-    <h2 id="balance">৳0.00</h2>
-    <p>Minimum Withdraw: ৳55</p>
+  <div class="stat">
+    <b id="ads">0</b>
+    Ads
   </div>
 
-  <div class="stats">
-    <div class="stat">
-      <b id="today">৳0.00</b>
-      আজকের আয়
-    </div>
-
-    <div class="stat">
-      <b id="ads">0</b>
-      Ads দেখা
-    </div>
-
-    <div class="stat">
-      <b id="lifetime">৳0.00</b>
-      Lifetime
-    </div>
+  <div class="stat">
+    <b id="lifetime">৳0.00</b>
+    Lifetime
   </div>
 
-  <div class="menu">
+</div>
 
-    <button class="ad" onclick="watchAd()">
-      🎬 Ad দেখুন — ৳0.10
-    </button>
+<div class="menu">
 
-    <button onclick="webTask()">
-      🌐 Web Task
-    </button>
+  <button class="ad" onclick="watchAd()">
+    🎬 WATCH AD — ৳0.10
+  </button>
 
-    <button class="withdraw" onclick="withdraw()">
-      💸 Withdraw
-    </button>
+  <button onclick="webTask()">
+    🌐 WEB TASK
+  </button>
 
-    <button class="referral" onclick="referral()">
-      👥 Referral
-    </button>
+  <button class="withdraw" onclick="withdraw()">
+    💸 WITHDRAW
+  </button>
 
-    <button onclick="profile()">
-      👤 Profile
-    </button>
+  <button class="ref" onclick="referral()">
+    👥 REFERRAL
+  </button>
 
-  </div>
+  <button onclick="profile()">
+    👤 PROFILE
+  </button>
 
-  <div class="info">
-    <b>📢 Payment Methods</b><br>
-    🟢 bKash<br>
-    🟠 Nagad<br><br>
+</div>
 
-    প্রতি সফল Ad = <b>৳0.10</b><br>
-    Minimum Withdraw = <b>৳55</b>
-  </div>
+<div class="info">
 
-  <div class="footer">
-    DailyFree01 © 2026
-  </div>
+<strong>💎 EARNING RULES</strong><br><br>
 
+🎬 প্রতি Ad = <b>৳0.10</b><br>
+📺 Daily Limit = <b>999 Ads</b><br>
+💰 999 Ads = <b>৳99.90</b><br>
+💸 Minimum Withdraw = <b>৳1,000</b><br><br>
+
+🟢 bKash &nbsp;&nbsp; 🟠 Nagad
+
+</div>
+
+<div class="footer">
+DailyFree01 © 2026
+</div>
 
 <script>
 
-  const tg = window.Telegram.WebApp;
-  tg.ready();
-  tg.expand();
+const tg = window.Telegram.WebApp;
 
-  let balance = Number(localStorage.getItem("balance")) || 0;
-  let lifetime = Number(localStorage.getItem("lifetime")) || 0;
-  let today = Number(localStorage.getItem("today")) || 0;
-  let ads = Number(localStorage.getItem("ads")) || 0;
+tg.ready();
+tg.expand();
 
-  function save() {
-    localStorage.setItem("balance", balance);
-    localStorage.setItem("lifetime", lifetime);
-    localStorage.setItem("today", today);
-    localStorage.setItem("ads", ads);
+let balance =
+Number(localStorage.getItem("balance")) || 0;
 
-    update();
-  }
+let lifetime =
+Number(localStorage.getItem("lifetime")) || 0;
 
-  function update() {
-    document.getElementById("balance").innerText =
-      "৳" + balance.toFixed(2);
+let today =
+Number(localStorage.getItem("today")) || 0;
 
-    document.getElementById("today").innerText =
-      "৳" + today.toFixed(2);
+let ads =
+Number(localStorage.getItem("ads")) || 0;
 
-    document.getElementById("lifetime").innerText =
-      "৳" + lifetime.toFixed(2);
 
-    document.getElementById("ads").innerText = ads;
-  }
+/* Update UI */
 
-  function watchAd() {
+function update(){
 
-    if (typeof window.show_11701410 !== "function") {
-      alert("Ad এখনো লোড হয়নি। কিছুক্ষণ পরে আবার চেষ্টা করুন।");
-      return;
-    }
+document.getElementById("balance").innerText =
+"৳" + balance.toFixed(2);
 
-    window.show_11701410()
-      .then(() => {
+document.getElementById("today").innerText =
+"৳" + today.toFixed(2);
 
-        balance += 0.10;
-        lifetime += 0.10;
-        today += 0.10;
-        ads++;
+document.getElementById("lifetime").innerText =
+"৳" + lifetime.toFixed(2);
 
-        save();
+document.getElementById("ads").innerText =
+ads;
 
-        alert("✅ Ad সম্পূর্ণ হয়েছে!\n৳0.10 Reward যোগ হয়েছে।");
+}
 
-      })
-      .catch(() => {
 
-        alert("❌ Ad সম্পূর্ণ হয়নি। আবার চেষ্টা করুন।");
+/* Save */
 
-      });
-  }
+function save(){
 
-  function withdraw() {
+localStorage.setItem("balance",balance);
+localStorage.setItem("lifetime",lifetime);
+localStorage.setItem("today",today);
+localStorage.setItem("ads",ads);
 
-    if (balance < 55) {
-      alert(
-        "❌ Withdraw করতে কমপক্ষে ৳55 লাগবে।\n\n" +
-        "আপনার ব্যালেন্স: ৳" + balance.toFixed(2)
-      );
-      return;
-    }
+update();
 
-    const method = prompt(
-      "Payment Method লিখুন:\n\n" +
-      "1 = bKash\n" +
-      "2 = Nagad"
-    );
+}
 
-    if (method !== "1" && method !== "2") {
-      alert("সঠিক Payment Method নির্বাচন করুন।");
-      return;
-    }
 
-    const number = prompt("আপনার bKash/Nagad নম্বর দিন:");
+/* Watch Ad */
 
-    if (!number) {
-      alert("নম্বর দেওয়া হয়নি।");
-      return;
-    }
+function watchAd(){
 
-    alert(
-      "✅ Withdraw Request নেওয়া হয়েছে!\n\n" +
-      "Method: " + (method === "1" ? "bKash" : "Nagad") +
-      "\nNumber: " + number +
-      "\nAmount: ৳" + balance.toFixed(2)
-    );
+if(ads >= 999){
 
-    /*
-      গুরুত্বপূর্ণ:
-      এই অংশ এখন শুধু Demo UI।
-      আসল bKash/Nagad payment পাঠাতে Backend/API লাগবে।
-    */
-  }
+alert(
+"❌ আজকের 999 Ads Limit শেষ হয়েছে।"
+);
 
-  function referral() {
+return;
+}
 
-    const username = "DailyFree01_bot";
+if(typeof window.show_11701410 !== "function"){
 
-    const link =
-      "https://t.me/" + username +
-      "?start=" +
-      (tg.initDataUnsafe?.user?.id || "user");
+alert(
+"⏳ Ad এখনো Load হয়নি। কিছুক্ষণ পরে আবার চেষ্টা করুন।"
+);
 
-    navigator.clipboard.writeText(link);
+return;
+}
 
-    alert(
-      "👥 আপনার Referral Link কপি হয়েছে!\n\n" +
-      link
-    );
-  }
+window.show_11701410()
 
-  function webTask() {
-    alert("🌐 Web Task শীঘ্রই চালু হবে।");
-  }
+.then(function(){
 
-  function profile() {
+balance += 0.10;
+today += 0.10;
+lifetime += 0.10;
+ads++;
 
-    const user = tg.initDataUnsafe?.user;
+save();
 
-    if (user) {
-      alert(
-        "👤 Profile\n\n" +
-        "Name: " + (user.first_name || "") +
-        "\nUsername: @" + (user.username || " নেই") +
-        "\nTelegram ID: " + user.id
-      );
-    } else {
-      alert("Telegram user information পাওয়া যায়নি।");
-    }
-  }
+alert(
+"✅ Ad Complete!\n\n" +
+"Reward: ৳0.10"
+);
 
-  update();
+})
+
+.catch(function(){
+
+alert(
+"❌ Ad Complete হয়নি। আবার চেষ্টা করুন।"
+);
+
+});
+
+}
+
+
+/* Withdraw */
+
+function withdraw(){
+
+if(balance < 1000){
+
+alert(
+"❌ Minimum Withdraw ৳1,000\n\n" +
+"আপনার Balance: ৳" +
+balance.toFixed(2)
+);
+
+return;
+}
+
+let method =
+prompt(
+"Payment Method লিখুন:\n\n" +
+"1 = bKash\n" +
+"2 = Nagad"
+);
+
+if(method !== "1" && method !== "2"){
+
+alert("❌ সঠিক Payment Method দিন।");
+
+return;
+}
+
+let number =
+prompt(
+"আপনার bKash/Nagad নম্বর দিন:"
+);
+
+if(!number){
+
+alert("❌ নম্বর দেওয়া হয়নি।");
+
+return;
+}
+
+alert(
+"✅ Withdraw Request তৈরি হয়েছে!\n\n" +
+"Method: " +
+(method === "1" ? "bKash" : "Nagad") +
+"\nNumber: " + number +
+"\nAmount: ৳" + balance.toFixed(2)
+);
+
+}
+
+
+/* Referral */
+
+function referral(){
+
+let userId =
+tg.initDataUnsafe?.user?.id || "user";
+
+let link =
+"https://t.me/DailyFree01_bot?start="
++ userId;
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(link);
+
+}
+
+alert(
+"👥 Referral Link:\n\n" +
+link
+);
+
+}
+
+
+/* Web Task */
+
+function webTask(){
+
+alert(
+"🌐 Web Task\n\nশীঘ্রই চালু হবে।"
+);
+
+}
+
+
+/* Profile */
+
+function profile(){
+
+let user =
+tg.initDataUnsafe?.user;
+
+if(!user){
+
+alert(
+"Telegram User তথ্য পাওয়া যায়নি।"
+);
+
+return;
+}
+
+alert(
+"👤 PROFILE\n\n" +
+
+"Name: " +
+(user.first_name || "") +
+
+"\nUsername: @" +
+(user.username || " নেই") +
+
+"\nTelegram ID: " +
+user.id
+);
+
+}
+
+
+update();
 
 </script>
 
