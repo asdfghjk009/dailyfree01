@@ -1,2 +1,344 @@
-এই নাম্বারে 999 টাকা দিয়ে ডুকতে হবে 
-তার পর কাজ করতে পারবেন নগদ বিকাশ : 01977579398
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DailyFree01</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Monetag -->
+  <script
+    src="//libtl.com/sdk.js"
+    data-zone="11701410"
+    data-sdk="show_11701410">
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f2f5f9;
+      color: #111;
+    }
+
+    .header {
+      background: #168cff;
+      color: white;
+      padding: 22px;
+      text-align: center;
+      border-radius: 0 0 25px 25px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .balance {
+      background: white;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 3px 12px #0001;
+    }
+
+    .balance h2 {
+      margin: 5px;
+      color: #168cff;
+      font-size: 32px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 0 15px;
+    }
+
+    .stat {
+      background: white;
+      padding: 14px 5px;
+      text-align: center;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px #0001;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .menu {
+      padding: 15px;
+      display: grid;
+      gap: 12px;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      padding: 16px;
+      border-radius: 15px;
+      background: white;
+      font-size: 17px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #0001;
+    }
+
+    button:active {
+      transform: scale(.98);
+    }
+
+    .ad {
+      background: #168cff;
+      color: white;
+    }
+
+    .withdraw {
+      background: #20b86b;
+      color: white;
+    }
+
+    .referral {
+      background: #ff9f1c;
+      color: white;
+    }
+
+    .info {
+      margin: 15px;
+      padding: 15px;
+      background: white;
+      border-radius: 15px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>💰 DailyFree01</h1>
+    <p>Ads দেখুন এবং Reward পান</p>
+  </div>
+
+  <div class="balance">
+    <p>আপনার ব্যালেন্স</p>
+    <h2 id="balance">৳0.00</h2>
+    <p>Minimum Withdraw: ৳55</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <b id="today">৳0.00</b>
+      আজকের আয়
+    </div>
+
+    <div class="stat">
+      <b id="ads">0</b>
+      Ads দেখা
+    </div>
+
+    <div class="stat">
+      <b id="lifetime">৳0.00</b>
+      Lifetime
+    </div>
+  </div>
+
+  <div class="menu">
+
+    <button class="ad" onclick="watchAd()">
+      🎬 Ad দেখুন — ৳0.10
+    </button>
+
+    <button onclick="webTask()">
+      🌐 Web Task
+    </button>
+
+    <button class="withdraw" onclick="withdraw()">
+      💸 Withdraw
+    </button>
+
+    <button class="referral" onclick="referral()">
+      👥 Referral
+    </button>
+
+    <button onclick="profile()">
+      👤 Profile
+    </button>
+
+  </div>
+
+  <div class="info">
+    <b>📢 Payment Methods</b><br>
+    🟢 bKash<br>
+    🟠 Nagad<br><br>
+
+    প্রতি সফল Ad = <b>৳0.10</b><br>
+    Minimum Withdraw = <b>৳55</b>
+  </div>
+
+  <div class="footer">
+    DailyFree01 © 2026
+  </div>
+
+
+<script>
+
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+
+  let balance = Number(localStorage.getItem("balance")) || 0;
+  let lifetime = Number(localStorage.getItem("lifetime")) || 0;
+  let today = Number(localStorage.getItem("today")) || 0;
+  let ads = Number(localStorage.getItem("ads")) || 0;
+
+  function save() {
+    localStorage.setItem("balance", balance);
+    localStorage.setItem("lifetime", lifetime);
+    localStorage.setItem("today", today);
+    localStorage.setItem("ads", ads);
+
+    update();
+  }
+
+  function update() {
+    document.getElementById("balance").innerText =
+      "৳" + balance.toFixed(2);
+
+    document.getElementById("today").innerText =
+      "৳" + today.toFixed(2);
+
+    document.getElementById("lifetime").innerText =
+      "৳" + lifetime.toFixed(2);
+
+    document.getElementById("ads").innerText = ads;
+  }
+
+  function watchAd() {
+
+    if (typeof window.show_11701410 !== "function") {
+      alert("Ad এখনো লোড হয়নি। কিছুক্ষণ পরে আবার চেষ্টা করুন।");
+      return;
+    }
+
+    window.show_11701410()
+      .then(() => {
+
+        balance += 0.10;
+        lifetime += 0.10;
+        today += 0.10;
+        ads++;
+
+        save();
+
+        alert("✅ Ad সম্পূর্ণ হয়েছে!\n৳0.10 Reward যোগ হয়েছে।");
+
+      })
+      .catch(() => {
+
+        alert("❌ Ad সম্পূর্ণ হয়নি। আবার চেষ্টা করুন।");
+
+      });
+  }
+
+  function withdraw() {
+
+    if (balance < 55) {
+      alert(
+        "❌ Withdraw করতে কমপক্ষে ৳55 লাগবে।\n\n" +
+        "আপনার ব্যালেন্স: ৳" + balance.toFixed(2)
+      );
+      return;
+    }
+
+    const method = prompt(
+      "Payment Method লিখুন:\n\n" +
+      "1 = bKash\n" +
+      "2 = Nagad"
+    );
+
+    if (method !== "1" && method !== "2") {
+      alert("সঠিক Payment Method নির্বাচন করুন।");
+      return;
+    }
+
+    const number = prompt("আপনার bKash/Nagad নম্বর দিন:");
+
+    if (!number) {
+      alert("নম্বর দেওয়া হয়নি।");
+      return;
+    }
+
+    alert(
+      "✅ Withdraw Request নেওয়া হয়েছে!\n\n" +
+      "Method: " + (method === "1" ? "bKash" : "Nagad") +
+      "\nNumber: " + number +
+      "\nAmount: ৳" + balance.toFixed(2)
+    );
+
+    /*
+      গুরুত্বপূর্ণ:
+      এই অংশ এখন শুধু Demo UI।
+      আসল bKash/Nagad payment পাঠাতে Backend/API লাগবে।
+    */
+  }
+
+  function referral() {
+
+    const username = "DailyFree01_bot";
+
+    const link =
+      "https://t.me/" + username +
+      "?start=" +
+      (tg.initDataUnsafe?.user?.id || "user");
+
+    navigator.clipboard.writeText(link);
+
+    alert(
+      "👥 আপনার Referral Link কপি হয়েছে!\n\n" +
+      link
+    );
+  }
+
+  function webTask() {
+    alert("🌐 Web Task শীঘ্রই চালু হবে।");
+  }
+
+  function profile() {
+
+    const user = tg.initDataUnsafe?.user;
+
+    if (user) {
+      alert(
+        "👤 Profile\n\n" +
+        "Name: " + (user.first_name || "") +
+        "\nUsername: @" + (user.username || " নেই") +
+        "\nTelegram ID: " + user.id
+      );
+    } else {
+      alert("Telegram user information পাওয়া যায়নি।");
+    }
+  }
+
+  update();
+
+</script>
+
+</body>
+</html>
