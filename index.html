@@ -4,19 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Free</title>
-
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="//libtl.com/sdk.js" data-zone="11701410" data-sdk="show_11701410"></script>
-
 <style>
 *{box-sizing:border-box}
-:root{--gold:#f5c451;--gold2:#ffe6a0;--bg:#090909;--panel:#151515;--muted:#aaa}
-body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif;padding-bottom:85px}
+:root{--gold:#f5c451;--bg:#090909;--panel:#151515}
+body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif;padding-bottom:80px}
 button,input,select{font:inherit}
-button{cursor:pointer}
 .header{padding:22px 18px;background:linear-gradient(135deg,#17130a,#29200c);border-bottom:1px solid #5e491d}
-.brand{color:var(--gold);font-size:27px;font-weight:900;letter-spacing:1px}
-.subtitle{color:#ccc;font-size:12px;margin-top:5px}
+.brand{color:var(--gold);font-size:27px;font-weight:900}
+.subtitle,.small{color:#aaa;font-size:12px;line-height:1.7}
 .container{max-width:560px;margin:auto;padding:15px}
 .card{background:var(--panel);border:1px solid #34302a;border-radius:17px;padding:17px;margin-bottom:14px}
 .balance-card{background:linear-gradient(135deg,#201b0e,#111);border:1px solid #94742d}
@@ -30,22 +27,18 @@ button{cursor:pointer}
 .section-title{font-size:18px;font-weight:800;margin:8px 0 13px}
 .btn{border:0;border-radius:11px;padding:13px 15px;font-weight:800;width:100%}
 .btn-gold{background:linear-gradient(135deg,#ffe6a0,#d7a82f);color:#171107}
-.btn-dark{background:#242424;color:#fff;border:1px solid #484034}
-.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:disabled{opacity:.5}
 .ad-box{text-align:center;padding:20px 12px;background:#101010;border:1px dashed #846622;border-radius:14px}
-.ad-icon{font-size:38px;margin-bottom:8px}
+.ad-icon{font-size:38px}
 .ad-title{font-size:21px;font-weight:900;color:var(--gold)}
-.small{font-size:12px;color:var(--muted);line-height:1.6}
 .progress{height:9px;background:#333;border-radius:20px;overflow:hidden;margin:12px 0}
-.progress-inner{height:100%;width:0;background:linear-gradient(90deg,#b88620,#ffe6a0);transition:width .3s}
-.social{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #292929}
-.social:last-child{border-bottom:0}
+.progress-inner{height:100%;width:0;background:linear-gradient(90deg,#b88620,#ffe6a0)}
+.social{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #292929}
 .social-name{font-weight:700}
-.badge{font-size:11px;background:#292929;color:#bbb;border:1px solid #444;padding:5px 8px;border-radius:20px}
-input,select{width:100%;padding:13px;background:#0d0d0d;border:1px solid #484034;border-radius:10px;color:#fff;margin:7px 0 13px}
+input,select{width:100%;padding:13px;background:#0d0d0d;border:1px solid #484034;border-radius:10px;color:white;margin:7px 0 13px}
 label{font-size:13px;color:#ddd}
 .notice{font-size:12px;line-height:1.7;color:#cbbd99;background:#211c10;border-radius:10px;padding:12px;margin-top:12px}
-.nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#111;border-top:1px solid #3b3323;padding:10px 4px calc(10px + env(safe-area-inset-bottom));z-index:10}
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#111;border-top:1px solid #3b3323;padding:10px 4px;z-index:10}
 .nav button{background:none;border:0;color:#aaa;font-size:11px;padding:6px}
 .nav button span{display:block;font-size:19px;margin-bottom:4px}
 .nav button.active{color:var(--gold)}
@@ -53,250 +46,242 @@ label{font-size:13px;color:#ddd}
 .page.active{display:block}
 .footer{text-align:center;color:#777;font-size:11px;padding:15px}
 #status{font-size:13px;color:var(--gold);margin-top:12px;min-height:18px}
-@media(min-width:600px){.container{padding:22px}.header{padding-left:max(18px,calc((100% - 524px)/2))}}
+a{color:var(--gold)}
 </style>
 </head>
-
 <body>
 <header class="header">
-  <div class="brand">✦ DAILY FREE</div>
-  <div class="subtitle">WATCH • COMPLETE • EARN</div>
+<div class="brand">✦ DAILY FREE</div>
+<div class="subtitle">WATCH • COMPLETE • EARN</div>
 </header>
 
 <main class="container">
-
 <section class="page active" id="home">
-  <div class="card balance-card">
-    <div class="label">আপনার মোট ব্যালেন্স</div>
-    <div class="balance">৳ <span id="balance">0.00</span></div>
-    <div class="row">
-      <div>
-        <div class="label">প্রতি বিজ্ঞাপনে সম্ভাব্য</div>
-        <strong class="gold">৳ 0.04</strong>
-      </div>
-      <div style="text-align:right">
-        <div class="label">সর্বনিম্ন উত্তোলন</div>
-        <strong class="gold">৳ 1000</strong>
-      </div>
-    </div>
-    <div class="stats">
-      <div class="stat">
-        <span class="label">সম্পন্ন বিজ্ঞাপন</span>
-        <strong id="completed">0</strong>
-      </div>
-      <div class="stat">
-        <span class="label">বাকি বিজ্ঞাপন</span>
-        <strong id="remaining">2000</strong>
-      </div>
-    </div>
-  </div>
+<div class="card balance-card">
+<div class="label">আপনার মোট ব্যালেন্স</div>
+<div class="balance">৳ <span id="balance">0.00</span></div>
+<div class="row">
+<div><div class="label">প্রতি বিজ্ঞাপনে সম্ভাব্য</div><strong class="gold">৳ 0.04</strong></div>
+<div style="text-align:right"><div class="label">সর্বনিম্ন উত্তোলন</div><strong class="gold">৳ 1000</strong></div>
+</div>
+<div class="stats">
+<div class="stat"><span class="label">সম্পন্ন বিজ্ঞাপন</span><strong id="completed">0</strong></div>
+<div class="stat"><span class="label">বাকি বিজ্ঞাপন</span><strong id="remaining">2000</strong></div>
+</div>
+</div>
 
-  <div class="card">
-    <div class="section-title">🎯 আজকের বিজ্ঞাপন</div>
-    <div class="ad-box">
-      <div class="ad-icon">📺</div>
-      <div class="ad-title">Start Ads</div>
-      <p class="small">বিজ্ঞাপন চালু করতে নিচের বাটনে চাপ দিন।</p>
-      <button class="btn btn-gold" id="startBtn" onclick="startAds()">▶ Start Ads</button>
-      <div id="status"></div>
-    </div>
-    <div class="progress"><div class="progress-inner" id="progress"></div></div>
-    <div class="row small">
-      <span>দৈনিক লক্ষ্য</span>
-      <span><b id="progressText">0 / 2000</b></span>
-    </div>
-    <div class="notice">
-      ডেমো সংস্করণ: SDK সফলভাবে শেষ হলে ৳০.০৪ যোগ হবে। প্রকৃত বিজ্ঞাপন সম্পন্ন হওয়া ও অর্থ প্রদানের জন্য সার্ভার যাচাই প্রয়োজন।
-    </div>
-  </div>
+<div class="card">
+<div class="section-title">🎯 আজকের বিজ্ঞাপন</div>
+<div class="ad-box">
+<div class="ad-icon">📺</div>
+<div class="ad-title">Start Ads</div>
+<p class="small">বিজ্ঞাপন চালু করতে নিচের বাটনে চাপ দিন।</p>
+<button class="btn btn-gold" id="startBtn" onclick="startAds()">▶ Start Ads</button>
+<div id="status"></div>
+</div>
+<div class="progress"><div class="progress-inner" id="progress"></div></div>
+<div class="row small"><span>দৈনিক লক্ষ্য</span><b id="progressText">0 / 2000</b></div>
+<div class="notice">ব্যালেন্স ও হিসাব এই ব্রাউজারে সেভ হবে। SDK সফল হওয়া মানেই বিজ্ঞাপন সম্পন্ন হওয়ার নিশ্চিত প্রমাণ নয়।</div>
+</div>
 
-  <div class="card">
-    <div class="section-title">🌐 সোশ্যাল মিডিয়া</div>
-    <div class="social">
-      <div><div class="social-name">TikTok</div><div class="small">আমাদের TikTok প্রোফাইল</div></div>
-      <a href="https://tiktok.com/@islamicvideo987659" target="_blank" rel="noopener" style="color:#f5c451">প্রোফাইল ↗</a>
-    </div>
-    <div class="social">
-      <div><div class="social-name">Facebook</div><div class="small">আমাদের Facebook পেজ</div></div>
-      <a href="https://www.facebook.com/profile.php?id=61595329912494&mibextid=ZbWKwL" target="_blank" rel="noopener" style="color:#f5c451">প্রোফাইল ↗</a>
-    </div>
-    <div class="social">
-      <div><div class="social-name">YouTube</div><div class="small">আমাদের YouTube চ্যানেল</div></div>
-      <a href="https://youtube.com/@dailyearnfree?si=1QHjGhqAAqtSlZIB" target="_blank" rel="noopener" style="color:#f5c451">চ্যানেল ↗</a>
-    </div>
-  </div>
+<div class="card">
+<div class="section-title">🌐 সোশ্যাল মিডিয়া</div>
+<div class="social"><div><div class="social-name">TikTok</div><div class="small">আমাদের TikTok প্রোফাইল</div></div><a href="https://tiktok.com/@islamicvideo987659" target="_blank" rel="noopener">প্রোফাইল ↗</a></div>
+<div class="social"><div><div class="social-name">Facebook</div><div class="small">আমাদের Facebook পেজ</div></div><a href="https://www.facebook.com/profile.php?id=61595329912494&mibextid=ZbWKwL" target="_blank" rel="noopener">প্রোফাইল ↗</a></div>
+<div class="social"><div><div class="social-name">YouTube</div><div class="small">আমাদের YouTube চ্যানেল</div></div><a href="https://youtube.com/@dailyearnfree?si=1QHjGhqAAqtSlZIB" target="_blank" rel="noopener">চ্যানেল ↗</a></div>
+</div>
 </section>
 
 <section class="page" id="wallet">
-  <div class="card">
-    <div class="section-title">💰 টাকা উত্তোলন</div>
-    <div class="balance">৳ <span id="walletBalance">0.00</span></div>
-    <p class="small">সর্বনিম্ন উত্তোলন: ৳ 1000</p>
-    <form id="withdrawForm">
-      <label for="method">পেমেন্ট মাধ্যম</label>
-      <select id="method" required>
-        <option value="bKash">bKash</option>
-        <option value="Nagad">Nagad</option>
-      </select>
-      <label for="phone">আপনার মোবাইল নম্বর</label>
-      <input id="phone" type="tel" placeholder="01XXXXXXXXX" required pattern="01[0-9]{9}">
-      <label for="amount">উত্তোলনের পরিমাণ (টাকা)</label>
-      <input id="amount" type="number" min="1000" step="1" placeholder="1000" required>
-      <button class="btn btn-gold" type="submit">উত্তোলনের অনুরোধ</button>
-    </form>
-    <div id="withdrawStatus" class="notice">এটি ডেমো ফর্ম। কোনো প্রকৃত পেমেন্ট পাঠানো হবে না।</div>
-  </div>
+<div class="card">
+<div class="section-title">💰 টাকা উত্তোলন</div>
+<div class="balance">৳ <span id="walletBalance">0.00</span></div>
+<p class="small">সর্বনিম্ন উত্তোলন: ৳ 1000</p>
+<form id="withdrawForm">
+<label for="method">পেমেন্ট মাধ্যম</label>
+<select id="method"><option>bKash</option><option>Nagad</option></select>
+<label for="phone">মোবাইল নম্বর</label>
+<input id="phone" type="tel" placeholder="01XXXXXXXXX" required pattern="01[0-9]{9}">
+<label for="amount">উত্তোলনের পরিমাণ</label>
+<input id="amount" type="number" min="1000" step="1" placeholder="1000" required>
+<button class="btn btn-gold" type="submit">উত্তোলনের অনুরোধ</button>
+</form>
+<div id="withdrawStatus" class="notice">ডেমো ফর্ম। প্রকৃত পেমেন্ট পাঠানো হবে না।</div>
+</div>
 </section>
 
 <section class="page" id="history">
-  <div class="card">
-    <div class="section-title">📋 হিস্টোরি</div>
-    <p class="small">এই ডেমোতে সার্ভার-যাচাইকৃত লেনদেন সংরক্ষণ করা হয় না।</p>
-    <div id="historyList" class="small">এখনও কোনো অনুরোধ নেই।</div>
-  </div>
+<div class="card"><div class="section-title">📋 হিস্টোরি</div><div id="historyList" class="small">এখনও কোনো অনুরোধ নেই।</div></div>
 </section>
 
 <section class="page" id="support">
-  <div class="card">
-    <div class="section-title">ℹ️ সাহায্য ও তথ্য</div>
-    <p class="small">Daily Free ব্যবহার করতে Start Ads বাটনে চাপ দিন। বিজ্ঞাপন প্রদর্শন SDK ও নেটওয়ার্কের নিয়মের ওপর নির্ভর করে।</p>
-    <div class="notice">
-      প্রকৃত অর্থ উপার্জন ও উত্তোলনের জন্য নিরাপদ ব্যাকএন্ড, ইউজার অ্যাকাউন্ট, সার্ভার-সাইড বিজ্ঞাপন যাচাই এবং পেমেন্ট ব্যবস্থা প্রয়োজন।
-    </div>
-  </div>
+<div class="card"><div class="section-title">ℹ️ সাহায্য ও তথ্য</div><p class="small">Daily Free ব্যবহার করতে Start Ads বাটনে চাপ দিন।</p><div class="notice">প্রকৃত টাকা উত্তোলনের জন্য নিরাপদ সার্ভার, ডেটাবেস এবং পেমেন্ট ব্যবস্থা প্রয়োজন।</div></div>
 </section>
 
 <div class="footer">Daily Free © 2026 • Demo interface</div>
 </main>
 
 <nav class="nav">
-  <button class="active" onclick="showPage('home',this)"><span>⌂</span>হোম</button>
-  <button onclick="showPage('wallet',this)"><span>৳</span>ওয়ালেট</button>
-  <button onclick="showPage('history',this)"><span>▤</span>হিস্টোরি</button>
-  <button onclick="showPage('support',this)"><span>ⓘ</span>সাপোর্ট</button>
+<button class="active" onclick="showPage('home',this)"><span>⌂</span>হোম</button>
+<button onclick="showPage('wallet',this)"><span>৳</span>ওয়ালেট</button>
+<button onclick="showPage('history',this)"><span>▤</span>হিস্টোরি</button>
+<button onclick="showPage('support',this)"><span>ⓘ</span>সাপোর্ট</button>
 </nav>
 
 <script>
 "use strict";
 
-const DAILY_LIMIT = 2000;
-const REWARD_PER_AD = 0.04;
+const DAILY_LIMIT=2000;
+const REWARD_PER_AD=0.04;
+const STORAGE_KEY="dailyFreeAccount_v1";
 
-let completedAds = 0;
-let balance = 0;
-let adRunning = false;
+let completedAds=0;
+let balance=0;
+let adRunning=false;
+let historyItems=[];
+let savedDate=today();
 
-function updateDashboard(){
-  document.getElementById("balance").textContent = balance.toFixed(2);
-  document.getElementById("walletBalance").textContent = balance.toFixed(2);
-  document.getElementById("completed").textContent = completedAds;
-  document.getElementById("remaining").textContent =
-    Math.max(0, DAILY_LIMIT - completedAds);
-  document.getElementById("progressText").textContent =
-    completedAds + " / " + DAILY_LIMIT;
-  document.getElementById("progress").style.width =
-    Math.min(100, (completedAds / DAILY_LIMIT) * 100) + "%";
+function today(){
+ const d=new Date();
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 }
 
-function setStatus(message){
-  document.getElementById("status").textContent = message;
+function saveAccount(){
+ try{
+  localStorage.setItem(STORAGE_KEY,JSON.stringify({
+   balance:Number(balance.toFixed(2)),
+   completedAds:completedAds,
+   date:savedDate,
+   history:historyItems
+  }));
+ }catch(e){console.error("Save error",e);}
+}
+
+function loadAccount(){
+ try{
+  const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");
+  if(!data)return;
+  balance=Math.max(0,Number(data.balance)||0);
+  historyItems=Array.isArray(data.history)?data.history:[];
+  savedDate=data.date||today();
+  completedAds=savedDate===today()
+   ?Math.min(DAILY_LIMIT,Math.max(0,Math.floor(Number(data.completedAds)||0)))
+   :0;
+  if(savedDate!==today())savedDate=today();
+  saveAccount();
+ }catch(e){console.error("Load error",e);}
+}
+
+function updateDashboard(){
+ document.getElementById("balance").textContent=balance.toFixed(2);
+ document.getElementById("walletBalance").textContent=balance.toFixed(2);
+ document.getElementById("completed").textContent=completedAds;
+ document.getElementById("remaining").textContent=Math.max(0,DAILY_LIMIT-completedAds);
+ document.getElementById("progressText").textContent=completedAds+" / "+DAILY_LIMIT;
+ document.getElementById("progress").style.width=(completedAds/DAILY_LIMIT*100)+"%";
+ document.getElementById("startBtn").disabled=adRunning||completedAds>=DAILY_LIMIT;
+ renderHistory();
+}
+
+function setStatus(text){
+ document.getElementById("status").textContent=text;
+}
+
+function renderHistory(){
+ const el=document.getElementById("historyList");
+ el.replaceChildren();
+ if(!historyItems.length){el.textContent="এখনও কোনো অনুরোধ নেই।";return;}
+ historyItems.slice().reverse().forEach(item=>{
+  const div=document.createElement("div");
+  div.style.padding="8px 0";
+  div.textContent=item;
+  el.appendChild(div);
+ });
+}
+
+function checkNewDay(){
+ if(savedDate!==today()){
+  savedDate=today();
+  completedAds=0;
+  saveAccount();
+  updateDashboard();
+ }
 }
 
 async function startAds(){
-  if(adRunning){
-    setStatus("একটি বিজ্ঞাপন চালুর চেষ্টা চলছে। অপেক্ষা করুন।");
-    return;
+ checkNewDay();
+ if(adRunning||completedAds>=DAILY_LIMIT)return;
+
+ if(typeof window.show_11701410!=="function"){
+  setStatus("বিজ্ঞাপন SDK প্রস্তুত নয়। ইন্টারনেট সংযোগ পরীক্ষা করুন।");
+  return;
+ }
+
+ adRunning=true;
+ updateDashboard();
+ setStatus("বিজ্ঞাপন চালু হচ্ছে...");
+
+ try{
+  const result=window.show_11701410();
+  if(!result||typeof result.then!=="function"){
+   setStatus("SDK থেকে সঠিক ফলাফল পাওয়া যায়নি।");
+   return;
   }
 
-  if(completedAds >= DAILY_LIMIT){
-    setStatus("আজকের ২০০০টি বিজ্ঞাপনের সীমা পূর্ণ হয়েছে।");
-    return;
-  }
+  await result;
 
-  if(typeof window.show_11701410 !== "function"){
-    setStatus("বিজ্ঞাপন SDK প্রস্তুত নয়। ইন্টারনেট ও SDK পরীক্ষা করুন।");
-    return;
-  }
+  completedAds++;
+  balance=Number((balance+REWARD_PER_AD).toFixed(2));
+  historyItems.push("বিজ্ঞাপন সেশন: +৳"+REWARD_PER_AD.toFixed(2)+" | "+new Date().toLocaleString("bn-BD"));
+  if(historyItems.length>100)historyItems=historyItems.slice(-100);
 
-  adRunning = true;
-  const button = document.getElementById("startBtn");
-  button.disabled = true;
-  setStatus("বিজ্ঞাপন চালু হচ্ছে...");
-
-  try{
-    const result = window.show_11701410();
-
-    if(!result || typeof result.then !== "function"){
-      setStatus("SDK থেকে সম্পন্ন হওয়ার নিশ্চিত সংকেত পাওয়া যায়নি।");
-      return;
-    }
-
-    await result;
-
-    // শুধু ডেমো কাউন্টার ও ব্যালেন্স
-    // প্রকৃত completion নিশ্চিত করে না।
-    completedAds += 1;
-    balance = Number((balance + REWARD_PER_AD).toFixed(2));
-
-    updateDashboard();
-
-    setStatus(
-      "সেশন শেষ। ডেমো ব্যালেন্সে ৳" +
-      REWARD_PER_AD.toFixed(2) +
-      " যোগ হয়েছে।"
-    );
-  }catch(error){
-    console.error("Ad SDK error:", error);
-    setStatus("বিজ্ঞাপন চালু বা সম্পন্ন করা যায়নি। পরে চেষ্টা করুন।");
-  }finally{
-    adRunning = false;
-    button.disabled = completedAds >= DAILY_LIMIT;
-  }
+  saveAccount();
+  updateDashboard();
+  setStatus("ডেমো ব্যালেন্সে ৳"+REWARD_PER_AD.toFixed(2)+" যোগ হয়েছে।");
+ }catch(error){
+  console.error(error);
+  setStatus("বিজ্ঞাপন চালু করা যায়নি। পরে আবার চেষ্টা করুন।");
+ }finally{
+  adRunning=false;
+  updateDashboard();
+ }
 }
 
-function showPage(pageId,button){
-  document.querySelectorAll(".page").forEach(function(page){
-    page.classList.remove("active");
-  });
-
-  document.getElementById(pageId).classList.add("active");
-
-  document.querySelectorAll(".nav button").forEach(function(navButton){
-    navButton.classList.remove("active");
-  });
-
-  button.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
+function showPage(id,button){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
-document.getElementById("withdrawForm").addEventListener("submit",function(event){
-  event.preventDefault();
+document.getElementById("withdrawForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ const method=document.getElementById("method").value;
+ const phone=document.getElementById("phone").value.trim();
+ const amount=Number(document.getElementById("amount").value);
+ const output=document.getElementById("withdrawStatus");
 
-  const method = document.getElementById("method").value;
-  const phone = document.getElementById("phone").value.trim();
-  const amount = Number(document.getElementById("amount").value);
-  const output = document.getElementById("withdrawStatus");
+ if(!/^01[0-9]{9}$/.test(phone)){
+  output.textContent="সঠিক বাংলাদেশি মোবাইল নম্বর দিন।";
+  return;
+ }
+ if(!Number.isFinite(amount)||amount<1000){
+  output.textContent="সর্বনিম্ন উত্তোলন ৳1000।";
+  return;
+ }
+ if(amount>balance){
+  output.textContent="আপনার ব্যালেন্স যথেষ্ট নয়।";
+  return;
+ }
 
-  if(!/^01[0-9]{9}$/.test(phone)){
-    output.textContent = "সঠিক বাংলাদেশি মোবাইল নম্বর দিন।";
-    return;
-  }
-
-  if(!Number.isFinite(amount) || amount < 1000){
-    output.textContent = "সর্বনিম্ন উত্তোলন ৳১০০০।";
-    return;
-  }
-
-  if(amount > balance){
-    output.textContent = "আপনার প্রদর্শিত ব্যালেন্সের চেয়ে বেশি টাকা উত্তোলন করা যাবে না।";
-    return;
-  }
-
-  output.textContent =
-    method + "-এ ৳" + amount.toFixed(2) +
-    " উত্তোলনের ডেমো অনুরোধ তৈরি হয়েছে। প্রকৃত পেমেন্ট পাঠানো হয়নি।";
+ output.textContent="এটি ডেমো অনুরোধ। কোনো টাকা পাঠানো হয়নি।";
+ historyItems.push("উত্তোলনের ডেমো অনুরোধ: "+method+" ৳"+amount.toFixed(2));
+ saveAccount();
+ renderHistory();
 });
 
+loadAccount();
 updateDashboard();
 </script>
 </body>
