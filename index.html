@@ -2,278 +2,220 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Life Time Income</title>
-<style>
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f5f9fa;
- color:#172033;
-}
-button{font:inherit;cursor:pointer}
-.header{
- padding:18px 15px;
- background:#fff;
- font-size:21px;
- font-weight:800;
- border-bottom:1px solid #edf0f2;
-}
-.profile{
- margin:20px 15px;
- padding:15px;
- background:white;
- border-radius:50px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- box-shadow:0 5px 20px #dce9e5;
-}
-.user{font-weight:bold}
-.balance{color:#078d6b;margin-top:5px}
-.active{
- background:#e8fbf3;
- color:#078d6b;
- border:1px solid #c8eee0;
- padding:12px;
- border-radius:30px;
- font-size:12px;
- font-weight:bold;
-}
-.wallet{
- margin:20px 15px;
- padding:30px 24px;
- border-radius:35px;
- color:white;
- background:linear-gradient(125deg,#06171b,#08775a,#00966b);
- box-shadow:0 15px 35px #b9e4d8;
-}
-.wallet small{
- letter-spacing:2px;
- font-weight:bold;
-}
-.amount{
- color:#ffc52d;
- font-size:43px;
- font-weight:900;
- margin:30px 0;
-}
-.stats{display:flex;gap:12px}
-.stat{
- flex:1;
- text-align:center;
- padding:17px 5px;
- border-radius:25px;
- background:#ffffff24;
- border:1px solid #ffffff20;
-}
-.stat small{font-size:11px;letter-spacing:0}
-.stat strong{display:block;margin-top:12px}
-.grid{
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:12px;
- padding:0 15px 100px;
-}
-.tile{
- background:white;
- border-radius:28px;
- min-height:145px;
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- gap:15px;
- box-shadow:0 5px 20px #e8efef;
- font-weight:800;
- color:#344054;
- border:0;
-}
-.tile-icon{
- width:65px;height:65px;
- display:grid;place-items:center;
- border-radius:24px;
- background:#e3faf0;
- color:#078d6b;
- font-size:29px;
-}
-.tile:nth-child(2) .tile-icon{background:#e8f0ff;color:#2864d8}
-.tile:nth-child(3) .tile-icon{background:#e8f0ff;color:#2864d8}
-.tile:nth-child(4) .tile-icon{background:#fff4d3;color:#bd8111}
-.tile:nth-child(5) .tile-icon{background:#fde9f3;color:#d52b79}
-.tile:nth-child(6) .tile-icon{background:#f0f3f8;color:#475467}
-.nav{
- position:fixed;
- bottom:0;left:0;right:0;
- display:grid;
- grid-template-columns:repeat(7,1fr);
- background:#fff;
- padding:12px 2px 8px;
- border-radius:30px 30px 0 0;
- box-shadow:0 -5px 25px #dfe8e8;
-}
-.nav button{
- border:0;background:none;
- color:#98a5b8;
- font-size:10px;
- font-weight:bold;
- padding:5px 0;
-}
-.nav span{display:block;font-size:25px;margin-bottom:7px}
-.nav button.selected{color:#078d6b}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Premium</title>
 
-/* OFFICIAL NOTICE */
-.overlay{
- position:fixed;inset:0;
- background:rgba(9,16,26,.86);
- backdrop-filter:blur(9px);
- display:flex;
- align-items:center;
- justify-content:center;
- padding:22px;
- z-index:999;
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.notice{
- position:relative;
- background:#fff;
- width:100%;
- max-width:430px;
- border-radius:48px;
- padding:40px 24px 30px;
- text-align:center;
- box-shadow:0 15px 60px #0002;
+
+body {
+  background: #080808;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  padding: 18px;
 }
-.close{
- position:absolute;
- top:22px;right:23px;
- border:0;background:none;
- color:#98a5b8;
- font-size:30px;
+
+.container {
+  max-width: 430px;
+  margin: 25px auto;
 }
-.megaphone{
- margin:14px auto 38px;
- width:126px;height:126px;
- display:grid;place-items:center;
- border-radius:40px;
- background:linear-gradient(140deg,#061a1d,#00885f);
- color:#ffc629;
- font-size:53px;
- box-shadow:0 12px 35px #00a77c35;
+
+.header {
+  text-align: center;
+  padding: 25px 15px;
+  border: 1px solid #b88a25;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #1c1709, #080808);
+  box-shadow: 0 0 22px #d4a52a20;
 }
-.notice h1{
- font-size:34px;
- letter-spacing:-1px;
- margin:0 0 23px;
- color:#172033;
+
+.logo {
+  width: 75px;
+  height: 75px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: bold;
+  color: #080808;
+  background: linear-gradient(135deg, #fff0a8, #d4a52a, #8b6516);
+  box-shadow: 0 0 20px #d4a52a45;
 }
-.notice-text{
- background:#f7f8fa;
- border:1px solid #f0f1f4;
- border-radius:34px;
- padding:27px 18px;
- color:#758195;
- font-size:20px;
- line-height:1.8;
- margin-bottom:43px;
+
+h1 {
+  color: #f5cd65;
+  font-size: 25px;
+  margin-top: 16px;
 }
-.gotit{
- width:100%;
- border:0;
- border-radius:50px;
- padding:25px 12px;
- color:#fff;
- background:linear-gradient(110deg,#06191d,#008b65);
- font-size:25px;
- font-weight:900;
- letter-spacing:1px;
- box-shadow:0 12px 28px #00956d30;
+
+.subtitle {
+  color: #c4bda9;
+  font-size: 13px;
+  margin-top: 9px;
 }
-@media(max-width:380px){
- .notice{padding:35px 18px 25px;border-radius:35px}
- .notice h1{font-size:28px}
- .notice-text{font-size:17px;padding:22px 13px}
- .megaphone{width:100px;height:100px}
- .gotit{font-size:21px}
- .amount{font-size:36px}
- .tile{font-size:10px}
+
+.badge {
+  display: inline-block;
+  color: #f5cd65;
+  border: 1px solid #b88a25;
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+.notice {
+  margin-top: 20px;
+  padding: 17px;
+  border-radius: 13px;
+  background: #15120b;
+  border: 1px solid #80601b;
+  text-align: center;
+}
+
+.notice h2 {
+  color: #f5cd65;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.notice p {
+  color: #e0d9c8;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.section-title {
+  color: #f5cd65;
+  font-size: 17px;
+  margin: 23px 0 12px;
+}
+
+.feature {
+  background: linear-gradient(110deg, #19150c, #0c0c0c);
+  border: 1px solid #403319;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-icon {
+  min-width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #33270e;
+  color: #f5cd65;
+  font-size: 21px;
+}
+
+.feature h3 {
+  color: #f5cd65;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.feature p {
+  color: #bdb6a6;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.main-button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  color: #100d06;
+  background: linear-gradient(100deg, #ffe9a0, #d4a52a, #f5cd65);
+  box-shadow: 0 5px 18px #d4a52a25;
+}
+
+.footer {
+  text-align: center;
+  color: #827963;
+  font-size: 11px;
+  margin-top: 25px;
+  padding: 15px 0;
+  border-top: 1px solid #302716;
 }
 </style>
 </head>
+
 <body>
+<div class="container">
 
-<header class="header">💸 Life Time Income</header>
+  <header class="header">
+    <div class="logo">G</div>
 
-<div class="profile">
- <div>
-  <div class="user">Abdullah Vai ✔</div>
-  <div class="balance">BDT 3.91</div>
- </div>
- <div class="active">● ACTIVE</div>
-</div>
+    <h1>GOLDEN PREMIUM</h1>
 
-<section class="wallet">
- <small>CURRENT PROFIT WALLET</small>
- <div class="amount">BDT 3.91</div>
- <div class="stats">
-  <div class="stat">
-   <small>TOTAL EARNED</small>
-   <strong>BDT 61.58</strong>
-  </div>
-  <div class="stat">
-   <small>MY NETWORK</small>
-   <strong>2</strong>
-  </div>
- </div>
-</section>
+    <p class="subtitle">
+      Welcome To Our Premium Platform
+    </p>
 
-<div class="grid">
- <button class="tile"><span class="tile-icon">▶</span>EARN AD</button>
- <button class="tile"><span class="tile-icon">🔗</span>WEB TASK</button>
- <button class="tile"><span class="tile-icon">➤</span>TASKS</button>
- <button class="tile"><span class="tile-icon">▱</span>WITHDRAW</button>
- <button class="tile"><span class="tile-icon">🎁</span>REFERRAL</button>
- <button class="tile"><span class="tile-icon">♙</span>PROFILE</button>
-</div>
+    <span class="badge">✦ PREMIUM EXPERIENCE ✦</span>
+  </header>
 
-<nav class="nav">
- <button class="selected"><span>⌂</span>HOME</button>
- <button><span>🔗</span>WEB</button>
- <button><span>▶</span>EARN</button>
- <button><span>➤</span>TASKS</button>
- <button><span>🎁</span>REFER</button>
- <button><span>▱</span>WALLET</button>
- <button><span>♙</span>PROFILE</button>
-</nav>
+  <section class="notice">
+    <h2>⚜️ গুরুত্বপূর্ণ নোটিশ ⚜️</h2>
+    <p>
+      আমাদের প্ল্যাটফর্মে আপনাকে স্বাগতম।<br>
+      সকল নির্দেশনা ভালোভাবে পড়ুন।<br>
+      নিরাপদে ব্যবহার করুন এবং সতর্ক থাকুন।
+    </p>
+  </section>
 
-<!-- OFFICIAL NOTICE POPUP -->
-<div class="overlay" id="noticeOverlay">
- <div class="notice">
-  <button class="close" onclick="closeNotice()">×</button>
+  <h2 class="section-title">✦ আমাদের বিশেষ সুবিধা</h2>
 
-  <div class="megaphone">📢</div>
-
-  <h1>Official Notice</h1>
-
-  <div class="notice-text">
-   🔊 নোটিশ 🔊 তেলি এড লিমিট ২৫ টা।
-   প্রতিটা এড দেখার পর সেই এডের মধ্যে
-   ক্লিক করতে হবে। নিয়ম না মানলে পেমেন্ট
-   পাবেন না। পেমেন্ট সিস্টেম 👇
-   বিকাশ ১০ টাকা নগদ ২৫ টাকা
+  <div class="feature">
+    <div class="feature-icon">♛</div>
+    <div>
+      <h3>Premium Design</h3>
+      <p>আকর্ষণীয় ও আধুনিক কালো-সোনালি ডিজাইন।</p>
+    </div>
   </div>
 
-  <button class="gotit" onclick="closeNotice()">
-   GOT IT
-  </button>
- </div>
+  <div class="feature">
+    <div class="feature-icon">⚡</div>
+    <div>
+      <h3>Fast Experience</h3>
+      <p>মোবাইল ও কম্পিউটারে ব্যবহার উপযোগী।</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">🔒</div>
+    <div>
+      <h3>Stay Secure</h3>
+      <p>নিজের তথ্য ও অ্যাকাউন্ট নিরাপদ রাখুন।</p>
+    </div>
+  </div>
+
+  <a class="main-button" href="#" onclick="return false;">
+    ✦ GET STARTED ✦
+  </a>
+
+  <footer class="footer">
+    © 2026 GOLDEN PREMIUM | ALL RIGHTS RESERVED
+  </footer>
+
 </div>
-
-<script>
-function closeNotice(){
- document.getElementById('noticeOverlay').style.display='none';
-}
-</script>
-
 </body>
 </html>
