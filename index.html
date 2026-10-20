@@ -1,271 +1,242 @@
-<!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090909">
-<title>Daily_Free_01_bot</title><script src="//libtl.com/sdk.js"
- data-zone="11701410"
- data-sdk="show_11701410"></script><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monetag Earning</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://libtl.com/sdk.js"
+        data-zone="11701410"
+        data-sdk="show_11701410"></script>
+
+<style>
 *{box-sizing:border-box}
-:root{--gold:#f7c948;--bg:#090909;--panel:#171717;--muted:#aaa}
-body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif}
-header{padding:20px 16px;background:linear-gradient(135deg,#211700,#080808);border-bottom:1px solid #6b5010}
-.brand{font-size:23px;font-weight:900;color:var(--gold)}
-header p{margin:7px 0 0;color:#ddd;font-size:13px}
-main{max-width:600px;margin:auto;padding:15px;padding-bottom:90px}
-.card{background:var(--panel);border:1px solid #383020;border-radius:16px;padding:17px;margin-bottom:14px}
-h2{font-size:18px;margin:0 0 14px;color:var(--gold)}
-.balance{font-size:30px;font-weight:900;color:var(--gold);margin:8px 0}
-.muted{color:var(--muted);font-size:13px;line-height:1.6}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:#101010;border-radius:12px;padding:13px;border:1px solid #332a15}
-.stat strong{display:block;color:var(--gold);font-size:19px;margin-top:7px}
-button,.btn{border:0;border-radius:10px;padding:12px 14px;background:var(--gold);color:#171000;font-weight:bold;cursor:pointer;font-size:14px}
-button:disabled{opacity:.5;cursor:not-allowed}
-button.secondary{background:#28231a;color:#ffdb71;border:1px solid #65501d}
-button.danger{background:#422020;color:#ffb4b4}
-button.full{width:100%;margin-top:8px}
-input,select{width:100%;padding:12px;margin:7px 0 12px;background:#0b0b0b;color:white;border:1px solid #504327;border-radius:9px}
-label{font-size:13px;color:#ddd}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #4a3a15;display:flex;justify-content:space-around;padding:9px 2px;z-index:5}
-.nav button{background:transparent;color:#bbb;padding:8px 5px;font-size:11px}
-.nav button.active{color:var(--gold)}
-.page{display:none}.page.active{display:block}
-.task{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #302b20;padding:13px 0}
-.task:last-child{border:0}
-.task small{display:block;color:#aaa;margin-top:5px}
-.pill{font-size:11px;color:var(--gold);border:1px solid #5a471b;border-radius:20px;padding:5px 8px}
-.notice{background:#28200d;border:1px solid #5d4718;color:#f5d98b;padding:12px;border-radius:10px;font-size:12px;line-height:1.6}
-#wheel{font-size:55px;text-align:center;padding:15px}
-.history-item{padding:10px 0;border-bottom:1px solid #333;font-size:13px}
-a{color:var(--gold)}
-</style></head>
+body{
+  margin:0;
+  padding:15px;
+  background:#080a10;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+.dashboard{
+  max-width:520px;
+  margin:auto;
+  padding:22px;
+  border:2px solid #d6aa43;
+  border-radius:22px;
+  background:linear-gradient(160deg,#191b25,#090b12);
+  box-shadow:0 0 22px #c99a3230;
+}
+.header{
+  text-align:center;
+  color:#ffd66b;
+  font-size:25px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+.subtitle{
+  text-align:center;
+  color:#bbb;
+  font-size:13px;
+  margin-bottom:20px;
+}
+.reward{
+  padding:20px;
+  text-align:center;
+  background:#25202a;
+  border:1px solid #d6aa43;
+  border-radius:16px;
+  margin-bottom:16px;
+}
+.reward h1{
+  color:#ffd66b;
+  font-size:36px;
+  margin:10px 0;
+}
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.stat{
+  padding:17px 8px;
+  text-align:center;
+  border:1px solid #594829;
+  border-radius:14px;
+  background:#171b25;
+}
+.stat p{font-size:13px;color:#ccc;margin:0 0 12px}
+.stat h3{margin:0;color:#ffd66b;font-size:22px}
+.limits{
+  margin:16px 0;
+  padding:16px;
+  line-height:1.9;
+  background:#171b25;
+  border-radius:14px;
+  border:1px solid #3c3b32;
+}
+.section-title{
+  text-align:center;
+  color:#ffd66b;
+  margin:24px 0 15px;
+}
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.option{
+  min-height:62px;
+  padding:13px 7px;
+  color:white;
+  font-weight:bold;
+  font-size:14px;
+  border:1px solid #c99b38;
+  border-radius:13px;
+  background:linear-gradient(135deg,#292a32,#171923);
+  cursor:pointer;
+}
+.option:active{transform:scale(.97)}
+.option.primary{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,#f4d47b,#b78324);
+  color:#16120a;
+  font-size:16px;
+}
+.notice{
+  margin-top:18px;
+  padding:13px;
+  background:#211e17;
+  color:#e8d7ac;
+  border-radius:12px;
+  font-size:12px;
+  line-height:1.7;
+}
+.footer{
+  text-align:center;
+  color:#888;
+  margin-top:20px;
+  font-size:12px;
+}
+</style>
+</head>
+
 <body>
-<header>
-  <div class="brand">✦ DAILY FREE 01</div>
-  <p>Earn • Tasks • Spin • Rewards</p>
-</header><main>
-<section id="home" class="page active">
-  <div class="card">
-    <div class="muted">আপনার ডেমো ব্যালেন্স</div>
-    <div class="balance">৳ <span id="balance">0.00</span></div>
-    <div class="muted">এটি ডেমো ব্যালেন্স; বাস্তবে টাকা জমা বা উত্তোলন হচ্ছে না।</div>
-    <div class="grid" style="margin-top:16px">
-      <div class="stat">সম্পন্ন টাস্ক<strong id="doneCount">0</strong></div>
-      <div class="stat">আজকের বোনাস<strong id="bonusStatus">পাওয়া হয়নি</strong></div>
+<div class="dashboard">
+
+  <div class="header">💎 MONETAG EARNING 💎</div>
+  <div class="subtitle">DAILY TASK & REWARD DASHBOARD</div>
+
+  <div class="reward">
+    <div>প্রতি অ্যাডে প্রদর্শিত রিওয়ার্ড</div>
+    <h1>$0.04</h1>
+    <div>সোনালি আয়ের ড্যাশবোর্ড</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <p>✅ Complete Task</p>
+      <h3 id="completed">0</h3>
+    </div>
+    <div class="stat">
+      <p>⏳ বাকি আছে</p>
+      <h3 id="remaining">2000</h3>
+    </div>
+    <div class="stat">
+      <p>💰 আজকের আয়</p>
+      <h3 id="today">$0.00</h3>
+    </div>
+    <div class="stat">
+      <p>📅 গতকালের আয়</p>
+      <h3 id="yesterday">$0.00</h3>
     </div>
   </div>
-  <div class="card">
-    <h2>⚡ দ্রুত শুরু করুন</h2>
-    <button class="full" onclick="showPage('tasks')">📋 টাস্ক দেখুন</button>
-    <button class="full secondary" onclick="showPage('spin')">🎡 Spin & Win</button>
-    <button class="full secondary" onclick="showPage('bonus')">🎁 Daily Bonus</button>
-  </div>
-  <div class="notice">বিজ্ঞাপন সবসময় পাওয়া নাও যেতে পারে। বিজ্ঞাপন দেখা, রিওয়ার্ড পাওয়া এবং অর্থ উত্তোলন—এগুলো আলাদা বিষয়।</div>
-</section><section id="tasks" class="page">
-  <div class="card">
-    <h2>📋 Tasks & Ads</h2>
-    <p class="muted">প্রতিটি টাস্কে বিজ্ঞাপন দেখার চেষ্টা করা হবে। বিজ্ঞাপন শেষ হলেই এখানে স্বয়ংক্রিয়ভাবে টাকা দেওয়া হচ্ছে না।</p>
-    <div class="task"><div>📺 Rewarded Ad<small>Monetag বিজ্ঞাপন দেখুন</small></div><button onclick="showAd('task')">বিজ্ঞাপন দেখুন</button></div>
-    <div class="task"><div>🎯 Daily Task<small>আজকের টাস্ক</small></div><button class="secondary" onclick="showAd('task')">শুরু করুন</button></div>
-    <div class="task"><div>⭐ Bonus Task<small>অতিরিক্ত সুযোগ</small></div><button class="secondary" onclick="showAd('task')">শুরু করুন</button></div>
-    <div class="notice">এখানে টাস্কের নমুনা দেখানো হয়েছে। ২০০০টি টাস্ক দেখালেই ২০০০টি বিজ্ঞাপন বা আয় নিশ্চিত হয় না।</div>
-  </div>
-</section><section id="spin" class="page">
-  <div class="card">
-    <h2>🎡 Spin & Win</h2>
-    <div id="wheel">🎡</div>
-    <p class="muted" style="text-align:center">বিজ্ঞাপন উপলভ্য থাকলে দেখানোর চেষ্টা হবে। এটি ডেমো স্পিন।</p>
-    <button id="spinBtn" class="full" onclick="spin()">বিজ্ঞাপন দেখুন ও স্পিন করুন</button>
-    <p id="spinMsg" class="muted"></p>
-  </div>
-</section><section id="bonus" class="page">
-  <div class="card">
-    <h2>🎁 Daily Bonus</h2>
-    <p class="muted">দৈনিক বোনাসের জন্য বিজ্ঞাপন দেখার চেষ্টা করুন। প্রকৃত পুরস্কার দেওয়ার আগে সার্ভার থেকে বিজ্ঞাপন-রিওয়ার্ড যাচাই করতে হবে।</p>
-    <button class="full" onclick="dailyBonus()">বিজ্ঞাপন দেখুন</button>
-    <p id="bonusMsg" class="muted"></p>
-  </div>
-</section><section id="refer" class="page">
-  <div class="card">
-    <h2>👥 Refer & Earn</h2>
-    <p class="muted">আপনার Telegram bot-এর আসল referral link বসাতে হবে।</p>
-    <input id="refLink" value="" placeholder="আপনার referral link এখানে দিন">
-    <button class="full" onclick="copyReferral()">লিংক কপি করুন</button>
-    <p id="refMsg" class="muted"></p>
-  </div>
-</section><section id="wallet" class="page">
-  <div class="card">
-    <h2>💰 Wallet</h2>
-    <div class="balance">৳ <span id="walletBalance">0.00</span></div>
-    <div class="muted">ন্যূনতম উত্তোলন: ৳1000</div>
-    <button class="full" onclick="showPage('withdraw')">উত্তোলনের আবেদন</button>
-  </div>
-  <div class="card">
-    <h2>📜 History</h2>
-    <div id="history" class="muted">এখনো কোনো ডেমো কার্যক্রম নেই।</div>
-  </div>
-</section><section id="withdraw" class="page">
-  <div class="card">
-    <h2>🏦 Withdraw Request</h2>
-    <div class="notice">এটি শুধু ফর্মের ডেমো। এখানে আবেদন জমা দিলেও bKash/Nagad-এ টাকা পাঠানো হবে না। প্রকৃত পেমেন্টের জন্য সুরক্ষিত ব্যাকএন্ড প্রয়োজন।</div>
-    <form onsubmit="submitWithdraw(event)">
-      <label>পেমেন্ট মাধ্যম</label>
-      <select id="method"><option value="bKash">bKash</option><option value="Nagad">Nagad</option></select>
-      <label>মোবাইল নম্বর</label>
-      <input id="number" inputmode="numeric" placeholder="01XXXXXXXXX" required>
-      <label>টাকার পরিমাণ (সর্বনিম্ন ৳1000)</label>
-      <input id="amount" type="number" min="1000" step="1" placeholder="1000" required>
-      <button class="full" type="submit">ডেমো আবেদন তৈরি করুন</button>
-    </form>
-    <p id="withdrawMsg" class="muted"></p>
-  </div>
-</section><section id="profile" class="page">
-  <div class="card">
-    <h2>👤 Profile</h2>
-    <div class="muted">অ্যাপ: Daily_Free_01_bot</div>
-    <div class="muted">Monetag Zone ID: 11701410</div>
-    <p class="muted">এই একক HTML সংস্করণে পরিচয় যাচাই, সার্ভার বা পেমেন্ট ইন্টিগ্রেশন নেই।</p>
-  </div>
-</section>
-</main><nav class="nav">
-  <button class="active" data-page="home" onclick="showPage('home')">⌂<br>Home</button>
-  <button data-page="tasks" onclick="showPage('tasks')">▤<br>Tasks</button>
-  <button data-page="spin" onclick="showPage('spin')">◎<br>Spin</button>
-  <button data-page="refer" onclick="showPage('refer')">♧<br>Refer</button>
-  <button data-page="wallet" onclick="showPage('wallet')">৳<br>Wallet</button>
-  <button data-page="profile" onclick="showPage('profile')">♙<br>Profile</button>
-</nav><script>
-"use strict";
 
-// এই মানগুলো কেবল এই ব্রাউজারের ডেমো। প্রকৃত ব্যালেন্স নয়।
-let demoBalance = 0;
-let completedTasks = 0;
-let bonusClaimed = false;
-let spinUsed = false;
-const historyItems = [];
+  <div class="limits">
+    🎯 প্রতিদিন সর্বোচ্চ লক্ষ্য: <b>২০০০ অ্যাড</b><br>
+    📌 প্রতিদিন সর্বনিম্ন লক্ষ্য: <b>১০০০ অ্যাড</b><br>
+    💵 প্রদর্শিত রিওয়ার্ড: <b>$0.04</b>
+  </div>
 
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  document.querySelectorAll(".nav button").forEach(b =>
-    b.classList.toggle("active", b.dataset.page === id)
-  );
+  <h3 class="section-title">🚀 EARNING OPTIONS</h3>
+
+  <div class="options">
+    <button class="option primary" onclick="startAd()">
+      📺 1. Monetag Ads
+    </button>
+    <button class="option" onclick="showInfo('Daily Income')">
+      💰 2. Daily Income
+    </button>
+    <button class="option" onclick="showInfo('My Earnings')">
+      📊 3. My Earnings
+    </button>
+    <button class="option" onclick="showInfo('Today Income')">
+      📅 4. Today's Income
+    </button>
+    <button class="option" onclick="showInfo('Yesterday Income')">
+      🗓️ 5. Yesterday's Income
+    </button>
+    <button class="option" onclick="showInfo('Daily Bonus')">
+      🎁 6. Daily Bonus
+    </button>
+    <button class="option" onclick="showInfo('Refer & Earn')">
+      👥 7. Refer & Earn
+    </button>
+    <button class="option" onclick="showInfo('Withdraw Money')">
+      💳 8. Withdraw Money
+    </button>
+  </div>
+
+  <div class="notice">
+    ⚠️ নোট: দৈনিক ১০০০–২০০০ হলো ড্যাশবোর্ডের লক্ষ্য, Monetag-এর
+    অনুমোদিত বিজ্ঞাপন-সীমার নিশ্চয়তা নয়। $0.04 প্রদর্শিত রিওয়ার্ড;
+    প্রকৃত আয় ও পেমেন্ট সার্ভারে যাচাই করতে হবে।
+  </div>
+
+  <div class="footer">MONETAG EARNING PANEL</div>
+</div>
+
+<script>
+const DAILY_TARGET = 2000;
+const DISPLAY_REWARD = 0.04;
+
+let adBusy = false;
+
+function updateDashboard(completed) {
+  document.getElementById("completed").textContent = completed;
+  document.getElementById("remaining").textContent =
+    Math.max(0, DAILY_TARGET - completed);
 }
 
-function updateUI() {
-  document.getElementById("balance").textContent = demoBalance.toFixed(2);
-  document.getElementById("walletBalance").textContent = demoBalance.toFixed(2);
-  document.getElementById("doneCount").textContent = completedTasks;
-  document.getElementById("bonusStatus").textContent =
-    bonusClaimed ? "চেষ্টা করা হয়েছে" : "পাওয়া হয়নি";
-  const history = document.getElementById("history");
-  history.innerHTML = "";
-  if (!historyItems.length) {
-    history.textContent = "এখনো কোনো ডেমো কার্যক্রম নেই।";
-    return;
-  }
-  historyItems.slice().reverse().forEach(item => {
-    const div = document.createElement("div");
-    div.className = "history-item";
-    div.textContent = item;
-    history.appendChild(div);
-  });
-}
+function startAd() {
+  if (adBusy) return;
 
-async function showAd(source) {
   if (typeof window.show_11701410 !== "function") {
-    alert("Monetag SDK লোড হয়নি অথবা বিজ্ঞাপন এখন উপলভ্য নয়।");
-    return false;
+    alert("Monetag SDK লোড হয়নি। ইন্টারনেট ও SDK সেটিংস পরীক্ষা করুন।");
+    return;
   }
-  try {
-    await window.show_11701410();
-    // Promise resolve হওয়া একাই নিরাপদ reward verification নয়।
-    historyItems.push("Monetag বিজ্ঞাপন কল সম্পন্ন — " + source);
-    updateUI();
-    return true;
-  } catch (error) {
-    console.error("Monetag error:", error);
-    alert("বিজ্ঞাপন দেখানো যায়নি। পরে আবার চেষ্টা করুন।");
-    return false;
-  }
+
+  adBusy = true;
+
+  Promise.resolve()
+    .then(() => window.show_11701410())
+    .then(() => {
+      alert("বিজ্ঞাপনের প্রক্রিয়া শেষ হয়েছে। রিওয়ার্ড আলাদাভাবে যাচাই করতে হবে।");
+    })
+    .catch(() => {
+      alert("বিজ্ঞাপন সম্পন্ন হয়নি অথবা লোড করা যায়নি।");
+    })
+    .finally(() => {
+      adBusy = false;
+    });
 }
 
-async function spin() {
-  const btn = document.getElementById("spinBtn");
-  const msg = document.getElementById("spinMsg");
-  if (spinUsed) {
-    msg.textContent = "এই ডেমোতে স্পিন একবার ব্যবহার করা হয়েছে।";
-    return;
-  }
-  btn.disabled = true;
-  const shown = await showAd("spin");
-  if (shown) {
-    spinUsed = true;
-    document.getElementById("wheel").textContent = "✨";
-    msg.textContent = "স্পিন সম্পন্ন। প্রকৃত রিওয়ার্ড যাচাই করা হয়নি, তাই ব্যালেন্স যোগ হয়নি।";
-  } else {
-    msg.textContent = "বিজ্ঞাপন সম্পন্ন হয়নি; আবার চেষ্টা করতে পারেন।";
-  }
-  btn.disabled = false;
+function showInfo(section) {
+  alert(section + "\n\nএই অপশনের সম্পূর্ণ হিসাব চালু করতে সার্ভার ও ডেটাবেস সংযোগ প্রয়োজন।");
 }
 
-async function dailyBonus() {
-  const msg = document.getElementById("bonusMsg");
-  if (bonusClaimed) {
-    msg.textContent = "এই ডেমোতে বোনাসের চেষ্টা ইতিমধ্যে করা হয়েছে।";
-    return;
-  }
-  const shown = await showAd("daily-bonus");
-  if (shown) {
-    bonusClaimed = true;
-    msg.textContent = "বিজ্ঞাপন কল সম্পন্ন। সার্ভার যাচাই ছাড়া কোনো টাকা যোগ করা হয়নি।";
-    updateUI();
-  } else {
-    msg.textContent = "বিজ্ঞাপন পাওয়া যায়নি। পরে আবার চেষ্টা করুন।";
-  }
-}
-
-async function copyReferral() {
-  const link = document.getElementById("refLink").value.trim();
-  const msg = document.getElementById("refMsg");
-  if (!link) {
-    msg.textContent = "আগে আপনার আসল referral link দিন।";
-    return;
-  }
-  try {
-    await navigator.clipboard.writeText(link);
-    msg.textContent = "লিংক কপি হয়েছে।";
-  } catch {
-    msg.textContent = "লিংকটি নির্বাচন করে কপি করুন: " + link;
-  }
-}
-
-function submitWithdraw(event) {
-  event.preventDefault();
-  const method = document.getElementById("method").value;
-  const number = document.getElementById("number").value.trim();
-  const amount = Number(document.getElementById("amount").value);
-  const msg = document.getElementById("withdrawMsg");
-
-  if (!/^01[3-9]\d{8}$/.test(number)) {
-    msg.textContent = "বাংলাদেশের সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।";
-    return;
-  }
-  if (!Number.isFinite(amount) || amount < 1000) {
-    msg.textContent = "ন্যূনতম উত্তোলন ৳1000।";
-    return;
-  }
-  if (amount > demoBalance) {
-    msg.textContent = "ডেমো ব্যালেন্স যথেষ্ট নয়।";
-    return;
-  }
-  msg.textContent = method + " নম্বরে ৳" + amount +
-    " উত্তোলনের ডেমো ফর্ম তৈরি হয়েছে। কোনো বাস্তব আবেদন বা পেমেন্ট পাঠানো হয়নি।";
-  historyItems.push("ডেমো উত্তোলন ফর্ম: " + method + " ৳" + amount);
-  updateUI();
-}
-
-updateUI();
-</script></body>
+updateDashboard(0);
+</script>
+</body>
 </html>
