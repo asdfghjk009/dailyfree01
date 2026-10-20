@@ -3,696 +3,371 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>DailyFree01</title>
+<title>DailyFree01 2027</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<script
-src="//libtl.com/sdk.js"
+<script src="https://libtl.com/sdk.js"
 data-zone="11701410"
-data-sdk="show_11701410">
-</script>
+data-sdk="show_11701410"></script>
 
 <style>
 *{box-sizing:border-box}
 body{
-margin:0;background:#03050b;color:#fff;
+margin:0;background:#050713;color:#fff;
 font-family:Arial,sans-serif;
+background-image:radial-gradient(ellipse at top,#14274b,transparent 65%);
 }
 .header{
-padding:25px 15px;text-align:center;
-background:linear-gradient(135deg,#061827,#17052b);
+padding:28px 15px;text-align:center;
+background:linear-gradient(135deg,#071b32,#210a3b,#061a2a);
 border-bottom:1px solid #00f7ff;
-box-shadow:0 0 25px #00f7ff55;
+box-shadow:0 0 25px #00f7ff33;
 }
-.logo{
-font-size:30px;font-weight:bold;color:#00f7ff;
-text-shadow:0 0 15px #00f7ff;
+.logo{font-size:30px;font-weight:bold;color:#00f7ff;
+text-shadow:0 0 15px #00f7ff}
+.badge{
+display:inline-block;margin-top:12px;padding:7px 14px;
+border:1px solid #00ff99;border-radius:30px;
+color:#00ff99;font-size:12px;letter-spacing:2px
 }
-.header p{color:#aaa}
+.header p{color:#aab7d0}
 .card{
 margin:15px;padding:20px;
-background:#090d16;border:1px solid #222;
-border-radius:18px;box-shadow:0 0 15px #00f7ff22;
+background:linear-gradient(145deg,#10182a,#090d18);
+border:1px solid #26354d;border-radius:20px;
+box-shadow:0 8px 25px #0005
 }
 .balance{text-align:center;border-color:#00f7ff}
-.balance h1{
-font-size:40px;color:#00ff88;
-text-shadow:0 0 15px #00ff88;margin:8px;
-}
+.balance h1{font-size:40px;color:#00ff99;
+text-shadow:0 0 15px #00ff9955;margin:12px}
+.muted{color:#8c9bb7;font-size:13px}
 .stats{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:10px;margin:15px;
+display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+gap:8px;margin:15px
 }
 .stat{
-background:#090d16;border:1px solid #252525;
-border-radius:15px;padding:15px 4px;text-align:center;
+background:#0d1423;border:1px solid #26354d;
+border-radius:15px;padding:14px 3px;text-align:center
 }
-.stat b{
-display:block;color:#00f7ff;font-size:18px;margin-bottom:5px;
-}
+.stat b{display:block;color:#00f7ff;font-size:16px;
+margin-bottom:7px;overflow-wrap:anywhere}
+.stat span{font-size:11px;color:#9eacc3}
+.title{color:#00f7ff;font-size:19px;font-weight:bold;margin-bottom:15px}
 button{
-width:100%;padding:17px;margin-bottom:11px;
-border-radius:15px;background:#090d16;color:white;
-border:1px solid #00f7ff;font-size:16px;font-weight:bold;
+width:100%;padding:16px 10px;margin-bottom:10px;
+border-radius:14px;background:#101a2c;color:#fff;
+border:1px solid #00d9ff;font-size:15px;font-weight:bold;
+cursor:pointer
 }
-button:active{transform:scale(.97)}
-.ad{color:#00ff88;border-color:#00ff88}
-.withdraw{color:#ffae00;border-color:#ffae00}
-.ref{color:#e600ff;border-color:#e600ff}
-.channel{color:#00bfff;border-color:#00bfff}
-.title{
-color:#00f7ff;font-size:19px;font-weight:bold;
-margin-bottom:12px;
-}
-.row{
-padding:11px 0;border-bottom:1px solid #222;color:#bbb;
-}
+button:active{transform:scale(.98)}
+.ad{background:linear-gradient(90deg,#064d45,#092a35);
+border-color:#00ff99;color:#00ff99}
+.withdraw{border-color:#ffb52e;color:#ffb52e}
+.ref{border-color:#e600ff;color:#f58cff}
+.channel{border-color:#00bfff;color:#00d9ff}
+.row{padding:13px 0;border-bottom:1px solid #202b40;color:#bdc9dc}
 .row:last-child{border:0}
-.rules{line-height:2;color:#bbb}
-.rules b{color:#00ff88}
-.footer{
-text-align:center;color:#555;padding:25px;font-size:13px;
-}
+.rules{line-height:2.2;color:#b9c6dc;font-size:14px}
+.rules b{color:#00ff99}
+.footer{text-align:center;color:#60708a;padding:25px;font-size:12px}
 input,select{
-width:100%;padding:15px;margin:7px 0;
-border-radius:12px;border:1px solid #333;
-background:#05070d;color:white;font-size:15px;
+width:100%;padding:14px;margin:7px 0;border-radius:12px;
+border:1px solid #30405a;background:#070c17;color:white;font-size:15px
 }
-.modal{
-display:none;position:fixed;inset:0;
-background:#000b;padding:25px;z-index:10;
-}
+.modal{display:none;position:fixed;inset:0;background:#000d;
+padding:18px;z-index:10;overflow:auto}
 .modalBox{
-margin-top:80px;background:#090d16;
-border:1px solid #00f7ff;border-radius:18px;
-padding:20px;box-shadow:0 0 25px #00f7ff55;
+max-width:450px;margin:45px auto;background:#0b1221;
+border:1px solid #00f7ff;border-radius:20px;padding:20px
 }
-.close{
-border-color:#ff3355;color:#ff3355;
-}
+.close{border-color:#ff3355;color:#ff667e}
 </style>
 </head>
 
 <body>
 
 <div class="header">
-<div class="logo">⚡ DailyFree01</div>
-<p>Watch Ads • Tasks • Earn Rewards</p>
+  <div class="logo">⚡ DailyFree01</div>
+  <div class="badge">PREMIUM EDITION • 2027</div>
+  <p>Watch Ads • Earn Rewards • Digital Experience</p>
 </div>
 
 <div class="card balance">
-<p>💰 আপনার ব্যালেন্স</p>
-<h1 id="balance">৳0.00</h1>
-<p>Minimum Withdraw: ৳1,000</p>
+  <p class="muted">💰 আপনার মোট ব্যালেন্স</p>
+  <h1 id="balance">৳0.00</h1>
+  <p class="muted">Minimum Withdraw: ৳1,000</p>
 </div>
 
 <div class="stats">
-<div class="stat">
-<b id="today">৳0.00</b>
-আজকের আয়
-</div>
-<div class="stat">
-<b id="ads">0</b>
-Ads দেখা
-</div>
-<div class="stat">
-<b id="lifetime">৳0.00</b>
-Lifetime
-</div>
-</div>
-
-<div class="card">
-
-<div class="title">🚀 Earn Center</div>
-
-<button class="ad" onclick="watchAd()">
-🎬 WATCH AD — ৳0.10
-</button>
-
-<button onclick="webTask()">
-🌐 WEB TASK
-</button>
-
-<button class="ref" onclick="referral()">
-👥 REFERRAL
-</button>
-
-<button class="withdraw" onclick="openWithdraw()">
-💸 WITHDRAW
-</button>
-
-<button onclick="profile()">
-👤 PROFILE
-</button>
-
+  <div class="stat">
+    <b id="today">৳0.00</b>
+    <span>আজকের আয়</span>
+  </div>
+  <div class="stat">
+    <b id="ads">0/2000</b>
+    <span>আজকের Ads</span>
+  </div>
+  <div class="stat">
+    <b id="lifetime">৳0.00</b>
+    <span>মোট আয়</span>
+  </div>
 </div>
 
 <div class="card">
+  <div class="title">🚀 Earning Center</div>
 
-<div class="title">✨ Features</div>
+  <button class="ad" onclick="watchAd()">
+    🎬 WATCH AD — ৳0.04
+  </button>
 
-<div class="row">🎬 Ads দেখে Reward</div>
-<div class="row">🌐 Web Task</div>
-<div class="row">👥 Referral System</div>
-<div class="row">💸 bKash / Nagad</div>
-<div class="row">📱 Telegram Mini App</div>
-<div class="row">⚡ Fast & Simple Interface</div>
-
+  <button onclick="webTask()">🌐 WEB TASK</button>
+  <button class="ref" onclick="referral()">👥 REFERRAL LINK</button>
+  <button class="withdraw" onclick="openWithdraw()">💸 WITHDRAW MONEY</button>
+  <button onclick="profile()">👤 MY PROFILE</button>
 </div>
 
 <div class="card">
-
-<div class="title">📊 Earning Rules</div>
-
-<div class="rules">
-🎬 প্রতি Ad = <b>৳0.10</b><br>
-📺 Daily Limit = <b>1999 Ads</b><br>
-💰 1999 Ads = <b>৳199.90</b><br>
-💸 Minimum Withdraw = <b>৳1,000</b><br>
-🟢 bKash Available<br>
-🟠 Nagad Available
-</div>
-
+  <div class="title">✨ Premium Features</div>
+  <div class="row">🎬 প্রতি বিজ্ঞাপনে ৳০.০৪ রিওয়ার্ড</div>
+  <div class="row">📊 প্রতিদিন সর্বোচ্চ ২০০০ Ads</div>
+  <div class="row">🌐 Web Task System</div>
+  <div class="row">👥 বন্ধুদের Referral</div>
+  <div class="row">💸 bKash / Nagad Withdraw</div>
+  <div class="row">📱 Telegram Mini App</div>
 </div>
 
 <div class="card">
-
-<div class="title">📢 Official Channel</div>
-
-<p style="color:#aaa;line-height:1.6">
-নতুন Update, Announcement এবং গুরুত্বপূর্ণ খবর
-Official Channel-এ পাওয়া যাবে।
-</p>
-
-<button class="channel" onclick="openChannel()">
-📢 JOIN OFFICIAL CHANNEL
-</button>
-
+  <div class="title">📊 Earning Rules</div>
+  <div class="rules">
+    🎬 প্রতি Ad = <b>৳০.০৪</b><br>
+    📺 Daily Limit = <b>২০০০ Ads</b><br>
+    💰 ২০০০ Ads = <b>৳৮০.০০</b><br>
+    💸 Minimum Withdraw = <b>৳১,০০০</b><br>
+    🟢 bKash Available<br>
+    🟠 Nagad Available
+  </div>
 </div>
 
 <div class="card">
-
-<div class="title">🛡️ Notice</div>
-
-<p style="color:#999;line-height:1.7">
-Reward অ্যাপের নিয়ম অনুযায়ী গণনা করা হয়।
-Withdraw request যাচাই করে process করতে হবে।
-</p>
-
+  <div class="title">📢 Official Channel</div>
+  <p class="muted">নতুন আপডেট ও গুরুত্বপূর্ণ খবর পেতে আমাদের চ্যানেলে যুক্ত হন।</p>
+  <button class="channel" onclick="openChannel()">
+    📢 JOIN OFFICIAL CHANNEL
+  </button>
 </div>
 
-<div class="footer">
-DailyFree01 © 2026
+<div class="card">
+  <div class="title">🛡️ Notice</div>
+  <p class="muted">
+    রিওয়ার্ড বিজ্ঞাপনের সফল completion-এর ওপর নির্ভরশীল।
+    Withdraw request যাচাই করে প্রসেস করতে হবে।
+  </p>
 </div>
 
-
-<!-- Withdraw Modal -->
+<div class="footer">DailyFree01 © 2027</div>
 
 <div class="modal" id="withdrawModal">
+  <div class="modalBox">
+    <div class="title">💸 Withdraw Request</div>
+    <p class="muted">Available Balance:</p>
+    <h2 id="withdrawBalance" style="color:#00ff99">৳0.00</h2>
 
-<div class="modalBox">
+    <select id="method">
+      <option value="bKash">🟢 bKash</option>
+      <option value="Nagad">🟠 Nagad</option>
+    </select>
 
-<div class="title">💸 Withdraw Request</div>
+    <input id="paymentNumber" type="tel" placeholder="bKash/Nagad Number">
+    <input id="withdrawAmount" type="number" min="1000" placeholder="Withdraw Amount">
 
-<p style="color:#aaa">
-Available Balance:
-</p>
-
-<h2 id="withdrawBalance"
-style="color:#00ff88">
-৳0.00
-</h2>
-
-<select id="method">
-<option value="bKash">🟢 bKash</option>
-<option value="Nagad">🟠 Nagad</option>
-</select>
-
-<input
-id="paymentNumber"
-type="number"
-placeholder="bKash/Nagad Number">
-
-<input
-id="withdrawAmount"
-type="number"
-placeholder="Withdraw Amount">
-
-<button class="withdraw" onclick="submitWithdraw()">
-✅ SUBMIT REQUEST
-</button>
-
-<button class="close" onclick="closeWithdraw()">
-❌ CLOSE
-</button>
-
+    <button class="withdraw" onclick="submitWithdraw()">✅ SUBMIT REQUEST</button>
+    <button class="close" onclick="closeWithdraw()">❌ CLOSE</button>
+  </div>
 </div>
-</div>
-
 
 <script>
-
 const tg = window.Telegram.WebApp;
-
 tg.ready();
 tg.expand();
 
-
-/* SETTINGS */
-
-const AD_REWARD = 0.10;
-
-const DAILY_AD_LIMIT = 1999;
-
+const AD_REWARD = 0.04;
+const DAILY_AD_LIMIT = 2000;
 const MIN_WITHDRAW = 1000;
+const OFFICIAL_CHANNEL = "https://t.me/Abdullahvai1";
+const BOT_USERNAME = "DailyFree01_bot";
 
-const OFFICIAL_CHANNEL =
-"https://t.me/Abdullahvai1";
+let balance = Number(localStorage.getItem("balance")) || 0;
+let lifetime = Number(localStorage.getItem("lifetime")) || 0;
+let today = Number(localStorage.getItem("today")) || 0;
+let ads = Number(localStorage.getItem("ads")) || 0;
 
-const BOT_USERNAME =
-"DailyFree01_bot";
-
-
-/* DATA */
-
-let balance =
-Number(localStorage.getItem("balance")) || 0;
-
-let lifetime =
-Number(localStorage.getItem("lifetime")) || 0;
-
-let today =
-Number(localStorage.getItem("today")) || 0;
-
-let ads =
-Number(localStorage.getItem("ads")) || 0;
-
-
-/* DATE */
-
-const currentDate =
-new Date().toISOString().slice(0,10);
-
-const savedDate =
-localStorage.getItem("earningDate");
-
-
-if(savedDate !== currentDate){
-
-today = 0;
-ads = 0;
-
-localStorage.setItem(
-"earningDate",
-currentDate
-);
-
-save();
-
+function localDate(){
+  const d = new Date();
+  return d.getFullYear() + "-" +
+    String(d.getMonth()+1).padStart(2,"0") + "-" +
+    String(d.getDate()).padStart(2,"0");
 }
 
+let currentDate = localDate();
 
-/* SAVE */
+if(localStorage.getItem("earningDate") !== currentDate){
+  today = 0;
+  ads = 0;
+  localStorage.setItem("earningDate",currentDate);
+}
 
 function save(){
-
-localStorage.setItem(
-"balance",
-balance
-);
-
-localStorage.setItem(
-"lifetime",
-lifetime
-);
-
-localStorage.setItem(
-"today",
-today
-);
-
-localStorage.setItem(
-"ads",
-ads
-);
-
-localStorage.setItem(
-"earningDate",
-currentDate
-);
-
-update();
-
+  localStorage.setItem("balance",balance.toFixed(2));
+  localStorage.setItem("lifetime",lifetime.toFixed(2));
+  localStorage.setItem("today",today.toFixed(2));
+  localStorage.setItem("ads",ads);
+  localStorage.setItem("earningDate",currentDate);
+  update();
 }
-
-
-/* UPDATE */
 
 function update(){
-
-document.getElementById(
-"balance"
-).innerText =
-"৳" + balance.toFixed(2);
-
-document.getElementById(
-"today"
-).innerText =
-"৳" + today.toFixed(2);
-
-document.getElementById(
-"lifetime"
-).innerText =
-"৳" + lifetime.toFixed(2);
-
-document.getElementById(
-"ads"
-).innerText =
-ads + "/1999";
-
+  document.getElementById("balance").innerText = "৳"+balance.toFixed(2);
+  document.getElementById("today").innerText = "৳"+today.toFixed(2);
+  document.getElementById("lifetime").innerText = "৳"+lifetime.toFixed(2);
+  document.getElementById("ads").innerText = ads+"/"+DAILY_AD_LIMIT;
 }
 
-
-/* WATCH AD */
+function checkDate(){
+  const now = localDate();
+  if(now !== currentDate){
+    currentDate = now;
+    today = 0;
+    ads = 0;
+    save();
+  }
+}
 
 function watchAd(){
+  checkDate();
 
-if(ads >= DAILY_AD_LIMIT){
+  if(ads >= DAILY_AD_LIMIT){
+    alert("আজকের ২০০০ Ads Limit শেষ হয়েছে।");
+    return;
+  }
 
-alert(
-"❌ আজকের 1999 Ads Limit শেষ হয়েছে।"
-);
+  if(typeof window.show_11701410 !== "function"){
+    alert("Ad এখনো Load হয়নি। কিছুক্ষণ পরে চেষ্টা করুন।");
+    return;
+  }
 
-return;
-
+  try{
+    Promise.resolve(window.show_11701410())
+    .then(function(){
+      checkDate();
+      if(ads >= DAILY_AD_LIMIT){
+        alert("আজকের Ads Limit শেষ হয়েছে।");
+        return;
+      }
+      balance = +(balance + AD_REWARD).toFixed(2);
+      today = +(today + AD_REWARD).toFixed(2);
+      lifetime = +(lifetime + AD_REWARD).toFixed(2);
+      ads++;
+      save();
+      alert("Ad Complete!\nReward: ৳0.04\nআজকের Ads: "+ads+"/"+DAILY_AD_LIMIT);
+    })
+    .catch(function(){
+      alert("Ad Complete হয়নি। আবার চেষ্টা করুন।");
+    });
+  }catch(e){
+    alert("Ad চালু করা যায়নি। পরে চেষ্টা করুন।");
+  }
 }
-
-
-if(
-typeof window.show_11701410 !==
-"function"
-){
-
-alert(
-"⏳ Ad এখনো Load হয়নি।\nকিছুক্ষণ পরে আবার চেষ্টা করুন।"
-);
-
-return;
-
-}
-
-
-window.show_11701410()
-
-.then(function(){
-
-balance =
-balance + AD_REWARD;
-
-today =
-today + AD_REWARD;
-
-lifetime =
-lifetime + AD_REWARD;
-
-ads =
-ads + 1;
-
-save();
-
-alert(
-"✅ Ad Complete!\n\n" +
-"Reward: ৳0.10\n" +
-"আজ: " + ads + "/1999"
-);
-
-})
-
-.catch(function(){
-
-alert(
-"❌ Ad Complete হয়নি।\nআবার চেষ্টা করুন।"
-);
-
-});
-
-}
-
-
-/* WITHDRAW OPEN */
 
 function openWithdraw(){
-
-document.getElementById(
-"withdrawModal"
-).style.display =
-"block";
-
-document.getElementById(
-"withdrawBalance"
-).innerText =
-"৳" + balance.toFixed(2);
-
+  document.getElementById("withdrawModal").style.display = "block";
+  document.getElementById("withdrawBalance").innerText = "৳"+balance.toFixed(2);
 }
-
-
-/* WITHDRAW CLOSE */
-
 function closeWithdraw(){
-
-document.getElementById(
-"withdrawModal"
-).style.display =
-"none";
-
+  document.getElementById("withdrawModal").style.display = "none";
 }
-
-
-/* WITHDRAW SUBMIT */
 
 function submitWithdraw(){
+  if(balance < MIN_WITHDRAW){
+    alert("Minimum Withdraw ৳1,000\nআপনার Balance: ৳"+balance.toFixed(2));
+    return;
+  }
 
-if(balance < MIN_WITHDRAW){
+  const method = document.getElementById("method").value;
+  const number = document.getElementById("paymentNumber").value.trim();
+  const amount = Number(document.getElementById("withdrawAmount").value);
 
-alert(
-"❌ Minimum Withdraw ৳1,000\n\n" +
-"আপনার Balance: ৳" +
-balance.toFixed(2)
-);
+  if(!/^01[3-9]\d{8}$/.test(number)){
+    alert("সঠিক বাংলাদেশি মোবাইল নম্বর দিন।");
+    return;
+  }
+  if(!Number.isFinite(amount) || amount < MIN_WITHDRAW){
+    alert("Minimum Withdraw ৳1,000");
+    return;
+  }
+  if(amount > balance){
+    alert("আপনার ব্যালেন্সের চেয়ে বেশি তুলতে পারবেন না।");
+    return;
+  }
 
-return;
+  // Demo only: এটি আসল payment request পাঠায় না।
+  const request = {
+    method:method,
+    number:number,
+    amount:amount,
+    userId:tg.initDataUnsafe?.user?.id || "unknown",
+    time:new Date().toISOString(),
+    status:"demo"
+  };
 
+  localStorage.setItem("lastWithdraw",JSON.stringify(request));
+  balance = +(balance-amount).toFixed(2);
+  save();
+  closeWithdraw();
+
+  alert("Demo Withdraw Request সংরক্ষিত হয়েছে।\nMethod: "+method+
+    "\nAmount: ৳"+amount.toFixed(2)+
+    "\n\nএটি আসল পেমেন্ট নয়।");
 }
-
-
-const method =
-document.getElementById(
-"method"
-).value;
-
-
-const number =
-document.getElementById(
-"paymentNumber"
-).value.trim();
-
-
-const amount =
-Number(
-document.getElementById(
-"withdrawAmount"
-).value
-);
-
-
-if(!number){
-
-alert(
-"❌ bKash/Nagad নম্বর দিন।"
-);
-
-return;
-
-}
-
-
-if(!amount){
-
-alert(
-"❌ Withdraw Amount দিন।"
-);
-
-return;
-
-}
-
-
-if(amount < MIN_WITHDRAW){
-
-alert(
-"❌ Minimum Withdraw ৳1,000"
-);
-
-return;
-
-}
-
-
-if(amount > balance){
-
-alert(
-"❌ আপনার Balance-এর চেয়ে বেশি চাওয়া যাবে না।"
-);
-
-return;
-
-}
-
-
-/*
-এই Demo ভার্সনে request localStorage-এ
-রাখা হচ্ছে।
-আসল payment-এর জন্য backend লাগবে।
-*/
-
-const request = {
-
-method: method,
-
-number: number,
-
-amount: amount,
-
-userId:
-tg.initDataUnsafe?.user?.id ||
-"unknown",
-
-time:
-new Date().toISOString()
-
-};
-
-
-localStorage.setItem(
-"lastWithdraw",
-JSON.stringify(request)
-);
-
-
-balance =
-balance - amount;
-
-save();
-
-
-closeWithdraw();
-
-
-alert(
-"✅ Withdraw Request নেওয়া হয়েছে!\n\n" +
-"Method: " + method +
-"\nAmount: ৳" + amount.toFixed(2)
-);
-
-}
-
-
-/* REFERRAL */
 
 function referral(){
+  const userId = tg.initDataUnsafe?.user?.id;
+  const link = "https://t.me/"+BOT_USERNAME+
+    (userId ? "?start="+userId : "");
 
-const userId =
-tg.initDataUnsafe?.user?.id ||
-"user";
-
-
-const link =
-"https://t.me/" +
-BOT_USERNAME +
-"?start=" +
-userId;
-
-
-if(navigator.clipboard){
-
-navigator.clipboard.writeText(link);
-
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(link)
+      .then(()=>alert("Referral Link:\n"+link))
+      .catch(()=>prompt("Referral Link কপি করুন:",link));
+  }else{
+    prompt("Referral Link কপি করুন:",link);
+  }
 }
-
-
-alert(
-"👥 Referral Link কপি হয়েছে!\n\n" +
-link
-);
-
-}
-
-
-/* OFFICIAL CHANNEL */
 
 function openChannel(){
-
-window.open(
-OFFICIAL_CHANNEL,
-"_blank"
-);
-
+  if(tg.openTelegramLink){
+    tg.openTelegramLink(OFFICIAL_CHANNEL);
+  }else{
+    window.open(OFFICIAL_CHANNEL,"_blank");
+  }
 }
-
-
-/* WEB TASK */
 
 function webTask(){
-
-alert(
-"🌐 Web Task\n\n" +
-"নতুন Task শীঘ্রই যোগ করা হবে।"
-);
-
+  alert("নতুন Web Task শীঘ্রই যোগ করা হবে।");
 }
-
-
-/* PROFILE */
 
 function profile(){
-
-const user =
-tg.initDataUnsafe?.user;
-
-
-if(!user){
-
-alert(
-"Telegram User তথ্য পাওয়া যায়নি।"
-);
-
-return;
-
+  const user = tg.initDataUnsafe?.user;
+  if(!user){
+    alert("Telegram User তথ্য পাওয়া যায়নি।");
+    return;
+  }
+  alert("MY PROFILE\n\nName: "+(user.first_name||"")+
+    "\nUsername: "+(user.username ? "@"+user.username : "নেই")+
+    "\nTelegram ID: "+user.id);
 }
 
-
-alert(
-"👤 PROFILE\n\n" +
-
-"Name: " +
-(user.first_name || "") +
-
-"\nUsername: @" +
-(user.username || "নেই") +
-
-"\nTelegram ID: " +
-user.id
-);
-
-}
-
-
-/* START */
-
-update();
-
+save();
 </script>
 
 </body>
-</html>
+                                         </html>
