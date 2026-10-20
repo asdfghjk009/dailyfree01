@@ -1,221 +1,802 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Golden Premium</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="DailyFree01 Premium Dashboard">
+  <title>DailyFree01 | Premium Dashboard</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <!-- Telegram Web App SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-body {
-  background: #080808;
-  color: #ffffff;
-  font-family: Arial, sans-serif;
-  padding: 18px;
-}
+  <!-- Advertising SDK: নিজের অনুমোদিত Zone ID ব্যবহার করুন -->
+  <script
+    src="//libtl.com/sdk.js"
+    data-zone="11701410"
+    data-sdk="show_11701410"
+    async>
+  </script>
 
-.container {
-  max-width: 430px;
-  margin: 25px auto;
-}
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080909;
+      --panel: #121414;
+      --panel-hover: #20221f;
+      --gold: #f3c969;
+      --gold-bright: #ffe7a3;
+      --gold-deep: #b8862b;
+      --gold-soft: rgba(243,201,105,.13);
+      --gold-line: rgba(243,201,105,.26);
+      --text: #f6f3eb;
+      --muted: #aaa99f;
+      --green: #66d6a0;
+      --red: #ff7777;
+      --border: rgba(255,255,255,.075);
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --container: 1180px;
+      --nav-height: 72px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --font: Inter, system-ui, -apple-system, sans-serif;
+    }
 
-.header {
-  text-align: center;
-  padding: 25px 15px;
-  border: 1px solid #b88a25;
-  border-radius: 18px;
-  background: linear-gradient(145deg, #1c1709, #080808);
-  box-shadow: 0 0 22px #d4a52a20;
-}
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-.logo {
-  width: 75px;
-  height: 75px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-size: 32px;
-  font-weight: bold;
-  color: #080808;
-  background: linear-gradient(135deg, #fff0a8, #d4a52a, #8b6516);
-  box-shadow: 0 0 20px #d4a52a45;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-h1 {
-  color: #f5cd65;
-  font-size: 25px;
-  margin-top: 16px;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          ellipse at 12% 0%,
+          rgba(183,133,39,.11),
+          transparent 32rem
+        ),
+        radial-gradient(
+          ellipse at 92% 22%,
+          rgba(243,201,105,.055),
+          transparent 28rem
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-.subtitle {
-  color: #c4bda9;
-  font-size: 13px;
-  margin-top: 9px;
-}
+    button, input, select {
+      font: inherit;
+    }
 
-.badge {
-  display: inline-block;
-  color: #f5cd65;
-  border: 1px solid #b88a25;
-  padding: 7px 14px;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-top: 16px;
-}
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.notice {
-  margin-top: 20px;
-  padding: 17px;
-  border-radius: 13px;
-  background: #15120b;
-  border: 1px solid #80601b;
-  text-align: center;
-}
+    button {
+      color: inherit;
+      cursor: pointer;
+    }
 
-.notice h2 {
-  color: #f5cd65;
-  font-size: 17px;
-  margin-bottom: 10px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.notice p {
-  color: #e0d9c8;
-  font-size: 13px;
-  line-height: 1.9;
-}
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--gold-bright);
+      outline-offset: 3px;
+    }
 
-.section-title {
-  color: #f5cd65;
-  font-size: 17px;
-  margin: 23px 0 12px;
-}
+    [hidden] {
+      display: none !important;
+    }
 
-.feature {
-  background: linear-gradient(110deg, #19150c, #0c0c0c);
-  border: 1px solid #403319;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 11px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+    .container {
+      width: min(var(--container), calc(100% - 36px));
+      margin-inline: auto;
+    }
 
-.feature-icon {
-  min-width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #33270e;
-  color: #f5cd65;
-  font-size: 21px;
-}
+    .muted {
+      color: var(--muted);
+    }
 
-.feature h3 {
-  color: #f5cd65;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
+    .gold {
+      color: var(--gold);
+    }
 
-.feature p {
-  color: #bdb6a6;
-  font-size: 12px;
-  line-height: 1.6;
-}
+    .small {
+      font-size: .84rem;
+    }
 
-.main-button {
-  display: block;
-  width: 100%;
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 15px;
-  color: #100d06;
-  background: linear-gradient(100deg, #ffe9a0, #d4a52a, #f5cd65);
-  box-shadow: 0 5px 18px #d4a52a25;
-}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
 
-.footer {
-  text-align: center;
-  color: #827963;
-  font-size: 11px;
-  margin-top: 25px;
-  padding: 15px 0;
-  border-top: 1px solid #302716;
-}
-</style>
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+      margin: 5px 0 0;
+      font-size: clamp(1.25rem, 3vw, 1.8rem);
+      line-height: 1.2;
+    }
+
+    .section-heading p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid var(--gold-line);
+      border-radius: 12px;
+      background: var(--gold-soft);
+      color: var(--gold-bright);
+      font-weight: 750;
+      font-size: .88rem;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(243,201,105,.2);
+      border-color: var(--gold);
+      box-shadow: 0 0 28px rgba(243,201,105,.1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(
+        135deg,
+        var(--gold-bright),
+        var(--gold)
+      );
+      color: #201805;
+      border-color: transparent;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-sm {
+      min-height: 34px;
+      padding: 7px 11px;
+      font-size: .78rem;
+      border-radius: 9px;
+    }
+
+    /* TOP NAVIGATION */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      min-height: var(--nav-height);
+      border-bottom: 1px solid rgba(243,201,105,.12);
+      background: rgba(8,9,9,.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: var(--nav-height);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,231,163,.55);
+      border-radius: 14px;
+      background: linear-gradient(
+        145deg,
+        rgba(255,231,163,.2),
+        rgba(184,134,43,.08)
+      );
+      color: var(--gold-bright);
+      font-weight: 950;
+    }
+
+    .brand-name {
+      display: block;
+      font-size: 1.02rem;
+      font-weight: 900;
+    }
+
+    .brand-name span {
+      color: var(--gold);
+    }
+
+    .brand-caption {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .64rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(102,214,160,.55);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 36px 0 20px;
+    }
+
+    .hero-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(230px,.6fr);
+      gap: 28px;
+      padding: clamp(24px,5vw,48px);
+      border: 1px solid rgba(243,201,105,.23);
+      border-radius: 28px;
+      background: linear-gradient(
+        120deg,
+        rgba(25,24,18,.98),
+        rgba(14,16,15,.96) 62%,
+        rgba(35,26,12,.9)
+      );
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+
+    .hero h1 {
+      margin: 14px 0;
+      font-size: clamp(2rem,5.4vw,4rem);
+      line-height: 1.03;
+      letter-spacing: -.065em;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      text-shadow: 0 0 28px rgba(243,201,105,.16);
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      color: #bcb9ad;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .hero-visual {
+      display: grid;
+      place-items: center;
+      min-height: 230px;
+    }
+
+    .orb-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(100%,260px);
+      aspect-ratio: 1;
+    }
+
+    .orb-ring {
+      position: absolute;
+      inset: 8%;
+      border: 1px solid rgba(243,201,105,.22);
+      border-radius: 50%;
+      animation: orbit 18s linear infinite;
+    }
+
+    .orb-core {
+      display: grid;
+      place-items: center;
+      width: 54%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(255,231,163,.6);
+      background: radial-gradient(
+        circle at 32% 24%,
+        #ffe9ad,
+        #c18c2e 52%,
+        #5e3b0a
+      );
+      color: #211704;
+      font-size: 4rem;
+      font-weight: 1000;
+      box-shadow: 0 0 36px rgba(243,201,105,.24);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    /* ADVERTISEMENT SLOTS */
+    .ad-slot {
+      position: relative;
+      overflow: hidden;
+      min-height: 94px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      border: 1px dashed rgba(243,201,105,.28);
+      border-radius: 16px;
+      background: rgba(243,201,105,.035);
+      text-align: center;
+    }
+
+    .ad-label {
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      color: #77786f;
+      font-size: .59rem;
+      letter-spacing: .14em;
+    }
+
+    .ad-title {
+      color: var(--gold);
+      font-size: .84rem;
+      font-weight: 850;
+    }
+
+    .ad-copy {
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    /* DASHBOARD STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(145deg,#181a18,#0e0f0f);
+      transition: transform .22s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-line);
+    }
+
+    .stat-value {
+      margin-top: 17px;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .stat-label {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes orbit {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-9px); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:1000px) {
+      .hero-card {
+        grid-template-columns: minmax(0,1fr) 220px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:680px) {
+      :root { --nav-height:64px; }
+
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .hero-card {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .hero-visual {
+        min-height:180px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        animation-duration:.01ms !important;
+        transition-duration:.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark">D.</span>
+        <span>
+          <span class="brand-name">Daily<span>Free</span>01</span>
+          <span class="brand-caption">Your daily dashboard</span>
+        </span>
+      </a>
 
-  <header class="header">
-    <div class="logo">G</div>
+      <div class="topbar-actions">
+        <span class="status-pill">
+          <span class="status-dot"></span>
+          Ready to explore
+        </span>
 
-    <h1>GOLDEN PREMIUM</h1>
-
-    <p class="subtitle">
-      Welcome To Our Premium Platform
-    </p>
-
-    <span class="badge">✦ PREMIUM EXPERIENCE ✦</span>
+        <button class="btn btn-primary" id="profileButton">
+          My Profile
+        </button>
+      </div>
+    </div>
   </header>
 
-  <section class="notice">
-    <h2>⚜️ গুরুত্বপূর্ণ নোটিশ ⚜️</h2>
-    <p>
-      আমাদের প্ল্যাটফর্মে আপনাকে স্বাগতম।<br>
-      সকল নির্দেশনা ভালোভাবে পড়ুন।<br>
-      নিরাপদে ব্যবহার করুন এবং সতর্ক থাকুন।
+  <main id="home">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div>
+            <span class="eyebrow">Welcome to your space</span>
+            <h1>Make every day <span>count.</span></h1>
+
+            <p class="hero-copy">
+              তোমার দৈনিক কাজ, অগ্রগতি ও দরকারি লিংক—
+              সব এক জায়গায়।
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#tasks">
+                Explore Tasks ↗
+              </a>
+
+              <button class="btn btn-ghost" id="learnButton">
+                How it works
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orb-wrap">
+              <div class="orb-ring"></div>
+              <div class="orb-core">D</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-label="বিজ্ঞাপন">
+      <div class="ad-slot" id="topAdSlot">
+        <span class="ad-label">ADVERTISEMENT</span>
+        <div>
+          <div class="ad-title">Your banner can appear here</div>
+          <div class="ad-copy">
+            অনুমোদিত বিজ্ঞাপন নেটওয়ার্কের ব্যানার
+            এখানে দেখানো যাবে।
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">At a glance</span>
+            <h2>Your overview</h2>
+            <p class="muted">আজকের ড্যাশবোর্ডের সংক্ষিপ্ত অবস্থা।</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-value" id="taskCount">0</div>
+            <div class="stat-label">Completed tasks</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-value" id="pointCount">0</div>
+            <div class="stat-label">Demo points</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-value" id="streakCount">1</div>
+            <div class="stat-label">Demo streak</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Dashboard access</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tasks">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Daily activities</span>
+            <h2>Today's tasks</h2>
+            <p class="muted">ডেমো টাস্ক সম্পন্ন করে ইন্টারফেস পরীক্ষা করো।</p>
+          </div>
+        </div>
+
+        <div id="taskList" class="stats-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="banner">
+      <div class="container">
+        <div class="ad-slot">
+          <span class="ad-label">SPONSORED</span>
+          <div>
+            <div class="ad-title">Premium banner placement</div>
+            <div class="ad-copy">
+              এখানে তোমার অনুমোদিত বিজ্ঞাপন বসাতে পারো।
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container section">
+    <p class="muted small">
+      © <span id="year"></span> DailyFree01.
+      Demo dashboard — points have no cash value.
     </p>
-  </section>
-
-  <h2 class="section-title">✦ আমাদের বিশেষ সুবিধা</h2>
-
-  <div class="feature">
-    <div class="feature-icon">♛</div>
-    <div>
-      <h3>Premium Design</h3>
-      <p>আকর্ষণীয় ও আধুনিক কালো-সোনালি ডিজাইন।</p>
-    </div>
-  </div>
-
-  <div class="feature">
-    <div class="feature-icon">⚡</div>
-    <div>
-      <h3>Fast Experience</h3>
-      <p>মোবাইল ও কম্পিউটারে ব্যবহার উপযোগী।</p>
-    </div>
-  </div>
-
-  <div class="feature">
-    <div class="feature-icon">🔒</div>
-    <div>
-      <h3>Stay Secure</h3>
-      <p>নিজের তথ্য ও অ্যাকাউন্ট নিরাপদ রাখুন।</p>
-    </div>
-  </div>
-
-  <a class="main-button" href="#" onclick="return false;">
-    ✦ GET STARTED ✦
-  </a>
-
-  <footer class="footer">
-    © 2026 GOLDEN PREMIUM | ALL RIGHTS RESERVED
   </footer>
 
-</div>
+  <script>
+    "use strict";
+
+    const state = {
+      points: 0,
+      completed: [],
+      tasks: [
+        {
+          id: "profile",
+          title: "Explore your profile",
+          description: "ড্যাশবোর্ডের প্রোফাইল বাটন পরীক্ষা করো।",
+          reward: 10
+        },
+        {
+          id: "dashboard",
+          title: "Explore dashboard",
+          description: "ড্যাশবোর্ডের বিভাগগুলো দেখো।",
+          reward: 15
+        },
+        {
+          id: "banner",
+          title: "Explore banner",
+          description: "বিজ্ঞাপনের ডেমো প্লেসমেন্ট দেখো।",
+          reward: 5
+        }
+      ]
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+
+    function saveState() {
+      try {
+        localStorage.setItem(
+          "dailyfree01-demo",
+          JSON.stringify(state)
+        );
+      } catch (error) {
+        console.warn("Local storage unavailable.", error);
+      }
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(
+          localStorage.getItem("dailyfree01-demo") || "null"
+        );
+
+        if (saved && Array.isArray(saved.completed)) {
+          state.completed = saved.completed;
+          state.points = Number(saved.points) || 0;
+        }
+      } catch (error) {
+        console.warn("Saved demo data could not be loaded.", error);
+      }
+    }
+
+    function showMessage(message) {
+      alert(message);
+    }
+
+    function updateStats() {
+      $("#taskCount").textContent = state.completed.length;
+      $("#pointCount").textContent = state.points;
+      $("#year").textContent = new Date().getFullYear();
+    }
+
+    function completeTask(taskId) {
+      if (state.completed.includes(taskId)) {
+        showMessage("এই ডেমো টাস্কটি ইতিমধ্যে সম্পন্ন হয়েছে।");
+        return;
+      }
+
+      const task = state.tasks.find(item => item.id === taskId);
+      if (!task) return;
+
+      state.completed.push(taskId);
+      state.points += task.reward;
+
+      saveState();
+      renderTasks();
+      updateStats();
+
+      showMessage(
+        `ডেমো টাস্ক সম্পন্ন হয়েছে! +${task.reward} পয়েন্ট।`
+      );
+    }
+
+    function renderTasks() {
+      const list = $("#taskList");
+      list.replaceChildren();
+
+      state.tasks.forEach(task => {
+        const done = state.completed.includes(task.id);
+        const card = document.createElement("article");
+        card.className = "stat-card";
+
+        const title = document.createElement("h3");
+        title.textContent = task.title;
+
+        const description = document.createElement("p");
+        description.className = "muted small";
+        description.textContent = task.description;
+
+        const reward = document.createElement("p");
+        reward.className = "gold";
+        reward.textContent = `Demo reward: ${task.reward} points`;
+
+        const button = document.createElement("button");
+        button.className = "btn " + (done ? "btn-ghost" : "btn-primary");
+        button.textContent = done ? "Completed" : "Complete task";
+        button.disabled = done;
+        button.addEventListener("click", () => completeTask(task.id));
+
+        card.append(title, description, reward, button);
+        list.append(card);
+      });
+    }
+
+    $("#profileButton").addEventListener("click", () => {
+      showMessage("এটি একটি ডেমো প্রোফাইল। বাস্তব লগইনের জন্য backend প্রয়োজন।");
+    });
+
+    $("#learnButton").addEventListener("click", () => {
+      showMessage(
+        "DailyFree01 হলো একটি ডেমো ড্যাশবোর্ড। " +
+        "পয়েন্ট লোকাল ব্রাউজারে সেভ হয়; এগুলো বাস্তব টাকা নয়।"
+      );
+    });
+
+    function initializeTelegram() {
+      if (!window.Telegram || !window.Telegram.WebApp) return;
+
+      const app = window.Telegram.WebApp;
+
+      try {
+        app.ready();
+        app.expand();
+
+        if (app.themeParams) {
+          document.documentElement.style.setProperty(
+            "--tg-bg",
+            app.themeParams.bg_color || "#080909"
+          );
+        }
+      } catch (error) {
+        console.warn("Telegram initialization failed.", error);
+      }
+    }
+
+    function initializeApp() {
+      loadState();
+      initializeTelegram();
+      renderTasks();
+      updateStats();
+    }
+
+    document.addEventListener("DOMContentLoaded", initializeApp);
+  </script>
 </body>
-</html>
+  </html>
