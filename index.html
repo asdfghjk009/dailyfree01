@@ -1,802 +1,712 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#090909">
-  <meta name="description" content="DailyFree01 Premium Dashboard">
-  <title>DailyFree01 | Premium Dashboard</title>
-
-  <!-- Telegram Web App SDK -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <!-- Advertising SDK: নিজের অনুমোদিত Zone ID ব্যবহার করুন -->
-  <script
-    src="//libtl.com/sdk.js"
-    data-zone="11701410"
-    data-sdk="show_11701410"
-    async>
-  </script>
-
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #080909;
-      --panel: #121414;
-      --panel-hover: #20221f;
-      --gold: #f3c969;
-      --gold-bright: #ffe7a3;
-      --gold-deep: #b8862b;
-      --gold-soft: rgba(243,201,105,.13);
-      --gold-line: rgba(243,201,105,.26);
-      --text: #f6f3eb;
-      --muted: #aaa99f;
-      --green: #66d6a0;
-      --red: #ff7777;
-      --border: rgba(255,255,255,.075);
-      --radius-md: 16px;
-      --radius-lg: 22px;
-      --container: 1180px;
-      --nav-height: 72px;
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --font: Inter, system-ui, -apple-system, sans-serif;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(
-          ellipse at 12% 0%,
-          rgba(183,133,39,.11),
-          transparent 32rem
-        ),
-        radial-gradient(
-          ellipse at 92% 22%,
-          rgba(243,201,105,.055),
-          transparent 28rem
-        ),
-        var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    button, input, select {
-      font: inherit;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-      color: inherit;
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible {
-      outline: 2px solid var(--gold-bright);
-      outline-offset: 3px;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    .container {
-      width: min(var(--container), calc(100% - 36px));
-      margin-inline: auto;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .gold {
-      color: var(--gold);
-    }
-
-    .small {
-      font-size: .84rem;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--gold);
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 20px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .section {
-      padding: 34px 0;
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 18px;
-    }
-
-    .section-heading h2 {
-      margin: 5px 0 0;
-      font-size: clamp(1.25rem, 3vw, 1.8rem);
-      line-height: 1.2;
-    }
-
-    .section-heading p {
-      margin: 7px 0 0;
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 42px;
-      padding: 10px 16px;
-      border: 1px solid var(--gold-line);
-      border-radius: 12px;
-      background: var(--gold-soft);
-      color: var(--gold-bright);
-      font-weight: 750;
-      font-size: .88rem;
-      transition: .2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: rgba(243,201,105,.2);
-      border-color: var(--gold);
-      box-shadow: 0 0 28px rgba(243,201,105,.1);
-    }
-
-    .btn-primary {
-      background: linear-gradient(
-        135deg,
-        var(--gold-bright),
-        var(--gold)
-      );
-      color: #201805;
-      border-color: transparent;
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    .btn-sm {
-      min-height: 34px;
-      padding: 7px 11px;
-      font-size: .78rem;
-      border-radius: 9px;
-    }
-
-    /* TOP NAVIGATION */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      min-height: var(--nav-height);
-      border-bottom: 1px solid rgba(243,201,105,.12);
-      background: rgba(8,9,9,.88);
-      backdrop-filter: blur(18px);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      min-height: var(--nav-height);
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(255,231,163,.55);
-      border-radius: 14px;
-      background: linear-gradient(
-        145deg,
-        rgba(255,231,163,.2),
-        rgba(184,134,43,.08)
-      );
-      color: var(--gold-bright);
-      font-weight: 950;
-    }
-
-    .brand-name {
-      display: block;
-      font-size: 1.02rem;
-      font-weight: 900;
-    }
-
-    .brand-name span {
-      color: var(--gold);
-    }
-
-    .brand-caption {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: .64rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .topbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 10px;
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      color: var(--muted);
-      font-size: .75rem;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 10px rgba(102,214,160,.55);
-    }
-
-    /* HERO */
-    .hero {
-      padding: 36px 0 20px;
-    }
-
-    .hero-card {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: minmax(0,1.4fr) minmax(230px,.6fr);
-      gap: 28px;
-      padding: clamp(24px,5vw,48px);
-      border: 1px solid rgba(243,201,105,.23);
-      border-radius: 28px;
-      background: linear-gradient(
-        120deg,
-        rgba(25,24,18,.98),
-        rgba(14,16,15,.96) 62%,
-        rgba(35,26,12,.9)
-      );
-      box-shadow: 0 18px 50px rgba(0,0,0,.35);
-    }
-
-    .hero h1 {
-      margin: 14px 0;
-      font-size: clamp(2rem,5.4vw,4rem);
-      line-height: 1.03;
-      letter-spacing: -.065em;
-    }
-
-    .hero h1 span {
-      color: var(--gold);
-      text-shadow: 0 0 28px rgba(243,201,105,.16);
-    }
-
-    .hero-copy {
-      max-width: 590px;
-      color: #bcb9ad;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .hero-visual {
-      display: grid;
-      place-items: center;
-      min-height: 230px;
-    }
-
-    .orb-wrap {
-      position: relative;
-      display: grid;
-      place-items: center;
-      width: min(100%,260px);
-      aspect-ratio: 1;
-    }
-
-    .orb-ring {
-      position: absolute;
-      inset: 8%;
-      border: 1px solid rgba(243,201,105,.22);
-      border-radius: 50%;
-      animation: orbit 18s linear infinite;
-    }
-
-    .orb-core {
-      display: grid;
-      place-items: center;
-      width: 54%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 1px solid rgba(255,231,163,.6);
-      background: radial-gradient(
-        circle at 32% 24%,
-        #ffe9ad,
-        #c18c2e 52%,
-        #5e3b0a
-      );
-      color: #211704;
-      font-size: 4rem;
-      font-weight: 1000;
-      box-shadow: 0 0 36px rgba(243,201,105,.24);
-      animation: float 5s ease-in-out infinite;
-    }
-
-    /* ADVERTISEMENT SLOTS */
-    .ad-slot {
-      position: relative;
-      overflow: hidden;
-      min-height: 94px;
-      display: grid;
-      place-items: center;
-      padding: 18px;
-      border: 1px dashed rgba(243,201,105,.28);
-      border-radius: 16px;
-      background: rgba(243,201,105,.035);
-      text-align: center;
-    }
-
-    .ad-label {
-      position: absolute;
-      left: 10px;
-      top: 8px;
-      color: #77786f;
-      font-size: .59rem;
-      letter-spacing: .14em;
-    }
-
-    .ad-title {
-      color: var(--gold);
-      font-size: .84rem;
-      font-weight: 850;
-    }
-
-    .ad-copy {
-      color: var(--muted);
-      font-size: .72rem;
-    }
-
-    /* DASHBOARD STATS */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4,minmax(0,1fr));
-      gap: 14px;
-    }
-
-    .stat-card {
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: linear-gradient(145deg,#181a18,#0e0f0f);
-      transition: transform .22s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold-line);
-    }
-
-    .stat-value {
-      margin-top: 17px;
-      font-size: 2rem;
-      font-weight: 900;
-    }
-
-    .stat-label {
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: .8rem;
-    }
-
-    /* ANIMATIONS */
-    @keyframes orbit {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-9px); }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width:1000px) {
-      .hero-card {
-        grid-template-columns: minmax(0,1fr) 220px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-      }
-    }
-
-    @media (max-width:680px) {
-      :root { --nav-height:64px; }
-
-      .container {
-        width: calc(100% - 24px);
-      }
-
-      .hero-card {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .hero-visual {
-        min-height:180px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-      }
-    }
-
-    @media (prefers-reduced-motion:reduce) {
-      *,*::before,*::after {
-        animation-duration:.01ms !important;
-        transition-duration:.01ms !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050606">
+<title>Life Times Income Bot</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root {
+  --bg:#050606;
+  --card:#101312;
+  --gold:#ffcf48;
+  --gold2:#ffe9a0;
+  --border:#785a17;
+  --muted:#9da5a4;
+  --green:#4ce0a0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  padding-bottom:84px;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--gold)}
+.top{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:10px;
+  padding:13px 15px;
+  background:#080909ed;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(14px);
+}
+.logo{
+  width:43px;height:43px;border-radius:50%;
+  border:2px solid var(--gold);display:grid;
+  place-items:center;color:var(--gold);
+  font-size:20px;font-weight:900;
+  box-shadow:0 0 15px #ffcf4833;
+}
+.brand{flex:1;min-width:0}
+.brand h1{font-size:15px;margin:0;color:var(--gold)}
+.brand p{font-size:10px;color:#bbb;margin:4px 0 0}
+.icon-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--border);
+  background:#161713;color:var(--gold);
+}
+.page{display:none;padding:15px;max-width:650px;margin:auto}
+.page.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.hero{
+  text-align:center;padding:25px 14px;
+  border:1px solid var(--border);border-radius:19px;
+  background:radial-gradient(ellipse at top,#5d451a44,transparent 70%),#0a0b0b;
+}
+.crown{font-size:42px;color:var(--gold);filter:drop-shadow(0 0 10px #ffcf4877)}
+.hero h2{font-size:27px;color:var(--gold);margin:10px 0}
+.hero p{color:#c8c4b8;font-size:13px}
+.card{
+  border:1px solid var(--border);
+  border-radius:15px;padding:15px;margin:12px 0;
+  background:linear-gradient(145deg,#171813,#0c0e0d);
+}
+.profile{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:55px;height:55px;display:grid;place-items:center;
+  background:#2d2817;border:1px solid var(--gold);
+  border-radius:50%;font-size:26px;
+}
+.muted{color:var(--muted);font-size:12px}
+.gold{color:var(--gold)}
+.balance-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.balance{font-size:25px;font-weight:900;color:var(--gold);margin-top:5px}
+.btn{
+  border:1px solid var(--border);border-radius:11px;
+  padding:11px 15px;background:#1b1a13;color:var(--gold);
+  font-weight:700;transition:.2s;
+}
+.btn:hover{filter:brightness(1.2);transform:translateY(-1px)}
+.btn.primary{
+  color:#221900;border:0;
+  background:linear-gradient(135deg,#fff0a7,#ffca37,#d79b19);
+}
+.btn.full{width:100%}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{text-align:center;padding:15px 8px}
+.stat .symbol{font-size:24px}
+.stat strong{display:block;font-size:20px;color:var(--gold);margin:6px 0}
+.stat span{font-size:11px;color:#b5b5ad}
+.section-title{font-size:18px;margin:23px 0 12px}
+.quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.quick{
+  min-width:0;padding:13px 3px;text-align:center;
+  background:#101211;border:1px solid var(--border);
+  border-radius:12px;color:white;font-size:11px;
+}
+.quick b{display:block;font-size:23px;margin-bottom:7px;color:var(--gold)}
+.ad{
+  min-height:95px;display:grid;place-items:center;text-align:center;
+  padding:18px;border:1px dashed #765a1f;
+  border-radius:13px;background:#15130b;margin:15px 0;
+}
+.ad small{color:#777;font-size:9px;letter-spacing:2px}
+.ad strong{display:block;color:var(--gold);margin:8px}
+.ad p{margin:0;font-size:11px;color:#aaa}
+.task{display:flex;align-items:center;gap:11px;margin:10px 0}
+.task-icon{
+  flex:0 0 44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;background:#17273a;font-size:22px;
+}
+.task-info{flex:1;min-width:0}
+.task-info strong{font-size:13px}
+.task-info p{margin:5px 0;color:#a6aaa9;font-size:11px}
+.task-reward{color:var(--gold);font-size:12px;margin-top:5px}
+.task .btn{padding:9px 11px;font-size:11px}
+.task .btn:disabled{opacity:.5}
+.tabs{display:flex;gap:7px;overflow:auto;margin:15px 0}
+.tab{white-space:nowrap;padding:9px 13px;border:1px solid #30322c;border-radius:30px;background:#121413;color:white;font-size:12px}
+.tab.active{background:var(--gold);color:#191306}
+.wheel-wrap{display:grid;place-items:center;padding:20px 0}
+.wheel{
+  width:min(78vw,310px);aspect-ratio:1;border-radius:50%;
+  border:8px solid #e8b630;position:relative;
+  background:repeating-conic-gradient(#18170d 0deg 45deg,#493714 45deg 90deg);
+  box-shadow:0 0 25px #ffcf4850,inset 0 0 0 3px #ffdf6a;
+  display:grid;place-items:center;
+}
+.wheel:before{content:"";position:absolute;inset:12px;border:1px solid #d7a829;border-radius:50%}
+.wheel button{
+  width:75px;height:75px;border-radius:50%;
+  border:4px solid #f5d66c;background:linear-gradient(#fff0a2,#dca21e);
+  color:#211700;font-size:18px;font-weight:900;z-index:2;
+}
+.wheel.spinning{animation:spin 2.5s cubic-bezier(.15,.7,.15,1)}
+@keyframes spin{to{transform:rotate(1440deg)}}
+.wheel-label{position:absolute;color:var(--gold);font-size:12px;font-weight:bold}
+.wheel-label:nth-child(1){top:15%;left:43%}
+.wheel-label:nth-child(2){top:37%;right:10%}
+.wheel-label:nth-child(3){bottom:19%;right:19%}
+.wheel-label:nth-child(4){bottom:15%;left:23%}
+.wheel-label:nth-child(5){top:37%;left:10%}
+.game-list{display:grid;gap:10px}
+.game{display:flex;align-items:center;gap:12px}
+.game .emoji{font-size:28px}
+.game .grow{flex:1}
+.game h3{font-size:14px;margin:0 0 5px}
+.game p{font-size:11px;color:#aaa;margin:0}
+.input{
+  width:100%;padding:13px;border:1px solid var(--border);
+  background:#080a09;color:white;border-radius:10px;margin:8px 0;
+}
+.method{display:flex;align-items:center;gap:12px}
+.method .emoji{font-size:26px}
+.method .grow{flex:1}
+.method strong{font-size:13px}
+.method p{margin:5px 0;color:#aaa;font-size:11px}
+.transaction{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #252722}
+.transaction:last-child{border:0}
+.transaction .grow{flex:1}
+.transaction strong{font-size:12px}
+.transaction p{margin:4px 0 0;color:#888;font-size:10px}
+.positive{color:var(--green);font-size:12px;font-weight:bold}
+.bottom{
+  position:fixed;bottom:0;left:0;right:0;z-index:30;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  padding:8px 4px calc(8px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--border);background:#080909f5;
+  backdrop-filter:blur(15px);
+}
+.nav-btn{border:0;background:transparent;color:#87949b;font-size:10px;padding:5px 0}
+.nav-btn b{display:block;font-size:21px;margin-bottom:4px}
+.nav-btn.active{color:var(--gold)}
+.toast{
+  position:fixed;left:50%;bottom:90px;z-index:100;
+  transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  width:max-content;max-width:90%;padding:12px 16px;
+  border:1px solid var(--border);border-radius:12px;
+  background:#19180f;color:var(--gold);font-size:13px;
+  transition:.25s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:550px){
+  .page{padding:22px}
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+</style>
 </head>
-
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#home">
-        <span class="brand-mark">D.</span>
-        <span>
-          <span class="brand-name">Daily<span>Free</span>01</span>
-          <span class="brand-caption">Your daily dashboard</span>
-        </span>
-      </a>
 
-      <div class="topbar-actions">
-        <span class="status-pill">
-          <span class="status-dot"></span>
-          Ready to explore
-        </span>
+<header class="top">
+  <div class="logo">LT</div>
+  <div class="brand">
+    <h1>Life_Times_Income_Bot ✓</h1>
+    <p>Earn Today, Build Tomorrow</p>
+  </div>
+  <button class="icon-btn" onclick="notify('আপনার নোটিফিকেশন')">♧</button>
+</header>
 
-        <button class="btn btn-primary" id="profileButton">
-          My Profile
-        </button>
-      </div>
+<!-- HOME -->
+<main id="home" class="page active">
+  <div class="card profile">
+    <div class="avatar">👤</div>
+    <div>
+      <strong id="username">Guest User</strong>
+      <div class="gold" style="font-size:12px;margin-top:5px">♛ Premium Dashboard</div>
+      <div class="muted">ID: <span id="userId">GUEST001</span></div>
     </div>
-  </header>
+  </div>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container">
-        <div class="hero-card">
-          <div>
-            <span class="eyebrow">Welcome to your space</span>
-            <h1>Make every day <span>count.</span></h1>
-
-            <p class="hero-copy">
-              তোমার দৈনিক কাজ, অগ্রগতি ও দরকারি লিংক—
-              সব এক জায়গায়।
-            </p>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#tasks">
-                Explore Tasks ↗
-              </a>
-
-              <button class="btn btn-ghost" id="learnButton">
-                How it works
-              </button>
-            </div>
-          </div>
-
-          <div class="hero-visual" aria-hidden="true">
-            <div class="orb-wrap">
-              <div class="orb-ring"></div>
-              <div class="orb-core">D</div>
-            </div>
-          </div>
-        </div>
+  <div class="card">
+    <div class="balance-row">
+      <div>
+        <div class="muted">💰 Total Balance</div>
+        <div class="balance">৳ <span id="balance">0.00</span></div>
       </div>
-    </section>
+      <button class="btn primary" onclick="go('wallet')">Withdraw</button>
+    </div>
+  </div>
 
-    <section class="container" aria-label="বিজ্ঞাপন">
-      <div class="ad-slot" id="topAdSlot">
-        <span class="ad-label">ADVERTISEMENT</span>
-        <div>
-          <div class="ad-title">Your banner can appear here</div>
-          <div class="ad-copy">
-            অনুমোদিত বিজ্ঞাপন নেটওয়ার্কের ব্যানার
-            এখানে দেখানো যাবে।
-          </div>
-        </div>
-      </div>
-    </section>
+  <div class="grid">
+    <div class="card stat"><div class="symbol">📋</div><strong id="totalTasks">6</strong><span>Total Tasks</span></div>
+    <div class="card stat"><div class="symbol">✅</div><strong id="completed">0</strong><span>Completed</span></div>
+    <div class="card stat"><div class="symbol">💰</div><strong>৳ <span id="earned">0</span></strong><span>Demo Earnings</span></div>
+    <div class="card stat"><div class="symbol">🔥</div><strong id="streak">1</strong><span>Streak Days</span></div>
+  </div>
 
-    <section class="section" id="overview">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">At a glance</span>
-            <h2>Your overview</h2>
-            <p class="muted">আজকের ড্যাশবোর্ডের সংক্ষিপ্ত অবস্থা।</p>
-          </div>
-        </div>
+  <div class="card balance-row">
+    <div><div class="gold">🎁 Daily Bonus</div><p class="muted">Claim your demo bonus today!</p></div>
+    <button class="btn primary" id="bonusButton" onclick="claimBonus()">Claim</button>
+  </div>
 
-        <div class="stats-grid">
-          <article class="stat-card">
-            <div class="stat-value" id="taskCount">0</div>
-            <div class="stat-label">Completed tasks</div>
-          </article>
+  <h2 class="section-title">⚡ Quick Access</h2>
+  <div class="quick-grid">
+    <button class="quick" onclick="go('tasks')"><b>📋</b>Tasks</button>
+    <button class="quick" onclick="go('spin')"><b>🎡</b>Spin & Win</button>
+    <button class="quick" onclick="go('games')"><b>🎮</b>Games</button>
+    <button class="quick" onclick="go('refer')"><b>👥</b>Refer</button>
+  </div>
 
-          <article class="stat-card">
-            <div class="stat-value" id="pointCount">0</div>
-            <div class="stat-label">Demo points</div>
-          </article>
+  <div class="ad">
+    <small>ADVERTISEMENT</small>
+    <strong>Your Banner Ad</strong>
+    <p>আপনার অনুমোদিত বিজ্ঞাপনের ব্যানার এখানে বসান</p>
+  </div>
+</main>
 
-          <article class="stat-card">
-            <div class="stat-value" id="streakCount">1</div>
-            <div class="stat-label">Demo streak</div>
-          </article>
+<!-- TASKS -->
+<section id="tasks" class="page">
+  <h2 class="gold">📋 Complete Tasks</h2>
+  <p class="muted">ডেমো টাস্ক সম্পন্ন করে পয়েন্টের সিস্টেম পরীক্ষা করুন।</p>
+  <div class="tabs">
+    <button class="tab active">All Tasks</button>
+    <button class="tab">Social</button>
+    <button class="tab">Daily</button>
+    <button class="tab">Special</button>
+  </div>
+  <div id="taskList"></div>
+  <div class="ad"><small>ADVERTISEMENT</small><strong>Sponsored Banner</strong><p>Ad placement</p></div>
+</section>
 
-          <article class="stat-card">
-            <div class="stat-value">24/7</div>
-            <div class="stat-label">Dashboard access</div>
-          </article>
-        </div>
-      </div>
-    </section>
+<!-- SPIN -->
+<section id="spin" class="page">
+  <h2 class="gold">🎡 Spin & Win</h2>
+  <p class="muted">Spin the wheel and try your luck!</p>
+  <div class="wheel-wrap">
+    <div class="wheel" id="wheel">
+      <span class="wheel-label">৳1</span>
+      <span class="wheel-label">৳2</span>
+      <span class="wheel-label">৳5</span>
+      <span class="wheel-label">৳3</span>
+      <span class="wheel-label">৳0</span>
+      <button onclick="spinWheel()">SPIN</button>
+    </div>
+  </div>
+  <div class="card balance-row">
+    <div><div class="muted">Your Spins</div><div class="balance" id="spins">3</div></div>
+    <button class="btn" onclick="notify('ডেমো স্পিন সংখ্যা: ৩')">Get More Spins</button>
+  </div>
+  <p class="muted">ডেমো স্পিনের ফলাফল বাস্তব অর্থ বা পুরস্কারের নিশ্চয়তা নয়।</p>
+</section>
 
-    <section class="section" id="tasks">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">Daily activities</span>
-            <h2>Today's tasks</h2>
-            <p class="muted">ডেমো টাস্ক সম্পন্ন করে ইন্টারফেস পরীক্ষা করো।</p>
-          </div>
-        </div>
+<!-- GAMES -->
+<section id="games" class="page">
+  <h2 class="gold">🎮 Mini Games</h2>
+  <p class="muted">Play games and explore the interface.</p>
+  <div class="game-list">
+    <div class="card game"><span class="emoji">🧩</span><div class="grow"><h3>Math Quiz</h3><p>Solve simple math questions</p></div><button class="btn" onclick="playGame('Math Quiz')">Play</button></div>
+    <div class="card game"><span class="emoji">🧠</span><div class="grow"><h3>Memory Match</h3><p>Match the pairs</p></div><button class="btn" onclick="playGame('Memory Match')">Play</button></div>
+    <div class="card game"><span class="emoji">🔢</span><div class="grow"><h3>Number Puzzle</h3><p>Arrange the numbers</p></div><button class="btn" onclick="playGame('Number Puzzle')">Play</button></div>
+    <div class="card game"><span class="emoji">🎯</span><div class="grow"><h3>Lucky Challenge</h3><p>Try a demo challenge</p></div><button class="btn" onclick="playGame('Lucky Challenge')">Play</button></div>
+  </div>
+</section>
 
-        <div id="taskList" class="stats-grid"></div>
-      </div>
-    </section>
+<!-- REFER -->
+<section id="refer" class="page">
+  <h2 class="gold">👥 Refer & Earn</h2>
+  <p class="muted">Invite friends to explore this demo app.</p>
+  <div class="card" style="text-align:center">
+    <div style="font-size:45px">🎁</div>
+    <h3 class="gold">Invite Friends</h3>
+    <p class="muted">Referral bonus এখানে শুধু ডেমো হিসেবে দেখানো হয়।</p>
+  </div>
+  <div class="card">
+    <label for="refLink" class="muted">Your Referral Link</label>
+    <input id="refLink" class="input" readonly>
+    <button class="btn primary full" onclick="copyReferral()">Copy / Share Link</button>
+  </div>
+  <div class="grid">
+    <div class="card stat"><strong id="referrals">0</strong><span>Your Referrals</span></div>
+    <div class="card stat"><strong>৳0</strong><span>Demo Referral Bonus</span></div>
+  </div>
+</section>
 
-    <section class="section" id="banner">
-      <div class="container">
-        <div class="ad-slot">
-          <span class="ad-label">SPONSORED</span>
-          <div>
-            <div class="ad-title">Premium banner placement</div>
-            <div class="ad-copy">
-              এখানে তোমার অনুমোদিত বিজ্ঞাপন বসাতে পারো।
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<!-- WALLET -->
+<section id="wallet" class="page">
+  <h2 class="gold">💳 Wallet</h2>
+  <p class="muted">Manage your demo balance.</p>
+  <div class="card">
+    <div class="muted">Total Balance</div>
+    <div class="balance">৳ <span id="walletBalance">0.00</span></div>
+    <button class="btn primary" onclick="go('withdraw')">Withdraw</button>
+    <button class="btn" onclick="go('history')">History</button>
+  </div>
+  <h3 class="section-title">Recent Transactions</h3>
+  <div id="transactions" class="card"><p class="muted">কোনো লেনদেন নেই।</p></div>
+  <p class="muted">এটি বাস্তব ব্যাংক বা পেমেন্ট অ্যাকাউন্ট নয়।</p>
+</section>
 
-  <footer class="container section">
-    <p class="muted small">
-      © <span id="year"></span> DailyFree01.
-      Demo dashboard — points have no cash value.
-    </p>
-  </footer>
+<!-- WITHDRAW -->
+<section id="withdraw" class="page">
+  <h2 class="gold">💸 Withdraw</h2>
+  <p class="muted">Demo withdrawal form</p>
+  <div class="card">
+    <label class="muted" for="method">Payment Method</label>
+    <select class="input" id="method">
+      <option value="bKash">bKash</option>
+      <option value="Nagad">Nagad</option>
+      <option value="Rocket">Rocket</option>
+      <option value="Bank">Bank Transfer</option>
+    </select>
+    <label class="muted" for="number">Account Number</label>
+    <input class="input" id="number" placeholder="01XXXXXXXXX" inputmode="numeric">
+    <label class="muted" for="amount">Amount (৳)</label>
+    <input class="input" id="amount" type="number" min="1" placeholder="Enter amount">
+    <button class="btn primary full" onclick="requestWithdraw()">Submit Demo Request</button>
+    <p class="muted">কোনো টাকা পাঠানো হবে না; ফর্মটি শুধু ডেমো।</p>
+  </div>
+</section>
 
-  <script>
-    "use strict";
+<!-- HISTORY -->
+<section id="history" class="page">
+  <h2 class="gold">📜 Transaction History</h2>
+  <div id="historyList" class="card"><p class="muted">এখনও কোনো লেনদেন নেই।</p></div>
+</section>
 
-    const state = {
-      points: 0,
-      completed: [],
-      tasks: [
-        {
-          id: "profile",
-          title: "Explore your profile",
-          description: "ড্যাশবোর্ডের প্রোফাইল বাটন পরীক্ষা করো।",
-          reward: 10
-        },
-        {
-          id: "dashboard",
-          title: "Explore dashboard",
-          description: "ড্যাশবোর্ডের বিভাগগুলো দেখো।",
-          reward: 15
-        },
-        {
-          id: "banner",
-          title: "Explore banner",
-          description: "বিজ্ঞাপনের ডেমো প্লেসমেন্ট দেখো।",
-          reward: 5
-        }
-      ]
-    };
+<!-- PROFILE -->
+<section id="profile" class="page">
+  <div class="card profile">
+    <div class="avatar">👤</div>
+    <div><strong id="profileName">Guest User</strong><p class="muted">Demo account</p></div>
+  </div>
+  <div class="card">
+    <button class="btn full" onclick="editName()">✏️ Edit Profile</button>
+    <button class="btn full" style="margin-top:9px" onclick="go('wallet')">💰 My Balance</button>
+    <button class="btn full" style="margin-top:9px" onclick="go('history')">📜 Transaction History</button>
+    <button class="btn full" style="margin-top:9px" onclick="go('refer')">👥 Referral History</button>
+    <button class="btn full" style="margin-top:9px" onclick="notify('Support: আপনার সার্ভার সেটআপ করুন')">⚙️ Support</button>
+  </div>
+</section>
 
-    const $ = (selector) => document.querySelector(selector);
+<nav class="bottom">
+  <button class="nav-btn active" data-page="home" onclick="go('home')"><b>⌂</b>Home</button>
+  <button class="nav-btn" data-page="tasks" onclick="go('tasks')"><b>☷</b>Tasks</button>
+  <button class="nav-btn" data-page="wallet" onclick="go('wallet')"><b>▣</b>Wallet</button>
+  <button class="nav-btn" data-page="games" onclick="go('games')"><b>🎮</b>Games</button>
+  <button class="nav-btn" data-page="profile" onclick="go('profile')"><b>♙</b>Profile</button>
+</nav>
 
-    function saveState() {
-      try {
-        localStorage.setItem(
-          "dailyfree01-demo",
-          JSON.stringify(state)
-        );
-      } catch (error) {
-        console.warn("Local storage unavailable.", error);
-      }
+<div id="toast" class="toast" role="status"></div>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
+const defaultState = {
+  name: "Guest User",
+  balance: 0,
+  earned: 0,
+  completed: [],
+  spins: 3,
+  referrals: 0,
+  bonusClaimed: false,
+  transactions: []
+};
+
+let state = {...defaultState};
+
+const tasks = [
+  {id:"telegram",icon:"✈️",title:"Join Telegram Channel",desc:"Join our official channel",reward:5},
+  {id:"twitter",icon:"🐦",title:"Follow Social Page",desc:"Explore our social page",reward:5},
+  {id:"website",icon:"🌐",title:"Visit Website",desc:"Explore the website",reward:10},
+  {id:"like",icon:"👍",title:"Like & Share Post",desc:"Explore the sharing feature",reward:7},
+  {id:"video",icon:"▶️",title:"Watch Video",desc:"Try the video task demo",reward:8},
+  {id:"survey",icon:"✅",title:"Complete Survey",desc:"Try the survey demo",reward:15}
+];
+
+function loadState(){
+  try{
+    const saved=JSON.parse(localStorage.getItem("lt-demo-state"));
+    if(saved) state={...defaultState,...saved};
+  }catch(e){console.warn("State unavailable",e)}
+}
+
+function saveState(){
+  try{
+    localStorage.setItem("lt-demo-state",JSON.stringify(state));
+  }catch(e){console.warn("Could not save state",e)}
+}
+
+function notify(message){
+  const toast=$("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2600);
+}
+
+function go(page){
+  document.querySelectorAll(".page").forEach(el=>el.classList.remove("active"));
+  const target=$(page);
+  if(target) target.classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page===page);
+  });
+
+  window.scrollTo({top:0,behavior:"smooth"});
+  render();
+}
+
+function updateStats(){
+  $("balance").textContent=state.balance.toFixed(2);
+  $("walletBalance").textContent=state.balance.toFixed(2);
+  $("earned").textContent=state.earned.toFixed(2);
+  $("completed").textContent=state.completed.length;
+  $("username").textContent=state.name;
+  $("profileName").textContent=state.name;
+  $("spins").textContent=state.spins;
+  $("referrals").textContent=state.referrals;
+  $("bonusButton").disabled=state.bonusClaimed;
+  $("bonusButton").textContent=state.bonusClaimed?"Claimed":"Claim";
+}
+
+function renderTasks(){
+  const list=$("taskList");
+  list.replaceChildren();
+
+  tasks.forEach(task=>{
+    const done=state.completed.includes(task.id);
+    const card=document.createElement("article");
+    card.className="card task";
+
+    const icon=document.createElement("div");
+    icon.className="task-icon";
+    icon.textContent=task.icon;
+
+    const info=document.createElement("div");
+    info.className="task-info";
+
+    const title=document.createElement("strong");
+    title.textContent=task.title;
+
+    const desc=document.createElement("p");
+    desc.textContent=task.desc;
+
+    const reward=document.createElement("div");
+    reward.className="task-reward";
+    reward.textContent="+ ৳ "+task.reward.toFixed(2)+" demo points";
+
+    info.append(title,desc,reward);
+
+    const button=document.createElement("button");
+    button.className="btn "+(done?"":"primary");
+    button.textContent=done?"Done":"Start";
+    button.disabled=done;
+    button.addEventListener("click",()=>completeTask(task.id));
+
+    card.append(icon,info,button);
+    list.append(card);
+  });
+}
+
+function addTransaction(title,amount){
+  state.transactions.unshift({
+    title,
+    amount,
+    date:new Date().toLocaleString()
+  });
+}
+
+function completeTask(id){
+  if(state.completed.includes(id)){
+    notify("এই টাস্কটি সম্পন্ন হয়েছে।");
+    return;
+  }
+
+  const task=tasks.find(t=>t.id===id);
+  if(!task)return;
+
+  state.completed.push(id);
+  state.balance+=task.reward;
+  state.earned+=task.reward;
+
+  addTransaction("Demo task: "+task.title,task.reward);
+  saveState();
+  render();
+  notify("ডেমো টাস্ক সম্পন্ন! +৳"+task.reward);
+}
+
+function claimBonus(){
+  if(state.bonusClaimed){
+    notify("আজকের ডেমো বোনাস নেওয়া হয়েছে।");
+    return;
+  }
+
+  state.bonusClaimed=true;
+  state.balance+=5;
+  state.earned+=5;
+  addTransaction("Demo daily bonus",5);
+
+  saveState();
+  render();
+  notify("ডেমো বোনাস +৳5");
+}
+
+function spinWheel(){
+  if(state.spins<=0){
+    notify("আর কোনো ডেমো স্পিন নেই।");
+    return;
+  }
+
+  const wheel=$("wheel");
+  const button=wheel.querySelector("button");
+  if(wheel.classList.contains("spinning"))return;
+
+  state.spins--;
+  button.disabled=true;
+  wheel.classList.add("spinning");
+
+  setTimeout(()=>{
+    wheel.classList.remove("spinning");
+
+    const prizes=[0,1,2,3,5];
+    const prize=prizes[Math.floor(Math.random()*prizes.length)];
+
+    if(prize>0){
+      state.balance+=prize;
+      state.earned+=prize;
+      addTransaction("Demo spin reward",prize);
     }
 
-    function loadState() {
-      try {
-        const saved = JSON.parse(
-          localStorage.getItem("dailyfree01-demo") || "null"
-        );
+    button.disabled=false;
+    saveState();
+    render();
+    notify(prize ? "ডেমো ফলাফল: +৳"+prize : "এবার কোনো ডেমো পুরস্কার নেই।");
+  },2500);
+}
 
-        if (saved && Array.isArray(saved.completed)) {
-          state.completed = saved.completed;
-          state.points = Number(saved.points) || 0;
-        }
-      } catch (error) {
-        console.warn("Saved demo data could not be loaded.", error);
-      }
+function playGame(name){
+  notify(name+" একটি ডেমো গেম।");
+}
+
+function copyReferral(){
+  const input=$("refLink");
+  input.select();
+
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(input.value)
+      .then(()=>notify("রেফারেল লিংক কপি হয়েছে।"))
+      .catch(()=>notify("লিংকটি ম্যানুয়ালি কপি করুন।"));
+  }else{
+    try{
+      document.execCommand("copy");
+      notify("রেফারেল লিংক কপি হয়েছে।");
+    }catch(e){
+      notify("লিংকটি ম্যানুয়ালি কপি করুন।");
+    }
+  }
+}
+
+function requestWithdraw(){
+  const method=$("method").value;
+  const number=$("number").value.trim();
+  const amount=Number($("amount").value);
+
+  if(!number || number.length<8){
+    notify("সঠিক ডেমো অ্যাকাউন্ট নম্বর দিন।");
+    return;
+  }
+
+  if(!Number.isFinite(amount)||amount<=0){
+    notify("সঠিক পরিমাণ লিখুন।");
+    return;
+  }
+
+  if(amount>state.balance){
+    notify("ডেমো ব্যালেন্স যথেষ্ট নয়।");
+    return;
+  }
+
+  state.balance-=amount;
+  addTransaction("Demo withdrawal request: "+method,-amount);
+
+  saveState();
+  render();
+  $("number").value="";
+  $("amount").value="";
+
+  notify("ডেমো অনুরোধ সংরক্ষিত হয়েছে; টাকা পাঠানো হয়নি।");
+}
+
+function renderTransactions(){
+  const ids=["transactions","historyList"];
+
+  ids.forEach(id=>{
+    const container=$(id);
+    container.replaceChildren();
+
+    if(!state.transactions.length){
+      const p=document.createElement("p");
+      p.className="muted";
+      p.textContent="কোনো লেনদেন নেই।";
+      container.append(p);
+      return;
     }
 
-    function showMessage(message) {
-      alert(message);
-    }
+    state.transactions.forEach(tx=>{
+      const row=document.createElement("div");
+      row.className="transaction";
 
-    function updateStats() {
-      $("#taskCount").textContent = state.completed.length;
-      $("#pointCount").textContent = state.points;
-      $("#year").textContent = new Date().getFullYear();
-    }
+      const icon=document.createElement("span");
+      icon.textContent=tx.amount>=0?"🪙":"💸";
 
-    function completeTask(taskId) {
-      if (state.completed.includes(taskId)) {
-        showMessage("এই ডেমো টাস্কটি ইতিমধ্যে সম্পন্ন হয়েছে।");
-        return;
-      }
+      const grow=document.createElement("div");
+      grow.className="grow";
 
-      const task = state.tasks.find(item => item.id === taskId);
-      if (!task) return;
+      const title=document.createElement("strong");
+      title.textContent=tx.title;
 
-      state.completed.push(taskId);
-      state.points += task.reward;
+      const date=document.createElement("p");
+      date.textContent=tx.date;
 
-      saveState();
-      renderTasks();
-      updateStats();
+      grow.append(title,date);
 
-      showMessage(
-        `ডেমো টাস্ক সম্পন্ন হয়েছে! +${task.reward} পয়েন্ট।`
-      );
-    }
+      const amount=document.createElement("span");
+      amount.className=tx.amount>=0?"positive":"gold";
+      amount.textContent=(tx.amount>=0?"+ ":"− ")+"৳"+Math.abs(tx.amount).toFixed(2);
 
-    function renderTasks() {
-      const list = $("#taskList");
-      list.replaceChildren();
-
-      state.tasks.forEach(task => {
-        const done = state.completed.includes(task.id);
-        const card = document.createElement("article");
-        card.className = "stat-card";
-
-        const title = document.createElement("h3");
-        title.textContent = task.title;
-
-        const description = document.createElement("p");
-        description.className = "muted small";
-        description.textContent = task.description;
-
-        const reward = document.createElement("p");
-        reward.className = "gold";
-        reward.textContent = `Demo reward: ${task.reward} points`;
-
-        const button = document.createElement("button");
-        button.className = "btn " + (done ? "btn-ghost" : "btn-primary");
-        button.textContent = done ? "Completed" : "Complete task";
-        button.disabled = done;
-        button.addEventListener("click", () => completeTask(task.id));
-
-        card.append(title, description, reward, button);
-        list.append(card);
-      });
-    }
-
-    $("#profileButton").addEventListener("click", () => {
-      showMessage("এটি একটি ডেমো প্রোফাইল। বাস্তব লগইনের জন্য backend প্রয়োজন।");
+      row.append(icon,grow,amount);
+      container.append(row);
     });
+  });
+}
 
-    $("#learnButton").addEventListener("click", () => {
-      showMessage(
-        "DailyFree01 হলো একটি ডেমো ড্যাশবোর্ড। " +
-        "পয়েন্ট লোকাল ব্রাউজারে সেভ হয়; এগুলো বাস্তব টাকা নয়।"
-      );
-    });
+function editName(){
+  const name=prompt("আপনার নাম লিখুন:",state.name);
+  if(!name||!name.trim())return;
 
-    function initializeTelegram() {
-      if (!window.Telegram || !window.Telegram.WebApp) return;
+  state.name=name.trim().slice(0,40);
+  saveState();
+  render();
+  notify("ডেমো প্রোফাইল আপডেট হয়েছে।");
+}
 
-      const app = window.Telegram.WebApp;
+function render(){
+  updateStats();
+  renderTasks();
+  renderTransactions();
+}
 
-      try {
-        app.ready();
-        app.expand();
+function initialize(){
+  loadState();
 
-        if (app.themeParams) {
-          document.documentElement.style.setProperty(
-            "--tg-bg",
-            app.themeParams.bg_color || "#080909"
-          );
-        }
-      } catch (error) {
-        console.warn("Telegram initialization failed.", error);
-      }
+  const app=window.Telegram?.WebApp;
+  if(app){
+    app.ready();
+    app.expand();
+
+    const user=app.initDataUnsafe?.user;
+    if(user){
+      state.name=user.first_name||state.name;
+      $("userId").textContent=String(user.id);
     }
+  }
 
-    function initializeApp() {
-      loadState();
-      initializeTelegram();
-      renderTasks();
-      updateStats();
-    }
+  $("refLink").value=
+    location.origin!=="null"
+      ? location.href.split("#")[0]+"?ref=DEMO001"
+      : "https://example.com/?ref=DEMO001";
 
-    document.addEventListener("DOMContentLoaded", initializeApp);
-  </script>
+  render();
+}
+
+document.addEventListener("DOMContentLoaded",initialize);
+</script>
 </body>
   </html>
