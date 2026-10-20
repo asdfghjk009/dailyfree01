@@ -2,372 +2,203 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#080704">
-<title>👑 DailyFree01 2027</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Times Income</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script src="https://libtl.com/sdk.js"
- data-zone="11701410"
- data-sdk="show_11701410"></script>
 
 <style>
-*{box-sizing:border-box}
-:root{
- --bg:#080704;--card:#11100b;--gold:#ffd34d;
- --gold2:#a87508;--text:#fff7dc;--muted:#b8b09b;
+* {
+    box-sizing: border-box;
 }
-body{
- margin:0;background:var(--bg);color:var(--text);
- font-family:Arial,sans-serif;padding-bottom:25px;
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #0b1220;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
 }
-button,input,select{font:inherit}
-button{cursor:pointer}
-.header{
- padding:24px 15px;text-align:center;
- background:linear-gradient(135deg,#100d04,#342406,#100d04);
- border-bottom:1px solid var(--gold2);
- box-shadow:0 5px 30px #d99e1730;
+
+.header {
+    text-align: center;
+    padding: 22px 10px;
+    background: linear-gradient(135deg, #101c35, #172d50);
+    border-bottom: 1px solid #35e6b3;
 }
-.logo{font-size:29px;font-weight:900;color:var(--gold)}
-.header p{color:var(--muted);margin-bottom:0}
-.card{
- margin:15px;padding:19px;background:var(--card);
- border:1px solid #705719;border-radius:22px;
- box-shadow:0 8px 25px #0005;
+
+.header h2 {
+    margin: 0;
+    color: #35e6b3;
+    font-size: 24px;
 }
-.hero{
- text-align:center;padding:25px 15px;
- background:radial-gradient(circle at top right,#49350b,#161207 65%);
- border-color:var(--gold);
+
+.header p {
+    margin: 8px 0 0;
+    color: #d5e5f5;
+    font-size: 13px;
 }
-.eyebrow{color:var(--gold);letter-spacing:2px;font-size:12px}
-.balance{
- font-size:40px;font-weight:900;color:var(--gold);
- margin:15px 0;text-shadow:0 0 18px #ffcf4c40;
- overflow-wrap:anywhere;
+
+/* CENTER NOTICE */
+.notice-box {
+    width: 92%;
+    max-width: 420px;
+    margin: 28px auto;
+    padding: 22px 16px;
+    text-align: center;
+    background: linear-gradient(135deg, #101c35, #172d50);
+    border: 1px solid #35e6b3;
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(53,230,179,0.18);
+    position: relative;
+    overflow: hidden;
 }
-.pill{
- display:inline-block;padding:8px 14px;border-radius:30px;
- background:#25200f;color:var(--gold);border:1px solid #705719;
+
+.notice-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        #35e6b3,
+        #00aaff,
+        #35e6b3
+    );
 }
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px}
-.stat{
- text-align:center;padding:15px 4px;background:var(--card);
- border:1px solid #483817;border-radius:16px;min-width:0;
+
+.notice-title {
+    color: #35e6b3;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 13px;
 }
-.stat b{display:block;color:var(--gold);font-size:17px;margin-bottom:8px}
-.stat span{font-size:12px;color:var(--muted)}
-.title{font-size:19px;font-weight:bold;color:var(--gold);margin-bottom:17px}
-button{
- width:100%;padding:15px 10px;margin:5px 0;
- border-radius:14px;border:1px solid var(--gold2);
- color:var(--text);background:#171309;font-weight:bold;
+
+.notice-text {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 18px;
 }
-button:active{transform:scale(.98)}
-.primary{
- color:#160f00;background:linear-gradient(110deg,#ffe99a,#d9a51a);
- border:0;box-shadow:0 5px 20px #d9a51a20;
+
+.notice-link {
+    display: inline-block;
+    padding: 12px 24px;
+    color: #071b20;
+    background: linear-gradient(135deg, #35e6b3, #00d4ff);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,212,255,0.2);
 }
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.grid button{min-height:65px}
-.row{padding:13px 0;border-bottom:1px solid #332a17;color:var(--muted)}
-.row:last-child{border:0}
-.rules{line-height:2;color:var(--muted)}
-.rules b{color:var(--gold)}
-input,select{
- width:100%;padding:14px;margin:7px 0;
- background:#080704;color:white;border:1px solid #705719;
- border-radius:12px;
+
+.notice-link:active {
+    transform: scale(0.96);
 }
-.footer{text-align:center;color:#77705e;padding:20px;font-size:12px}
-.modal{
- display:none;position:fixed;inset:0;z-index:100;
- background:#000d;align-items:center;justify-content:center;
- padding:20px;overflow-y:auto;
+
+/* MAIN CONTENT */
+.content {
+    width: 92%;
+    max-width: 420px;
+    margin: 20px auto;
 }
-.modal.show{display:flex}
-.modalBox{
- width:100%;max-width:430px;padding:23px;
- border-radius:26px;background:#15130d;
- border:1px solid #b99638;
- box-shadow:0 0 50px #d9a51a25;
+
+.info-card {
+    padding: 18px;
+    margin-bottom: 15px;
+    background: #121f35;
+    border: 1px solid #263b55;
+    border-radius: 14px;
 }
-.noticeIcon{
- width:76px;height:76px;border-radius:22px;
- margin:0 auto 20px;display:flex;align-items:center;
- justify-content:center;font-size:38px;
- color:#170f00;background:linear-gradient(135deg,#ffe88b,#c18a08);
+
+.info-card h3 {
+    margin: 0 0 10px;
+    color: #35e6b3;
+    font-size: 17px;
 }
-.noticeTitle{text-align:center;color:var(--gold);font-size:25px;margin:8px 0 20px}
-.noticeText{
- padding:17px;background:#201c11;border:1px solid #40351b;
- border-radius:17px;line-height:1.9;color:#e8dfc7;
+
+.info-card p {
+    margin: 0;
+    color: #d5e5f5;
+    font-size: 14px;
+    line-height: 1.8;
 }
-.close{background:#251014;border-color:#803b32;color:#ffb2a7}
-.progress{height:8px;background:#302817;border-radius:20px;overflow:hidden}
-.progress div{height:100%;width:0;background:var(--gold);transition:width .3s}
-.small{font-size:12px;color:var(--muted);line-height:1.7}
+
+.footer {
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 25px;
+    color: #8da3bd;
+    font-size: 12px;
+    border-top: 1px solid #263b55;
+}
 </style>
 </head>
+
 <body>
 
 <header class="header">
- <div class="logo">👑 DailyFree01</div>
- <p>✨ 2027 GOLD REWARD CENTER ✨</p>
+    <h2>💎 LIFE TIMES INCOME</h2>
+    <p>Welcome to Our Official Platform</p>
 </header>
 
-<section class="card hero">
- <div class="eyebrow">YOUR REWARD WALLET</div>
- <div class="balance" id="balance">৳0.00</div>
- <span class="pill">● ACCOUNT DASHBOARD</span>
- <p class="small">Earn Rewards • Complete Tasks • Invite Friends</p>
-</section>
+<!-- NOTICE IN THE MIDDLE -->
+<div class="notice-box">
 
-<div class="stats">
- <div class="stat"><b id="today">৳0.00</b><span>আজকের আয়</span></div>
- <div class="stat"><b id="ads">0/2000</b><span>Ads দেখা</span></div>
- <div class="stat"><b id="lifetime">৳0.00</b><span>মোট আয়</span></div>
+    <div class="notice-title">
+        📢 IMPORTANT NOTICE
+    </div>
+
+    <div class="notice-text">
+        আমাদের অফিসিয়াল বটের সাথে যুক্ত থাকুন।
+        <br>
+        নতুন আপডেট ও গুরুত্বপূর্ণ তথ্য পেতে
+        আমাদের Telegram বট ভিজিট করুন।
+    </div>
+
+    <a class="notice-link"
+       href="https://t.me/Life_Times_Income_Bot"
+       target="_blank">
+       🚀 JOIN NOW
+    </a>
+
 </div>
 
-<section class="card">
- <div class="title">✨ EARN CENTER</div>
- <button class="primary" onclick="watchAd()">▶ WATCH AD — ৳0.04</button>
- <div class="grid">
-  <button onclick="webTask()">🌐 WEB TASK</button>
-  <button onclick="telegramTask()">📢 TELEGRAM TASK</button>
-  <button onclick="referral()">🎁 REFERRAL</button>
-  <button onclick="openWithdraw()">💰 WITHDRAW</button>
-  <button onclick="profile()">👤 PROFILE</button>
-  <button onclick="openChannel()">📣 OFFICIAL CHANNEL</button>
- </div>
-</section>
+<!-- INFORMATION -->
+<div class="content">
 
-<section class="card">
- <div class="title">🎬 ADS REWARD CENTER</div>
- <div class="row">💵 প্রতি সফল বিজ্ঞাপন: <b>৳0.04</b></div>
- <div class="row">⚡ দৈনিক সর্বোচ্চ: <b>২০০০ Ads</b></div>
- <div class="row">⏱️ অটোমেটিক বিজ্ঞাপন: <b>২০ সেকেন্ড ব্যবধান</b></div>
- <div class="row">📊 দৈনিক সর্বোচ্চ সম্ভাব্য Reward: <b>৳80.00</b></div>
- <p class="small" id="adStatus">বিজ্ঞাপন চালু করতে WATCH AD চাপুন।</p>
- <div class="progress"><div id="progress"></div></div>
-</section>
+    <div class="info-card">
+        <h3>🌟 Welcome</h3>
+        <p>
+            আমাদের প্ল্যাটফর্মে আপনাকে স্বাগতম।
+            সর্বশেষ আপডেট পেতে অফিসিয়াল Telegram
+            বটের সাথে যুক্ত থাকুন।
+        </p>
+    </div>
 
-<section class="card">
- <div class="title">📊 EARNING RULES</div>
- <div class="rules">
-  🎬 প্রতি সফল Ad = <b>৳0.04</b><br>
-  📺 Daily Limit = <b>2000 Ads</b><br>
-  💰 2000 Ads = <b>৳80.00</b><br>
-  💸 Minimum Withdraw = <b>৳1,000</b><br>
-  🟢 Payment Method = <b>bKash</b><br>
-  🟠 Payment Method = <b>Nagad</b>
- </div>
-</section>
+    <div class="info-card">
+        <h3>📌 Important Information</h3>
+        <p>
+            যেকোনো আপডেট ও ঘোষণা সম্পর্কে জানতে
+            আমাদের অফিসিয়াল Telegram বট দেখুন।
+        </p>
+    </div>
 
-<section class="card">
- <div class="title">👥 INVITE & EARN</div>
- <p class="small">আপনার Referral Link বন্ধুদের সঙ্গে শেয়ার করুন।</p>
- <button onclick="referral()">🔗 COPY REFERRAL LINK</button>
-</section>
-
-<section class="card">
- <div class="title">📢 OFFICIAL CHANNEL</div>
- <p class="small">সর্বশেষ আপডেট ও ঘোষণা পেতে আমাদের অফিসিয়াল চ্যানেলে যোগ দিন।</p>
- <button class="primary" onclick="openChannel()">JOIN OFFICIAL CHANNEL ↗</button>
-</section>
-
-<section class="card">
- <div class="title">🛡️ OFFICIAL NOTICE</div>
- <p class="small">রিওয়ার্ড বিজ্ঞাপন নেটওয়ার্কের সফল completion অনুযায়ী গণনা করা হবে। Withdraw request যাচাইয়ের জন্য সার্ভার ও পেমেন্ট সিস্টেম প্রয়োজন।</p>
-</section>
-
-<div class="footer">👑 DailyFree01 © 2027</div>
-
-<!-- Center Notice -->
-<div class="modal" id="noticeModal">
- <div class="modalBox">
-  <div class="noticeIcon">📢</div>
-  <h2 class="noticeTitle">OFFICIAL NOTICE</h2>
-  <div class="noticeText">
-   🔊 DailyFree01 2027-এ স্বাগতম!<br>
-   বিজ্ঞাপন দেখার আগে নিয়ম পড়ুন। প্রতি সফল বিজ্ঞাপনে নির্ধারিত Reward ৳0.04। দৈনিক সীমা ২০০০ Ads। পেমেন্টের জন্য অ্যাকাউন্ট যাচাই প্রয়োজন।<br><br>
-   ⚠️ ব্যালেন্স ও পেমেন্টের প্রকৃত হিসাব নিশ্চিত করতে সার্ভার সংযোগ প্রয়োজন।
-  </div>
-  <button class="primary" onclick="closeNotice()">GOT IT ✓</button>
- </div>
 </div>
 
-<!-- Withdraw Modal -->
-<div class="modal" id="withdrawModal">
- <div class="modalBox">
-  <div class="title">💸 WITHDRAW REQUEST</div>
-  <p class="small">Available Balance</p>
-  <h2 id="withdrawBalance" style="color:#ffd34d">৳0.00</h2>
-  <select id="method">
-   <option value="bKash">🟢 bKash</option>
-   <option value="Nagad">🟠 Nagad</option>
-  </select>
-  <input id="paymentNumber" type="tel" placeholder="bKash/Nagad Number">
-  <input id="withdrawAmount" type="number" min="1000" placeholder="Amount (Minimum ৳1000)">
-  <button class="primary" onclick="submitWithdraw()">SUBMIT REQUEST ✓</button>
-  <button class="close" onclick="closeWithdraw()">CLOSE ✕</button>
- </div>
-</div>
+<footer class="footer">
+    © 2026 Life Times Income
+</footer>
 
 <script>
-const tg = window.Telegram.WebApp;
-if(tg){tg.ready();tg.expand();}
-
-const AD_REWARD = 0.04;
-const DAILY_AD_LIMIT = 2000;
-const MIN_WITHDRAW = 1000;
-const OFFICIAL_CHANNEL = "https://t.me/Abdullahvai1";
-const BOT_USERNAME = "DailyFree01_bot";
-
-const todayKey = () => new Date().toLocaleDateString("en-CA");
-let earningDate = localStorage.getItem("earningDate");
-let balance = Number(localStorage.getItem("balance")) || 0;
-let lifetime = Number(localStorage.getItem("lifetime")) || 0;
-let today = Number(localStorage.getItem("today")) || 0;
-let ads = Number(localStorage.getItem("ads")) || 0;
-let adBusy = false;
-let autoAdTimer = null;
-
-if(earningDate !== todayKey()){
- today = 0;
- ads = 0;
- localStorage.setItem("earningDate",todayKey());
- save();
+if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
 }
-
-function money(n){return "৳"+Number(n).toFixed(2)}
-
-function save(){
- localStorage.setItem("balance",balance);
- localStorage.setItem("lifetime",lifetime);
- localStorage.setItem("today",today);
- localStorage.setItem("ads",ads);
- localStorage.setItem("earningDate",todayKey());
- update();
-}
-
-function update(){
- document.getElementById("balance").textContent=money(balance);
- document.getElementById("today").textContent=money(today);
- document.getElementById("lifetime").textContent=money(lifetime);
- document.getElementById("ads").textContent=ads+"/"+DAILY_AD_LIMIT;
- document.getElementById("progress").style.width=(ads/DAILY_AD_LIMIT*100)+"%";
- document.getElementById("withdrawBalance").textContent=money(balance);
-}
-
-function showModal(id){document.getElementById(id).classList.add("show")}
-function hideModal(id){document.getElementById(id).classList.remove("show")}
-
-function closeNotice(){
- hideModal("noticeModal");
- // Initial ad after dismissing notice, then a 20-second interval.
- watchAd();
- startAutoAds();
-}
-
-function startAutoAds(){
- if(autoAdTimer) clearInterval(autoAdTimer);
- autoAdTimer=setInterval(()=>{
-  if(document.visibilityState!=="visible") return;
-  if(document.getElementById("noticeModal").classList.contains("show")) return;
-  if(document.getElementById("withdrawModal").classList.contains("show")) return;
-  if(ads>=DAILY_AD_LIMIT){
-   clearInterval(autoAdTimer);autoAdTimer=null;
-   document.getElementById("adStatus").textContent="আজকের বিজ্ঞাপন সীমা শেষ হয়েছে।";
-   return;
-  }
-  watchAd();
- },20000);
-}
-
-function watchAd(){
- if(adBusy) return;
- if(ads>=DAILY_AD_LIMIT){
-  alert("আজকের ২০০০ Ads সীমা শেষ হয়েছে।");return;
- }
- if(typeof window.show_11701410!=="function"){
-  document.getElementById("adStatus").textContent="Ad SDK এখনো লোড হয়নি। পরে আবার চেষ্টা করুন।";
-  return;
- }
- adBusy=true;
- document.getElementById("adStatus").textContent="বিজ্ঞাপন লোড হচ্ছে...";
- let result;
- try{result=window.show_11701410();}
- catch(e){
-  adBusy=false;
-  document.getElementById("adStatus").textContent="বিজ্ঞাপন চালু হয়নি। পরে চেষ্টা করুন।";
-  return;
- }
- Promise.resolve(result).then(()=>{
-  // Reward only when the ad provider resolves successfully.
-  balance=Number((balance+AD_REWARD).toFixed(2));
-  today=Number((today+AD_REWARD).toFixed(2));
-  lifetime=Number((lifetime+AD_REWARD).toFixed(2));
-  ads++;
-  save();
-  document.getElementById("adStatus").textContent="সফল Ad! Reward: ৳0.04";
- }).catch(()=>{
-  document.getElementById("adStatus").textContent="Ad complete নিশ্চিত হয়নি; Reward যোগ হয়নি।";
- }).finally(()=>{adBusy=false;});
-}
-
-function openWithdraw(){update();showModal("withdrawModal")}
-function closeWithdraw(){hideModal("withdrawModal")}
-
-function submitWithdraw(){
- if(balance<MIN_WITHDRAW){
-  alert("Minimum Withdraw ৳1,000। আপনার ব্যালেন্স "+money(balance));return;
- }
- const method=document.getElementById("method").value;
- const number=document.getElementById("paymentNumber").value.trim();
- const amount=Number(document.getElementById("withdrawAmount").value);
- if(!/^01[3-9]\d{8}$/.test(number)){
-  alert("সঠিক ১১ সংখ্যার বাংলাদেশি মোবাইল নম্বর দিন।");return;
- }
- if(!Number.isFinite(amount)||amount<MIN_WITHDRAW){
-  alert("Minimum Withdraw ৳1,000");return;
- }
- if(amount>balance){
-  alert("আপনার ব্যালেন্সের চেয়ে বেশি চাওয়া যাবে না।");return;
- }
- // Demo only: localStorage is not a real payment server.
- const request={method,number,amount,time:new Date().toISOString()};
- localStorage.setItem("lastWithdraw",JSON.stringify(request));
- balance=Number((balance-amount).toFixed(2));
- save();closeWithdraw();
- alert("Demo request সংরক্ষিত হয়েছে। এটি পেমেন্ট সম্পন্ন হওয়ার নিশ্চয়তা নয়। বাস্তব পেমেন্টের জন্য backend/admin approval লাগবে।");
-}
-
-function getUserId(){return tg?.initDataUnsafe?.user?.id || "user"}
-function referral(){
- const link="https://t.me/"+BOT_USERNAME+"?start="+getUserId();
- if(navigator.clipboard?.writeText){
-  navigator.clipboard.writeText(link).then(()=>alert("Referral Link:\n"+link))
-   .catch(()=>prompt("Link কপি করুন:",link));
- }else{prompt("Link কপি করুন:",link)}
-}
-function openChannel(){
- if(tg?.openTelegramLink) tg.openTelegramLink(OFFICIAL_CHANNEL);
- else window.open(OFFICIAL_CHANNEL,"_blank");
-}
-function webTask(){alert("WEB TASK শীঘ্রই যোগ করা হবে।")}
-function telegramTask(){openChannel()}
-function profile(){
- const user=tg?.initDataUnsafe?.user;
- if(!user){alert("Telegram User তথ্য পাওয়া যায়নি।");return}
- alert("PROFILE\n\nName: "+(user.first_name||"")+
- "\nUsername: @"+(user.username||"নেই")+
- "\nTelegram ID: "+user.id);
-}
-
-update();
-showModal("noticeModal");
 </script>
+
 </body>
 </html>
